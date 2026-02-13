@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Welcome Back | into3.ai</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0e27; color: #e2e8f0; min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .login-container {
+            max-width: 500px; width: 100%; padding: 3rem;
+            background: rgba(139, 92, 246, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 24px; backdrop-filter: blur(10px); margin: 20px;
+        }
+        .logo { text-align: center; margin-bottom: 2rem; }
+        .logo-text {
+            font-size: 2.5rem; font-weight: 900;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .logo-subtitle { color: rgba(255, 255, 255, 0.6); font-size: 0.95rem; margin-top: 0.5rem; }
+        h1 { font-size: 1.8rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem; }
+        .subtitle { text-align: center; color: rgba(255, 255, 255, 0.6); margin-bottom: 2rem; }
+        .social-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+        .social-btn {
+            padding: 0.9rem; background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px;
+            color: rgba(255, 255, 255, 0.9); font-weight: 600; cursor: pointer;
+            transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .social-btn:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(139, 92, 246, 0.5); }
+        .divider {
+            display: flex; align-items: center; margin: 2rem 0;
+            color: rgba(255, 255, 255, 0.4); font-size: 0.85rem;
+        }
+        .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .divider span { padding: 0 1rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; color: rgba(255, 255, 255, 0.9); font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; }
+        input {
+            width: 100%; padding: 0.9rem 1rem; background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px;
+            color: #fff; font-size: 0.95rem; transition: all 0.3s;
+        }
+        input:focus { outline: none; border-color: #8b5cf6; background: rgba(255, 255, 255, 0.08); }
+        input::placeholder { color: rgba(255, 255, 255, 0.4); }
+        .password-input { position: relative; }
+        .toggle-password {
+            position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);
+            cursor: pointer; color: rgba(255, 255, 255, 0.5); font-size: 1.2rem;
+        }
+        .form-footer { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .remember-me { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); }
+        .remember-me input { width: auto; accent-color: #8b5cf6; }
+        .forgot-link { color: #8b5cf6; text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+        .forgot-link:hover { text-decoration: underline; }
+        .submit-btn {
+            width: 100%; padding: 1rem; background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white; border: none; border-radius: 12px; font-size: 1rem; font-weight: 700;
+            cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5); }
+        .signup-link { text-align: center; margin-top: 1.5rem; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; }
+        .signup-link a { color: #8b5cf6; text-decoration: none; font-weight: 600; }
+        .signup-link a:hover { text-decoration: underline; }
+        .back-home {
+            position: fixed; top: 2rem; left: 2rem; color: rgba(255, 255, 255, 0.7);
+            text-decoration: none; font-weight: 600; transition: color 0.3s;
+        }
+        .back-home:hover { color: #8b5cf6; }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-home">← Back to Home</a>
+    <div class="login-container">
+        <div class="logo">
+            <img src="../White Logo.svg" alt="into3.ai" class="logo-img">
+            <div class="logo-subtitle">Learning, Multiplied</div>
+        </div>
+        <h1>Welcome Back!</h1>
+        <p class="subtitle">Log in to continue your learning journey</p>
+        
+        <div class="social-buttons">
+            <button class="social-btn" onclick="alert('Google OAuth')"><span>🔍</span><span>Google</span></button>
+            <button class="social-btn" onclick="alert('Microsoft OAuth')"><span>🪟</span><span>Microsoft</span></button>
+        </div>
+        
+        <div class="divider"><span>or log in with email</span></div>
+        
+        <form onsubmit="event.preventDefault(); alert('Login successful!'); window.location.href='student_landing_page.html';">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-input">
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <span class="toggle-password" onclick="const f=document.getElementById('password');f.type=f.type==='password'?'text':'password'">👁️</span>
+                </div>
+            </div>
+            <div class="form-footer">
+                <label class="remember-me">
+                    <input type="checkbox" id="remember">
+                    <span>Remember me</span>
+                </label>
+                <a href="forgot_password.html" class="forgot-link">Forgot Password?</a>
+            </div>
+            <button type="submit" class="submit-btn">Log In</button>
+        </form>
+        
+        <div class="signup-link">
+            Don't have an account? <a href="signup.html">Sign Up</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Plan - into3.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f172a 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 5%;
+            overflow: hidden;
+        }
+
+        /* Floating Particles */
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(6, 182, 212, 0.5);
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(6, 182, 212, 0.8);
+            animation: particleFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translate(0, 0);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(100px, -100px);
+                opacity: 0.7;
+            }
+        }
+
+        /* Ambient Glows */
+        .ambient-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .glow-left {
+            top: 10%;
+            left: 5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent);
+            animation: glowPulse 8s ease-in-out infinite;
+        }
+
+        .glow-right {
+            bottom: 10%;
+            right: 5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.25), transparent);
+            animation: glowPulse 8s ease-in-out 4s infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Header Section */
+        .header-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            z-index: 10;
+        }
+
+        .eyebrow {
+            font-size: 0.8rem;
+            color: #06b6d4;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.6rem;
+        }
+
+        .main-heading {
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 0.6rem;
+            letter-spacing: -1px;
+        }
+
+        .sub-heading {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .highlight-gradient {
+            background: linear-gradient(90deg, #06b6d4 0%, #8b5cf6 50%, #ec4899 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientFlow 4s linear infinite;
+            font-weight: 700;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            border-right: 2px solid #06b6d4;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { border-color: #06b6d4; }
+            51%, 100% { border-color: transparent; }
+        }
+
+        /* Cards Container */
+        .cards-container {
+            display: flex;
+            gap: 3.5rem;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 10;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Plan Card - Compact */
+        .plan-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 1.5rem 1.2rem;
+            width: 250px;
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .plan-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Student Card - CENTER HERO */
+        .student-card {
+            transform: scale(1.06);
+            background: rgba(6, 182, 212, 0.15);
+            border: 2px solid #06b6d4;
+            box-shadow: 
+                0 20px 60px rgba(6, 182, 212, 0.3),
+                0 0 60px rgba(6, 182, 212, 0.2);
+        }
+
+        .student-card:hover {
+            transform: scale(1.06) translateY(-8px);
+        }
+
+        .student-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.5;
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Teacher Card */
+        .teacher-card {
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .teacher-card:hover {
+            border-color: rgba(139, 92, 246, 0.6);
+        }
+
+        /* School Card */
+        .school-card {
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .school-card:hover {
+            border-color: rgba(16, 185, 129, 0.6);
+        }
+
+        /* Plan Icon */
+        .plan-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.6rem;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Plan Name */
+        .plan-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .student-card .plan-name {
+            color: #06b6d4;
+        }
+
+        /* Plan Description */
+        .plan-description {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.4;
+            margin-bottom: 1rem;
+            min-height: 50px;
+        }
+
+        /* Features */
+        .features-list {
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.3;
+        }
+
+        .feature-icon {
+            color: #4ade80;
+            font-size: 0.9rem;
+            margin-top: 1px;
+            min-width: 12px;
+        }
+
+        /* Price */
+        .price-section {
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            line-height: 1;
+            animation: priceGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes priceGlow {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        .student-card .price {
+            color: #06b6d4;
+            text-shadow: 0 0 30px rgba(6, 182, 212, 0.6);
+        }
+
+        .price-period {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 600;
+            display: block;
+            margin-top: 0.3rem;
+        }
+
+        .custom-price {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: white;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            width: 100%;
+            padding: 0.85rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.6);
+        }
+
+        .student-card .cta-button {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.5);
+        }
+
+        .student-card .cta-button:hover {
+            box-shadow: 0 12px 35px rgba(6, 182, 212, 0.7);
+        }
+
+        .school-card .cta-button {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .school-card .cta-button:hover {
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.6);
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .trust-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .student-card {
+                transform: scale(1);
+            }
+
+            .student-card:hover {
+                transform: translateY(-8px) scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-heading {
+                font-size: 2rem;
+            }
+
+            .plan-card {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .price {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Ambient Glows -->
+    <div class="ambient-glow glow-left"></div>
+    <div class="ambient-glow glow-right"></div>
+
+    <!-- Particles -->
+    <div id="particlesContainer"></div>
+
+    <section class="pricing-section">
+        <!-- Header -->
+        <div class="header-section">
+            <div class="eyebrow">Choose Your Path</div>
+            <h1 class="main-heading">
+                Start your journey with <span class="highlight-gradient">into3.ai</span>
+            </h1>
+            <p class="sub-heading">
+                <span id="typingText" class="typing-cursor"></span>
+            </p>
+        </div>
+
+        <!-- Cards Container -->
+        <div class="cards-container">
+            <!-- Teacher Card -->
+            <div class="plan-card teacher-card">
+                <div class="plan-icon">👩‍🏫</div>
+                <h2 class="plan-name">Teacher</h2>
+                <p class="plan-description">Empower your teaching with AI assistance and insights</p>
+                
+                <div class="features-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>AI class prep & content builder</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Real-time teaching analytics</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>₹1 Crore Award eligibility</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Teacher Pension Fund</span>
+                    </div>
+                </div>
+
+                <div class="price-section">
+                    <div class="price">₹99</div>
+                    <div class="price-period">per month</div>
+                </div>
+
+                <button class="cta-button" onclick="window.parent.location.href='../Pages/teacher_landing_page.html'">Join as Teacher</button>
+            </div>
+
+            <!-- Student Card - CENTER HERO -->
+            <div class="plan-card student-card">
+                <div class="plan-icon">👨‍🎓</div>
+                <h2 class="plan-name">Student</h2>
+                <p class="plan-description">Your personal AI learning companion for academic excellence</p>
+                
+                <div class="features-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>AI Tutor & Metalab access</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>24×7 handheld doubt classes</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Real-time Adaptive Engine</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Hyperpersonalization at core</span>
+                    </div>
+                </div>
+
+                <div class="price-section">
+                    <div class="price">₹1,499</div>
+                    <div class="price-period">per month</div>
+                </div>
+
+                <button class="cta-button" onclick="window.parent.location.href='../Pages/student_landing_page.html'">Start Learning Now</button>
+            </div>
+
+            <!-- School Card -->
+            <div class="plan-card school-card">
+                <div class="plan-icon">🏫</div>
+                <h2 class="plan-name">School</h2>
+                <p class="plan-description">Complete AI-powered transformation for your institution</p>
+                
+                <div class="features-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Full AI classroom ecosystem</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Multi-role dashboards</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>School-wide analytics</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>All teachers auto-enrolled</span>
+                    </div>
+                </div>
+
+                <div class="price-section">
+                    <div class="custom-price">Custom</div>
+                    <div class="price-period">tailored quote</div>
+                </div>
+
+                <button class="cta-button" onclick="window.parent.location.href='../Pages/school_landing_page.html'">Partner With Us</button>
+            </div>
+        </div>
+
+        <!-- Trust Bar -->
+        <div class="trust-bar">
+            <p class="trust-text">Trusted by 150,000+ students • 50,000+ teachers • 1,000+ schools</p>
+        </div>
+    </section>
+
+    <script>
+        // Create Floating Particles
+        const particlesContainer = document.getElementById('particlesContainer');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 20) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Typing Effect
+        const typingElement = document.getElementById('typingText');
+        const textToType = "Learn. Teach. Lead. The movement begins with you.";
+        let charIndex = 0;
+
+        function typeText() {
+            if (charIndex < textToType.length) {
+                typingElement.textContent = textToType.substring(0, charIndex + 1);
+                charIndex++;
+                setTimeout(typeText, 60);
+            } else {
+                typingElement.classList.remove('typing-cursor');
+            }
+        }
+
+        // Start typing after brief delay
+        setTimeout(typeText, 800);
+    </script>
+</body>
+</html>

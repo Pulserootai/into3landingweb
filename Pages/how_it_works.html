@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - into3.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .words-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .word-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            animation: scrollVertical 60s linear infinite;
+            opacity: 0.2;
+        }
+
+        @keyframes scrollVertical {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .word-column:nth-child(odd) { color: rgba(6, 182, 212, 0.6); }
+        .word-column:nth-child(even) { color: rgba(139, 92, 246, 0.5); }
+
+        .education-word.caught {
+            color: #ffffff !important;
+            font-weight: 900;
+            font-size: 1.2em;
+            text-shadow: 0 0 20px currentColor;
+            transform: scale(1.3);
+            opacity: 1 !important;
+        }
+
+        /* Content Layer */
+        .content-layer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.4);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #06b6d4;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            max-width: 1100px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            max-width: 900px;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 100px 5%;
+            position: relative;
+        }
+
+        .section-alt {
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Pipeline Flow */
+        .pipeline-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .pipeline-step {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .pipeline-step:not(:last-child)::after {
+            content: '↓';
+            position: absolute;
+            left: 50px;
+            bottom: -2rem;
+            font-size: 3rem;
+            color: #06b6d4;
+            opacity: 0.5;
+        }
+
+        .step-number {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.4);
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            background: rgba(30, 41, 59, 0.7);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .step-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #06b6d4;
+        }
+
+        .step-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .step-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .detail-box {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .detail-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .detail-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .detail-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+        }
+
+        /* Real-time Tracking Section */
+        .tracking-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 3rem auto 0;
+        }
+
+        .tracking-card {
+            padding: 2.5rem;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .tracking-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.2);
+        }
+
+        .tracking-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tracking-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            color: #06b6d4;
+        }
+
+        .tracking-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Learning Journey */
+        .journey-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .journey-card {
+            padding: 2.5rem;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .journey-card:hover {
+            border-color: rgba(6, 182, 212, 0.5);
+            transform: translateY(-8px);
+        }
+
+        .journey-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .journey-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .journey-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* System Architecture */
+        .architecture-diagram {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 3rem;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 24px;
+            border: 2px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .arch-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: #06b6d4;
+        }
+
+        .arch-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .arch-layer {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border-left: 4px solid #06b6d4;
+        }
+
+        .arch-layer-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #06b6d4;
+        }
+
+        .arch-layer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .arch-module {
+            padding: 0.8rem 1.5rem;
+            background: rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 20px;
+            font-size: 0.95rem;
+            color: white;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 100px 5%;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 1.3rem 3rem;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.4);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(6, 182, 212, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .pipeline-step {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .pipeline-step::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .step-number {
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .step-title {
+                font-size: 1.5rem;
+            }
+
+            .step-details {
+                grid-template-columns: 1fr;
+            }
+
+            .tracking-grid,
+            .journey-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="words-container" id="wordsContainer"></div>
+    </div>
+
+    <!-- Content Layer -->
+    <div class="content-layer">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">🔬 Complete System Architecture</div>
+            <h1 class="hero-title">
+                How <span class="gradient-text">into3.ai</span> Creates Hyper-Personalized Learning
+            </h1>
+            <p class="hero-subtitle">
+                From the moment you sign up to achieving mastery - here's the complete journey through our AI-powered personalization engine.
+            </p>
+        </section>
+
+        <!-- Pipeline Flow -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">The <span class="gradient-text">Personalization Pipeline</span></h2>
+                <p class="section-subtitle">Every student's journey through our intelligent learning system</p>
+            </div>
+
+            <div class="pipeline-container">
+                <!-- Step 1: Onboarding -->
+                <div class="pipeline-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">📋 Onboarding & Data Capture</h3>
+                        <p class="step-description">
+                            Your personalization journey begins here. We capture comprehensive data to understand who you are as a learner.
+                        </p>
+                        <div class="step-details">
+                            <div class="detail-box">
+                                <div class="detail-icon">👤</div>
+                                <div class="detail-title">Personal Profile</div>
+                                <div class="detail-text">Age, grade, board, learning goals, preferred subjects</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">🎯</div>
+                                <div class="detail-title">Learning History</div>
+                                <div class="detail-text">Past performance, strengths, weaknesses, test scores</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">🧠</div>
+                                <div class="detail-title">Cognitive Assessment</div>
+                                <div class="detail-text">Initial tests to gauge comprehension speed, learning style</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">⏰</div>
+                                <div class="detail-title">Behavioral Patterns</div>
+                                <div class="detail-text">Optimal study times, attention span baseline, preferences</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Baseline Engine -->
+                <div class="pipeline-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">⚙️ Baseline Engine Processing</h3>
+                        <p class="step-description">
+                            Our AI analyzes your onboarding data to establish your unique learning baseline - the foundation for all personalization.
+                        </p>
+                        <div class="step-details">
+                            <div class="detail-box">
+                                <div class="detail-icon">📊</div>
+                                <div class="detail-title">Performance Analysis</div>
+                                <div class="detail-text">Mathematical modeling of current competency levels across subjects</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">🎨</div>
+                                <div class="detail-title">Learning Style Detection</div>
+                                <div class="detail-text">Visual, auditory, kinesthetic, reading/writing preferences identified</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">🔍</div>
+                                <div class="detail-title">Gap Identification</div>
+                                <div class="detail-text">Pinpoints knowledge gaps, misconceptions, foundational weaknesses</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">📈</div>
+                                <div class="detail-title">Growth Potential Mapping</div>
+                                <div class="detail-text">Predicts optimal learning trajectory and achievable outcomes</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Persona Engine -->
+                <div class="pipeline-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">🎭 Persona Engine Creation</h3>
+                        <p class="step-description">
+                            Your unique learner persona is created - a dynamic, evolving profile that captures your complete learning identity.
+                        </p>
+                        <div class="step-details">
+                            <div class="detail-box">
+                                <div class="detail-icon">🏷️</div>
+                                <div class="detail-title">Learner Archetype</div>
+                                <div class="detail-text">Classified into learning personas: Explorer, Achiever, Analyst, Creator</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">💪</div>
+                                <div class="detail-title">Strength Profile</div>
+                                <div class="detail-text">Your top skills, natural talents, areas of excellence mapped</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">🎯</div>
+                                <div class="detail-title">Growth Areas</div>
+                                <div class="detail-text">Specific improvement opportunities and focus zones identified</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">🔮</div>
+                                <div class="detail-title">Predictive Model</div>
+                                <div class="detail-text">AI predicts how you'll respond to different teaching approaches</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Content Stitching Engine -->
+                <div class="pipeline-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">🧩 Content Stitching Engine</h3>
+                        <p class="step-description">
+                            This is where the magic happens - creating hyper-personalized lectures by intelligently combining content blocks tailored to you.
+                        </p>
+                        <div class="step-details">
+                            <div class="detail-box">
+                                <div class="detail-icon">📚</div>
+                                <div class="detail-title">Content Library Access</div>
+                                <div class="detail-text">10,000+ micro-content blocks across subjects and difficulty levels</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">🔗</div>
+                                <div class="detail-title">Intelligent Sequencing</div>
+                                <div class="detail-text">Orders content based on your knowledge graph and optimal learning path</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">🎯</div>
+                                <div class="detail-title">Difficulty Calibration</div>
+                                <div class="detail-text">Adjusts complexity to your sweet spot - challenging but achievable</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">💡</div>
+                                <div class="detail-title">Example Selection</div>
+                                <div class="detail-text">Picks examples, analogies, contexts that resonate with your interests</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">🎬</div>
+                                <div class="detail-title">Media Format Matching</div>
+                                <div class="detail-text">Video, animation, text, audio based on your learning style preference</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">⚡</div>
+                                <div class="detail-title">Pacing Optimization</div>
+                                <div class="detail-text">Sets ideal speed and chunk sizes for your attention span</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Personalization Parameters -->
+                <div class="pipeline-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3 class="step-title">⚙️ 47 Personalization Parameters</h3>
+                        <p class="step-description">
+                            Every aspect of your learning experience is controlled by 47 dynamic parameters that adjust in real-time.
+                        </p>
+                        <div class="step-details">
+                            <div class="detail-box">
+                                <div class="detail-icon">🎚️</div>
+                                <div class="detail-title">Content Parameters (12)</div>
+                                <div class="detail-text">Difficulty, depth, breadth, example types, visual density, abstraction level</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">⏱️</div>
+                                <div class="detail-title">Pacing Parameters (8)</div>
+                                <div class="detail-text">Speed, pause frequency, review timing, repetition intervals</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">🎨</div>
+                                <div class="detail-title">Style Parameters (11)</div>
+                                <div class="detail-text">Teaching tone, formality, humor level, encouragement frequency</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">🎯</div>
+                                <div class="detail-title">Assessment Parameters (7)</div>
+                                <div class="detail-text">Question frequency, difficulty curve, feedback timing, hint availability</div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-icon">🔄</div>
+                                <div class="detail-title">Adaptation Parameters (9)</div>
+                                <div class="detail-text">Sensitivity to struggle, intervention thresholds, path flexibility</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real-Time Tracking -->
+        <section class="section section-alt">
+            <div class="section-header">
+                <h2 class="section-title">Real-Time <span class="gradient-text">Biometric & Behavioral Tracking</span></h2>
+                <p class="section-subtitle">Continuous monitoring during every learning session to enable instant adaptation</p>
+            </div>
+
+            <div class="tracking-grid">
+                <div class="tracking-card">
+                    <div class="tracking-icon">😊</div>
+                    <h3 class="tracking-title">Emotion Detection</h3>
+                    <p class="tracking-description">
+                        Facial recognition AI detects 7 emotions: joy, confusion, frustration, boredom, excitement, anxiety, focus. Updates every 500ms.
+                    </p>
+                </div>
+
+                <div class="tracking-card">
+                    <div class="tracking-icon">❤️</div>
+                    <h3 class="tracking-title">Cardiovascular Monitoring</h3>
+                    <p class="tracking-description">
+                        Non-invasive heart rate and HRV tracking via webcam. Detects stress levels, cognitive load, and relaxation states.
+                    </p>
+                </div>
+
+                <div class="tracking-card">
+                    <div class="tracking-icon">👁️</div>
+                    <h3 class="tracking-title">Eye Gaze Tracking</h3>
+                    <p class="tracking-description">
+                        Monitors where you're looking, blink rate, pupil dilation. Identifies attention drift, re-reading patterns, areas of confusion.
+                    </p>
+                </div>
+
+                <div class="tracking-card">
+                    <div class="tracking-icon">😰</div>
+                    <h3 class="tracking-title">Stress Index</h3>
+                    <p class="tracking-description">
+                        Composite score combining heart rate, facial micro-expressions, breathing patterns. Triggers supportive interventions.
+                    </p>
+                </div>
+
+                <div class="tracking-card">
+                    <div class="tracking-icon">🎯</div>
+                    <h3 class="tracking-title">Focus Score</h3>
+                    <p class="tracking-description">
+                        Real-time 0-100 score measuring attention quality. Combines eye tracking, engagement signals, interaction patterns.
+                    </p>
+                </div>
+
+                <div class="tracking-card">
+                    <div class="tracking-icon">⚡</div>
+                    <h3 class="tracking-title">Cognitive Load</h3>
+                    <p class="tracking-description">
+                        Measures mental effort being expended. Prevents overwhelm by adjusting complexity when load exceeds optimal threshold.
+                    </p>
+                </div>
+
+                <div class="tracking-card">
+                    <div class="tracking-icon">🔄</div>
+                    <h3 class="tracking-title">Interaction Patterns</h3>
+                    <p class="tracking-description">
+                        Tracks clicks, pauses, replays, note-taking. Reveals understanding depth and areas needing reinforcement.
+                    </p>
+                </div>
+
+                <div class="tracking-card">
+                    <div class="tracking-icon">💬</div>
+                    <h3 class="tracking-title">Voice Analysis</h3>
+                    <p class="tracking-description">
+                        (Optional) Analyzes tone, pitch, pace when asking questions. Detects confidence levels and emotional state.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Metahuman Delivery -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">🎭 <span class="gradient-text">Metahuman</span> Lecture Delivery</h2>
+                <p class="section-subtitle">Your AI tutor comes to life through photorealistic digital humans</p>
+            </div>
+
+            <div class="architecture-diagram">
+                <h3 class="arch-title">Metahuman Teaching Experience</h3>
+                <div class="arch-flow">
+                    <div class="arch-layer">
+                        <div class="arch-layer-title">🎬 Photorealistic Avatar</div>
+                        <div class="arch-layer-content">
+                            <span class="arch-module">Lifelike facial expressions</span>
+                            <span class="arch-module">Natural body language</span>
+                            <span class="arch-module">Eye contact simulation</span>
+                            <span class="arch-module">Gesture synchronization</span>
+                        </div>
+                    </div>
+
+                    <div class="arch-layer">
+                        <div class="arch-layer-title">🗣️ Natural Speech Synthesis</div>
+                        <div class="arch-layer-content">
+                            <span class="arch-module">Multi-lingual support</span>
+                            <span class="arch-module">Emotion-aware voice modulation</span>
+                            <span class="arch-module">Pacing adaptation</span>
+                            <span class="arch-module">Accent personalization</span>
+                        </div>
+                    </div>
+
+                    <div class="arch-layer">
+                        <div class="arch-layer-title">🎨 Interactive Whiteboard</div>
+                        <div class="arch-layer-content">
+                            <span class="arch-module">Real-time equation solving</span>
+                            <span class="arch-module">Diagram creation</span>
+                            <span class="arch-module">Annotation & highlighting</span>
+                            <span class="arch-module">3D visualization</span>
+                        </div>
+                    </div>
+
+                    <div class="arch-layer">
+                        <div class="arch-layer-title">⚡ Real-Time Responsiveness</div>
+                        <div class="arch-layer-content">
+                            <span class="arch-module">Instant doubt resolution</span>
+                            <span class="arch-module">Adaptive explanations</span>
+                            <span class="arch-module">Contextual examples</span>
+                            <span class="arch-module">Difficulty adjustment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Complete Learning Journey -->
+        <section class="section section-alt">
+            <div class="section-header">
+                <h2 class="section-title">The Complete <span class="gradient-text">Learning Ecosystem</span></h2>
+                <p class="section-subtitle">Beyond lectures - a comprehensive system for true mastery</p>
+            </div>
+
+            <div class="journey-grid">
+                <div class="journey-card">
+                    <div class="journey-icon">💬</div>
+                    <h3 class="journey-title">Real-Time Doubt Solving</h3>
+                    <p class="journey-description">
+                        Ask questions anytime via voice, text, or whiteboard. AI understands context and provides instant, personalized explanations with examples.
+                    </p>
+                </div>
+
+                <div class="journey-card">
+                    <div class="journey-icon">🗺️</div>
+                    <h3 class="journey-title">Adaptive ILP Planning</h3>
+                    <p class="journey-description">
+                        Your Individualized Learning Plan evolves daily based on performance, interests, and goals. AI suggests optimal next steps continuously.
+                    </p>
+                </div>
+
+                <div class="journey-card">
+                    <div class="journey-icon">🔬</div>
+                    <h3 class="journey-title">MetaLab (Virtual Lab)</h3>
+                    <p class="journey-description">
+                        Conduct physics, chemistry, biology experiments in immersive 3D virtual labs. Safe, unlimited resources, instant feedback.
+                    </p>
+                </div>
+
+                <div class="journey-card">
+                    <div class="journey-icon">🔄</div>
+                    <h3 class="journey-title">Intelligent Revision</h3>
+                    <p class="journey-description">
+                        Spaced repetition algorithm schedules reviews at optimal intervals. AI identifies weak areas and prioritizes revision accordingly.
+                    </p>
+                </div>
+
+                <div class="journey-card">
+                    <div class="journey-icon">💪</div>
+                    <h3 class="journey-title">Practice Engine</h3>
+                    <p class="journey-description">
+                        Unlimited practice problems at your exact skill level. Difficulty adapts in real-time. Detailed solutions with multiple approaches shown.
+                    </p>
+                </div>
+
+                <div class="journey-card">
+                    <div class="journey-icon">🎯</div>
+                    <h3 class="journey-title">Exam Center</h3>
+                    <p class="journey-description">
+                        Simulated exams matching board patterns. Real-time proctoring, instant grading, detailed analytics, performance predictions.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Architecture Overview -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">The Technology <span class="gradient-text">Stack</span></h2>
+                <p class="section-subtitle">Enterprise-grade AI infrastructure powering every interaction</p>
+            </div>
+
+            <div class="architecture-diagram">
+                <div class="arch-flow">
+                    <div class="arch-layer">
+                        <div class="arch-layer-title">🎯 Input Layer</div>
+                        <div class="arch-layer-content">
+                            <span class="arch-module">Webcam (emotion, eye, cardio)</span>
+                            <span class="arch-module">Microphone (voice analysis)</span>
+                            <span class="arch-module">Keyboard/Mouse (interaction)</span>
+                            <span class="arch-module">Touch (tablet support)</span>
+                        </div>
+                    </div>
+
+                    <div class="arch-layer">
+                        <div class="arch-layer-title">🧠 AI Processing Layer</div>
+                        <div class="arch-layer-content">
+                            <span class="arch-module">Computer Vision Models</span>
+                            <span class="arch-module">NLP Engine</span>
+                            <span class="arch-module">Reinforcement Learning</span>
+                            <span class="arch-module">Predictive Analytics</span>
+                            <span class="arch-module">Knowledge Graph</span>
+                        </div>
+                    </div>
+
+                    <div class="arch-layer">
+                        <div class="arch-layer-title">⚙️ Personalization Layer</div>
+                        <div class="arch-layer-content">
+                            <span class="arch-module">Baseline Engine</span>
+                            <span class="arch-module">Persona Engine</span>
+                            <span class="arch-module">Content Stitching</span>
+                            <span class="arch-module">Parameter Controller (47)</span>
+                        </div>
+                    </div>
+
+                    <div class="arch-layer">
+                        <div class="arch-layer-title">🎬 Delivery Layer</div>
+                        <div class="arch-layer-content">
+                            <span class="arch-module">Metahuman Renderer</span>
+                            <span class="arch-module">Speech Synthesis</span>
+                            <span class="arch-module">Interactive Whiteboard</span>
+                            <span class="arch-module">3D Visualization</span>
+                        </div>
+                    </div>
+
+                    <div class="arch-layer">
+                        <div class="arch-layer-title">📊 Analytics Layer</div>
+                        <div class="arch-layer-content">
+                            <span class="arch-module">LII Calculator</span>
+                            <span class="arch-module">Progress Tracking</span>
+                            <span class="arch-module">Teacher Dashboard</span>
+                            <span class="arch-module">Parent Reports</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="cta-section">
+            <h2 class="cta-title">
+                Ready to Experience <span class="gradient-text">Hyper-Personalized Learning</span>?
+            </h2>
+            <p class="cta-subtitle">
+                Join thousands of students already learning smarter, not harder.
+            </p>
+            <div class="cta-buttons">
+                <a href="join_waitlist.html" class="btn-primary">🚀 Start Your Free Trial</a>
+                <a href="book_demo_page.html" class="btn-primary">📅 Book a Live Demo</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Education words for matrix background
+        const educationWords = [
+            'personalization', 'baseline', 'persona', 'stitching', 'biometric', 'emotion',
+            'cardiovascular', 'eye-gaze', 'stress', 'focus', 'metahuman', 'adaptive',
+            'ilp', 'metalab', 'revision', 'practice', 'exam', 'ai-engine', 'real-time'
+        ];
+
+        const glowColors = ['glow-cyan', 'glow-purple', 'glow-pink'];
+        const wordsContainer = document.getElementById('wordsContainer');
+        const numberOfColumns = 12;
+        let allWords = [];
+
+        // Create columns
+        for (let i = 0; i < numberOfColumns; i++) {
+            const column = document.createElement('div');
+            column.className = 'word-column';
+            column.style.animationDuration = (45 + Math.random() * 30) + 's';
+            column.style.animationDelay = -(Math.random() * 40) + 's';
+            
+            for (let j = 0; j < 30; j++) {
+                const word = document.createElement('span');
+                word.className = 'education-word';
+                word.textContent = educationWords[Math.floor(Math.random() * educationWords.length)];
+                column.appendChild(word);
+                allWords.push(word);
+            }
+            
+            const cloned = column.innerHTML;
+            column.innerHTML = cloned + cloned;
+            
+            const newWords = column.querySelectorAll('.education-word');
+            newWords.forEach((word, idx) => {
+                if (idx >= 30) allWords.push(word);
+            });
+            
+            wordsContainer.appendChild(column);
+        }
+
+        // Catch words animation
+        function catchWord() {
+            const caught = document.querySelectorAll('.education-word.caught');
+            if (caught.length > 6) {
+                caught[0].classList.remove('caught', ...glowColors);
+            }
+
+            const word = allWords[Math.floor(Math.random() * allWords.length)];
+            const color = glowColors[Math.floor(Math.random() * glowColors.length)];
+            word.classList.add('caught', color);
+            
+            setTimeout(() => {
+                word.classList.remove('caught', color);
+            }, 2500);
+        }
+
+        setInterval(catchWord, 300);
+
+        // Initial burst
+        setTimeout(() => {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(catchWord, i * 150);
+            }
+        }, 500);
+    </script>
+</body>
+</html>

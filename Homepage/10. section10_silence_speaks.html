@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>into3.ai - Because They Believed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Final Section */
+        .final-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 5%;
+            background: #0a0e27;
+            overflow: hidden;
+        }
+
+        /* Scrolling Text Lines Container */
+        .scrolling-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        /* Individual Scrolling Column */
+        .scroll-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            animation: scrollVertical 60s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes scrollVertical {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+        }
+
+        /* Different speeds and colors for depth */
+        .scroll-column:nth-child(odd) {
+            color: rgba(139, 92, 246, 0.8);
+        }
+
+        .scroll-column:nth-child(even) {
+            color: rgba(6, 182, 212, 0.7);
+        }
+
+        .scroll-column:nth-child(1) { animation-duration: 45s; font-size: 0.75rem; opacity: 0.5; }
+        .scroll-column:nth-child(2) { animation-duration: 65s; font-size: 0.85rem; opacity: 0.6; animation-delay: -10s; }
+        .scroll-column:nth-child(3) { animation-duration: 55s; font-size: 0.8rem; opacity: 0.55; animation-delay: -20s; }
+        .scroll-column:nth-child(4) { animation-duration: 70s; font-size: 0.9rem; opacity: 0.65; animation-delay: -5s; }
+        .scroll-column:nth-child(5) { animation-duration: 50s; font-size: 0.75rem; opacity: 0.5; animation-delay: -30s; }
+        .scroll-column:nth-child(6) { animation-duration: 75s; font-size: 0.95rem; opacity: 0.7; animation-delay: -15s; }
+        .scroll-column:nth-child(7) { animation-duration: 58s; font-size: 0.8rem; opacity: 0.55; animation-delay: -25s; }
+        .scroll-column:nth-child(8) { animation-duration: 62s; font-size: 0.85rem; opacity: 0.6; animation-delay: -8s; }
+        .scroll-column:nth-child(9) { animation-duration: 68s; font-size: 0.9rem; opacity: 0.65; animation-delay: -35s; }
+        .scroll-column:nth-child(10) { animation-duration: 52s; font-size: 0.75rem; opacity: 0.5; animation-delay: -12s; }
+        .scroll-column:nth-child(11) { animation-duration: 80s; font-size: 1rem; opacity: 0.7; animation-delay: -40s; }
+        .scroll-column:nth-child(12) { animation-duration: 48s; font-size: 0.8rem; opacity: 0.55; animation-delay: -18s; }
+        .scroll-column:nth-child(13) { animation-duration: 64s; font-size: 0.85rem; opacity: 0.6; animation-delay: -28s; }
+        .scroll-column:nth-child(14) { animation-duration: 56s; font-size: 0.9rem; opacity: 0.65; animation-delay: -7s; }
+        .scroll-column:nth-child(15) { animation-duration: 72s; font-size: 0.75rem; opacity: 0.5; animation-delay: -33s; }
+        .scroll-column:nth-child(16) { animation-duration: 54s; font-size: 0.95rem; opacity: 0.7; animation-delay: -22s; }
+        .scroll-column:nth-child(17) { animation-duration: 66s; font-size: 0.8rem; opacity: 0.55; animation-delay: -38s; }
+        .scroll-column:nth-child(18) { animation-duration: 60s; font-size: 0.85rem; opacity: 0.6; animation-delay: -14s; }
+        .scroll-column:nth-child(19) { animation-duration: 58s; font-size: 0.9rem; opacity: 0.65; animation-delay: -27s; }
+        .scroll-column:nth-child(20) { animation-duration: 70s; font-size: 0.75rem; opacity: 0.5; animation-delay: -42s; }
+
+        .emotion-word {
+            display: block;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        /* Highlighted/Caught Word Effect */
+        .emotion-word.caught {
+            color: #ffffff !important;
+            font-weight: 900;
+            font-size: 1.2em;
+            text-shadow: 
+                0 0 20px currentColor,
+                0 0 40px currentColor,
+                0 0 60px currentColor;
+            transform: scale(1.3);
+            animation: catchPulse 0.6s ease-out;
+        }
+
+        @keyframes catchPulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.3);
+                opacity: 1;
+            }
+        }
+
+        /* Glowing effect that cycles through colors */
+        .emotion-word.caught.glow-cyan {
+            color: #06b6d4 !important;
+        }
+
+        .emotion-word.caught.glow-purple {
+            color: #8b5cf6 !important;
+        }
+
+        .emotion-word.caught.glow-pink {
+            color: #ec4899 !important;
+        }
+
+        .emotion-word.caught.glow-yellow {
+            color: #fbbf24 !important;
+        }
+
+        .emotion-word.caught.glow-green {
+            color: #10b981 !important;
+        }
+
+        /* Center Gradient Fade (to hide edges) */
+        .center-fade {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                ellipse at center,
+                transparent 0%,
+                transparent 30%,
+                rgba(10, 14, 39, 0.7) 60%,
+                rgba(10, 14, 39, 0.95) 100%
+            );
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Ambient Glow in Center */
+        .center-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15), transparent);
+            filter: blur(80px);
+            z-index: 2;
+            animation: centerPulse 6s ease-in-out infinite;
+        }
+
+        @keyframes centerPulse {
+            0%, 100% {
+                opacity: 0.5;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        /* Content Container */
+        .content {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* Logo */
+        .logo {
+            font-size: 4rem;
+            font-weight: 300;
+            color: white;
+            letter-spacing: 8px;
+            opacity: 0;
+            animation: logoFadeIn 3s ease-out forwards;
+            margin-bottom: 3rem;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo::after {
+            content: 'into3.ai';
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: logoShimmer 3s ease-in-out infinite 3s;
+            letter-spacing: 8px;
+        }
+
+        @keyframes logoShimmer {
+            0%, 100% {
+                background-position: -200% 0;
+            }
+            50% {
+                background-position: 200% 0;
+            }
+        }
+
+        @keyframes logoFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Tagline */
+        .tagline {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: taglineFadeIn 2s ease-out 3.5s forwards;
+            font-family: Georgia, 'Times New Roman', serif;
+            text-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+            z-index: 10;
+            position: relative;
+        }
+
+        @keyframes taglineFadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0.8;
+            }
+        }
+
+        /* CTA Button - Bold & Glowing */
+        .cta-minimal {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 1.1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            opacity: 0;
+            animation: ctaFadeIn 1.5s ease-out 5.5s forwards;
+            text-decoration: none;
+            display: inline-block;
+            z-index: 10;
+            box-shadow: 
+                0 10px 40px rgba(6, 182, 212, 0.5),
+                0 0 60px rgba(139, 92, 246, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes ctaFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .cta-minimal::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50px;
+            padding: 2px;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6, #ec4899);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: borderRotate 3s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .cta-minimal:hover {
+            background: linear-gradient(135deg, #0891b2 0%, #7c3aed 100%);
+            transform: translateX(-50%) translateY(-5px);
+            box-shadow: 
+                0 15px 60px rgba(6, 182, 212, 0.7),
+                0 0 80px rgba(139, 92, 246, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+
+            .tagline {
+                font-size: 1.3rem;
+                letter-spacing: 1px;
+                padding: 0 20px;
+            }
+
+            .cta-minimal {
+                bottom: 40px;
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scrolling Emotion Text Background -->
+    <div class="scrolling-container" id="scrollingContainer"></div>
+
+    <!-- Center Fade Overlay -->
+    <div class="center-fade"></div>
+
+    <!-- Center Glow -->
+    <div class="center-glow"></div>
+
+    <section class="final-section">
+        <div class="content">
+            <!-- Logo -->
+            <div class="logo"><img src="../../White Logo.svg" alt="into3.ai" class="logo-img"></div>
+            
+            <!-- Tagline -->
+            <div class="tagline">...because they believed.</div>
+        </div>
+
+        <!-- Minimal CTA -->
+        <a href="#" class="cta-minimal" onclick="handleStartClick(event)">Start Your Journey</a>
+    </section>
+
+    <script>
+        // Emotion words to scroll vertically
+        const emotions = [
+            'hope', 'joy', 'wonder', 'curiosity', 'passion', 'empathy', 'courage', 
+            'determination', 'excitement', 'gratitude', 'inspiration', 'confidence',
+            'creativity', 'resilience', 'ambition', 'motivation', 'dedication', 'compassion',
+            'enthusiasm', 'perseverance', 'achievement', 'fulfillment', 'pride', 'trust',
+            'belief', 'growth', 'learning', 'discovery', 'breakthrough', 'success',
+            'transformation', 'enlightenment', 'understanding', 'wisdom', 'knowledge',
+            'insight', 'clarity', 'focus', 'mindfulness', 'awareness', 'connection',
+            'belonging', 'community', 'collaboration', 'teamwork', 'support', 'encouragement',
+            'celebration', 'happiness', 'contentment', 'peace', 'harmony', 'balance',
+            'optimism', 'positivity', 'warmth', 'kindness', 'generosity', 'love',
+            'care', 'nurture', 'guidance', 'mentorship', 'leadership', 'excellence',
+            'innovation', 'progress', 'evolution', 'potential', 'possibility', 'dreams',
+            'aspiration', 'vision', 'purpose', 'meaning', 'significance', 'impact',
+            'legacy', 'contribution', 'change', 'revolution', 'movement', 'future'
+        ];
+
+        // Glow color classes
+        const glowColors = ['glow-cyan', 'glow-purple', 'glow-pink', 'glow-yellow', 'glow-green'];
+
+        // Create vertical scrolling columns
+        const scrollingContainer = document.getElementById('scrollingContainer');
+        const numberOfColumns = 20;
+        let allWords = [];
+
+        for (let i = 0; i < numberOfColumns; i++) {
+            const column = document.createElement('div');
+            column.className = 'scroll-column';
+            
+            // Create emotion words for this column
+            for (let j = 0; j < 40; j++) {
+                const word = document.createElement('span');
+                word.className = 'emotion-word';
+                const randomEmotion = emotions[Math.floor(Math.random() * emotions.length)];
+                word.textContent = randomEmotion;
+                column.appendChild(word);
+                allWords.push(word);
+            }
+            
+            // Duplicate words for seamless loop
+            const clonedWords = column.innerHTML;
+            column.innerHTML = clonedWords + clonedWords;
+            
+            // Add duplicated words to tracking array
+            const newWords = column.querySelectorAll('.emotion-word');
+            newWords.forEach((word, index) => {
+                if (index >= 40) {
+                    allWords.push(word);
+                }
+            });
+            
+            scrollingContainer.appendChild(column);
+        }
+
+        // Function to randomly "catch" an emotion word
+        function catchRandomWord() {
+            // Remove previous caught state from random word
+            const previouslyCaught = document.querySelectorAll('.emotion-word.caught');
+            if (previouslyCaught.length > 6) { // Keep max 6 highlighted at once
+                const oldest = previouslyCaught[0];
+                oldest.classList.remove('caught', ...glowColors);
+            }
+
+            // Select random word to highlight
+            const randomIndex = Math.floor(Math.random() * allWords.length);
+            const wordToHighlight = allWords[randomIndex];
+            
+            // Add caught class with random glow color
+            const randomColor = glowColors[Math.floor(Math.random() * glowColors.length)];
+            wordToHighlight.classList.add('caught', randomColor);
+            
+            // Remove highlight after duration
+            setTimeout(() => {
+                wordToHighlight.classList.remove('caught', randomColor);
+            }, 2000); // Keep highlighted for 2 seconds
+        }
+
+        // Start catching words at random intervals
+        setInterval(catchRandomWord, 300); // Catch a new word every 300ms
+
+        // Also catch words on page load with staggered start
+        setTimeout(() => {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(catchRandomWord, i * 200);
+            }
+        }, 1000);
+
+        function handleStartClick(event) {
+            event.preventDefault();
+            // Redirect to pricing/signup
+            alert("Welcome to the movement. Let's begin your journey...");
+            // window.location.href = '/signup';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Demo - into3.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 5% 60px;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        /* Scrolling Education Words Container */
+        .words-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            overflow: hidden;
+        }
+
+        /* Vertical Columns */
+        .word-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            animation: scrollVertical 60s linear infinite;
+            opacity: 0.15;
+        }
+
+        @keyframes scrollVertical {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+        }
+
+        .word-column:nth-child(odd) {
+            color: rgba(6, 182, 212, 0.6);
+        }
+
+        .word-column:nth-child(even) {
+            color: rgba(139, 92, 246, 0.5);
+        }
+
+        .word-column:nth-child(1) { animation-duration: 45s; font-size: 0.75rem; opacity: 0.25; animation-delay: -5s; }
+        .word-column:nth-child(2) { animation-duration: 65s; font-size: 0.85rem; opacity: 0.3; animation-delay: -10s; }
+        .word-column:nth-child(3) { animation-duration: 55s; font-size: 0.8rem; opacity: 0.28; animation-delay: -20s; }
+        .word-column:nth-child(4) { animation-duration: 70s; font-size: 0.9rem; opacity: 0.32; animation-delay: -5s; }
+        .word-column:nth-child(5) { animation-duration: 50s; font-size: 0.75rem; opacity: 0.25; animation-delay: -30s; }
+        .word-column:nth-child(6) { animation-duration: 75s; font-size: 0.95rem; opacity: 0.35; animation-delay: -15s; }
+        .word-column:nth-child(7) { animation-duration: 58s; font-size: 0.8rem; opacity: 0.28; animation-delay: -25s; }
+        .word-column:nth-child(8) { animation-duration: 62s; font-size: 0.85rem; opacity: 0.3; animation-delay: -8s; }
+        .word-column:nth-child(9) { animation-duration: 68s; font-size: 0.9rem; opacity: 0.32; animation-delay: -35s; }
+        .word-column:nth-child(10) { animation-duration: 52s; font-size: 0.75rem; opacity: 0.25; animation-delay: -12s; }
+        .word-column:nth-child(11) { animation-duration: 80s; font-size: 1rem; opacity: 0.35; animation-delay: -40s; }
+        .word-column:nth-child(12) { animation-duration: 48s; font-size: 0.8rem; opacity: 0.28; animation-delay: -18s; }
+        .word-column:nth-child(13) { animation-duration: 64s; font-size: 0.85rem; opacity: 0.3; animation-delay: -28s; }
+        .word-column:nth-child(14) { animation-duration: 56s; font-size: 0.9rem; opacity: 0.32; animation-delay: -7s; }
+        .word-column:nth-child(15) { animation-duration: 72s; font-size: 0.75rem; opacity: 0.25; animation-delay: -33s; }
+
+        .education-word {
+            display: block;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        /* Caught/Highlighted Word Effect */
+        .education-word.caught {
+            color: #ffffff !important;
+            font-weight: 900;
+            font-size: 1.2em;
+            text-shadow: 
+                0 0 20px currentColor,
+                0 0 40px currentColor;
+            transform: scale(1.3);
+            opacity: 1 !important;
+            animation: catchPulse 0.6s ease-out;
+        }
+
+        @keyframes catchPulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1.3);
+            }
+        }
+
+        .education-word.caught.glow-cyan {
+            color: #06b6d4 !important;
+        }
+
+        .education-word.caught.glow-purple {
+            color: #8b5cf6 !important;
+        }
+
+        .education-word.caught.glow-pink {
+            color: #ec4899 !important;
+        }
+
+        .education-word.caught.glow-yellow {
+            color: #fbbf24 !important;
+        }
+
+        .education-word.caught.glow-green {
+            color: #10b981 !important;
+        }
+
+        /* Center Fade for Readability */
+        .center-fade {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                ellipse at center,
+                rgba(10, 14, 39, 0.2) 0%,
+                rgba(10, 14, 39, 0.5) 50%,
+                rgba(10, 14, 39, 0.75) 80%
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            align-items: start;
+        }
+
+        /* Left Side - Content */
+        .hero-left {
+            animation: fadeInLeft 1s ease-out;
+            padding-top: 2rem;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.2rem;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #06b6d4;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge-icon {
+            font-size: 1rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .trust-indicators {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .trust-icon {
+            font-size: 1.5rem;
+        }
+
+        .trust-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .trust-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            display: block;
+        }
+
+        /* Right Side - Form */
+        .hero-right {
+            animation: fadeInRight 1s ease-out;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .demo-form-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-subtitle {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .demo-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .required {
+            color: #ef4444;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            padding: 0.9rem 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #06b6d4;
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-select {
+            cursor: pointer;
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            padding: 1.1rem 2rem;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.4);
+        }
+
+        .form-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 1rem;
+        }
+
+        /* What's Included Section */
+        .whats-included {
+            padding: 80px 5%;
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .included-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .included-card {
+            padding: 2rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .included-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+        }
+
+        .included-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .included-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .included-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 5%;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            padding: 2.5rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
+
+        .testimonial-quote {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-role {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 5%;
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        .faq-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .footer-cta-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .footer-cta-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+        }
+
+        .footer-cta-btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+        }
+
+        .footer-cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 5% 40px;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .demo-form-card {
+                padding: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <!-- Scrolling Education Words -->
+            <div class="words-container" id="wordsContainer"></div>
+            <!-- Center Fade for Readability -->
+            <div class="center-fade"></div>
+        </div>
+        <div class="hero-content">
+            <!-- Left Side -->
+            <div class="hero-left">
+                <div class="hero-badge">
+                    <span class="hero-badge-icon">📹</span>
+                    Live Demo Available
+                </div>
+                <h1 class="hero-title">
+                    See <span class="gradient-text">into3.ai</span> in Action
+                </h1>
+                <p class="hero-subtitle">
+                    Book a personalized 30-minute demo and discover how AI-powered learning transforms education for students, teachers, and schools.
+                </p>
+
+                <div class="trust-indicators">
+                    <div class="trust-item">
+                        <span class="trust-icon">🏫</span>
+                        <div class="trust-text">
+                            <span class="trust-value">500+ Schools</span>
+                            Trust into3.ai
+                        </div>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-icon">⭐</span>
+                        <div class="trust-text">
+                            <span class="trust-value">4.9/5 Rating</span>
+                            From educators
+                        </div>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-icon">🎓</span>
+                        <div class="trust-text">
+                            <span class="trust-value">50,000+ Students</span>
+                            Learning daily
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Form -->
+            <div class="hero-right">
+                <div class="demo-form-card">
+                    <div class="form-header">
+                        <h2 class="form-title">Schedule Your Demo</h2>
+                        <p class="form-subtitle">Free • No Credit Card Required • 30 Minutes</p>
+                    </div>
+
+                    <form class="demo-form" id="demoForm">
+                        <div class="form-group">
+                            <label class="form-label">Full Name <span class="required">*</span></label>
+                            <input type="text" class="form-input" placeholder="Enter your full name" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Email <span class="required">*</span></label>
+                                <input type="email" class="form-input" placeholder="your@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone Number <span class="required">*</span></label>
+                                <input type="tel" class="form-input" placeholder="+91 00000 00000" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">School/Institution Name <span class="required">*</span></label>
+                            <input type="text" class="form-input" placeholder="Enter institution name" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Your Role <span class="required">*</span></label>
+                                <select class="form-select" required>
+                                    <option value="">Select your role</option>
+                                    <option value="teacher">Teacher</option>
+                                    <option value="principal">Principal</option>
+                                    <option value="admin">Administrator</option>
+                                    <option value="parent">Parent</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Number of Students</label>
+                                <input type="number" class="form-input" placeholder="Approx. count">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Preferred Date & Time <span class="required">*</span></label>
+                            <input type="datetime-local" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Message (Optional)</label>
+                            <textarea class="form-textarea" placeholder="Tell us about your specific requirements or questions..."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Schedule My Demo →</button>
+
+                        <p class="form-note">
+                            We'll send you a calendar invite within 24 hours
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Included Section -->
+    <section class="whats-included">
+        <div class="section-header">
+            <h2 class="section-title">What's Included in Your Demo</h2>
+            <p class="section-subtitle">A comprehensive 30-45 minute walkthrough tailored to your needs</p>
+        </div>
+
+        <div class="included-grid">
+            <div class="included-card">
+                <div class="included-icon">🤖</div>
+                <h3 class="included-title">Live AI Tutor Demo</h3>
+                <p class="included-description">
+                    Watch how our AI adapts in real-time to student responses, providing personalized explanations.
+                </p>
+            </div>
+
+            <div class="included-card">
+                <div class="included-icon">🎯</div>
+                <h3 class="included-title">Personalized Learning Path</h3>
+                <p class="included-description">
+                    See how the adaptive engine creates unique journeys for each student based on their strengths.
+                </p>
+            </div>
+
+            <div class="included-card">
+                <div class="included-icon">👨‍🏫</div>
+                <h3 class="included-title">Teacher Dashboard</h3>
+                <p class="included-description">
+                    Explore powerful tools for lesson prep, real-time insights, and student progress tracking.
+                </p>
+            </div>
+
+            <div class="included-card">
+                <div class="included-icon">📊</div>
+                <h3 class="included-title">Real-Time Analytics</h3>
+                <p class="included-description">
+                    Understand engagement, emotion tracking, and learning patterns with actionable insights.
+                </p>
+            </div>
+
+            <div class="included-card">
+                <div class="included-icon">💬</div>
+                <h3 class="included-title">Q&A with Experts</h3>
+                <p class="included-description">
+                    Get your questions answered by our education technology specialists.
+                </p>
+            </div>
+
+            <div class="included-card">
+                <div class="included-icon">💰</div>
+                <h3 class="included-title">Custom Pricing</h3>
+                <p class="included-description">
+                    Receive a tailored pricing plan based on your institution's size and needs.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="section-header">
+            <h2 class="section-title">What Educators Say</h2>
+            <p class="section-subtitle">Hear from schools that scheduled a demo and never looked back</p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-quote">
+                    "The demo completely changed how I viewed AI in education. Within 30 minutes, I saw tangible ways into3.ai could help my struggling students catch up. We signed up immediately."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">R*</div>
+                    <div class="author-info">
+                        <div class="author-name">R*** S******</div>
+                        <div class="author-role">Principal, ********** School</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-quote">
+                    "I was skeptical before the demo, but seeing the AI adapt to different learning styles in real-time was incredible. The teacher dashboard alone is worth it."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">P*</div>
+                    <div class="author-info">
+                        <div class="author-name">P**** K****</div>
+                        <div class="author-role">Math Teacher, ********* International</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-quote">
+                    "The demo showed us exactly how into3.ai would integrate with our existing curriculum. The team answered every question and the ROI was clear from day one."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">A*</div>
+                    <div class="author-info">
+                        <div class="author-name">A*** M****</div>
+                        <div class="author-role">Administrator, ****** Academy</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="section-header">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    How long is the demo?
+                    <span>→</span>
+                </div>
+                <div class="faq-answer">
+                    The demo typically lasts 30-45 minutes, including time for your questions. We can adjust based on your schedule and interest.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Is it really free?
+                    <span>→</span>
+                </div>
+                <div class="faq-answer">
+                    Yes, absolutely! The demo is 100% free with no obligations. We don't require any payment information to schedule.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can I bring my team?
+                    <span>→</span>
+                </div>
+                <div class="faq-answer">
+                    Of course! We encourage bringing teachers, administrators, or anyone involved in the decision-making process.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    What do I need to prepare?
+                    <span>→</span>
+                </div>
+                <div class="faq-answer">
+                    Nothing! Just come with your questions. It helps to think about your current challenges and goals for student learning.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    When can we get started after the demo?
+                    <span>→</span>
+                </div>
+                <div class="faq-answer">
+                    If you decide to move forward, we can have you up and running within 1-2 weeks, including training for your team.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <h2 class="footer-cta-title">Ready to Transform Learning?</h2>
+        <p class="footer-cta-subtitle">Join 500+ schools already using into3.ai</p>
+        <a href="#demoForm" class="footer-cta-btn">Book Your Free Demo</a>
+    </section>
+
+    <script>
+        // Education-related words for matrix background
+        const educationWords = [
+            'learn', 'study', 'knowledge', 'wisdom', 'education', 'teaching', 'student', 
+            'teacher', 'classroom', 'discovery', 'curiosity', 'question', 'answer', 'solve',
+            'understand', 'explore', 'research', 'science', 'math', 'reading', 'writing',
+            'critical-thinking', 'creativity', 'innovation', 'analysis', 'synthesis', 'growth',
+            'development', 'progress', 'achievement', 'success', 'excellence', 'mastery',
+            'practice', 'homework', 'assignment', 'project', 'test', 'exam', 'quiz',
+            'lecture', 'lesson', 'curriculum', 'syllabus', 'course', 'subject', 'topic',
+            'concept', 'theory', 'principle', 'method', 'technique', 'strategy', 'approach',
+            'experiment', 'observation', 'hypothesis', 'conclusion', 'evidence', 'proof',
+            'problem', 'solution', 'challenge', 'goal', 'objective', 'target', 'aim',
+            'inspiration', 'motivation', 'dedication', 'perseverance', 'effort', 'focus',
+            'concentration', 'attention', 'memory', 'recall', 'retention', 'comprehension',
+            'grade', 'score', 'assessment', 'evaluation', 'feedback', 'improvement',
+            'collaboration', 'teamwork', 'discussion', 'debate', 'presentation', 'report'
+        ];
+
+        const glowColors = ['glow-cyan', 'glow-purple', 'glow-pink', 'glow-yellow', 'glow-green'];
+        const wordsContainer = document.getElementById('wordsContainer');
+        const numberOfColumns = 15;
+        let allWords = [];
+
+        // Create vertical scrolling columns
+        for (let i = 0; i < numberOfColumns; i++) {
+            const column = document.createElement('div');
+            column.className = 'word-column';
+            
+            // Create education words for this column
+            for (let j = 0; j < 40; j++) {
+                const word = document.createElement('span');
+                word.className = 'education-word';
+                const randomWord = educationWords[Math.floor(Math.random() * educationWords.length)];
+                word.textContent = randomWord;
+                column.appendChild(word);
+                allWords.push(word);
+            }
+            
+            // Duplicate words for seamless loop
+            const clonedWords = column.innerHTML;
+            column.innerHTML = clonedWords + clonedWords;
+            
+            // Add duplicated words to tracking array
+            const newWords = column.querySelectorAll('.education-word');
+            newWords.forEach((word, index) => {
+                if (index >= 40) {
+                    allWords.push(word);
+                }
+            });
+            
+            wordsContainer.appendChild(column);
+        }
+
+        // Function to randomly "catch" an education word
+        function catchRandomWord() {
+            // Remove previous caught state from old words
+            const previouslyCaught = document.querySelectorAll('.education-word.caught');
+            if (previouslyCaught.length > 8) { // Keep max 8 highlighted at once
+                const oldest = previouslyCaught[0];
+                oldest.classList.remove('caught', ...glowColors);
+            }
+
+            // Select random word to highlight
+            const randomIndex = Math.floor(Math.random() * allWords.length);
+            const wordToHighlight = allWords[randomIndex];
+            
+            // Add caught class with random glow color
+            const randomColor = glowColors[Math.floor(Math.random() * glowColors.length)];
+            wordToHighlight.classList.add('caught', randomColor);
+            
+            // Remove highlight after duration
+            setTimeout(() => {
+                wordToHighlight.classList.remove('caught', randomColor);
+            }, 2500); // Keep highlighted for 2.5 seconds
+        }
+
+        // Start catching words at random intervals
+        setInterval(catchRandomWord, 250); // Catch a new word every 250ms
+
+        // Initial burst of catches
+        setTimeout(() => {
+            for (let i = 0; i < 6; i++) {
+                setTimeout(catchRandomWord, i * 150);
+            }
+        }, 500);
+
+        // Form submission handler
+        document.getElementById('demoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you! We\'ll send you a calendar invite within 24 hours.');
+            // Here you would integrate with your backend/calendar API
+        });
+
+        // Smooth scroll to form
+        document.querySelector('.footer-cta-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('demoForm').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

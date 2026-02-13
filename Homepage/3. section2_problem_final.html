@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Problem - into3.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .shape1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape2 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            bottom: 20%;
+            right: 15%;
+            animation-delay: 5s;
+        }
+
+        .shape3 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, #ec4899, #a855f7);
+            top: 50%;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-50px, 50px) scale(0.9);
+            }
+        }
+
+        /* Problem Section */
+        .problem-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 5% 40px;
+            z-index: 2;
+        }
+
+        /* Title Animation */
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+
+        .section-title.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .title-normal {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            color: #334155;
+        }
+
+        .title-gradient {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(
+                90deg,
+                #a855f7 0%,
+                #ec4899 25%,
+                #8b5cf6 50%,
+                #a855f7 75%,
+                #ec4899 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s linear infinite;
+            line-height: 1.2;
+            min-height: 3rem;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 2rem;
+            background: #a855f7;
+            margin-left: 5px;
+            animation: blink 0.8s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        /* Cards Container */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            width: 100%;
+            margin-bottom: 2rem;
+            perspective: 1000px;
+        }
+
+        /* Individual Card */
+        .stakeholder-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 0;
+            transform: translateY(100px) rotateX(-15deg);
+            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.1);
+            border: 2px solid rgba(168, 85, 247, 0.2);
+            overflow: hidden;
+        }
+
+        /* Animated Gradient Line Running Around Border */
+        .stakeholder-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                transparent,
+                transparent,
+                transparent,
+                #a855f7,
+                #ec4899,
+                #8b5cf6,
+                transparent,
+                transparent,
+                transparent
+            );
+            animation: rotateBorder 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stakeholder-card::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 18px;
+            z-index: -1;
+        }
+
+        @keyframes rotateBorder {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .stakeholder-card.animate {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+        }
+
+        .stakeholder-card:hover::before {
+            opacity: 1;
+        }
+
+        .stakeholder-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(168, 85, 247, 0.3);
+            border-color: rgba(168, 85, 247, 0.4);
+        }
+
+        /* Icon Container with SVG */
+        .icon-container {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            position: relative;
+        }
+
+        .icon-bg {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: iconPulse 2s ease-in-out infinite;
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.3);
+        }
+
+        .icon-bg svg {
+            width: 45px;
+            height: 45px;
+            stroke: white;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .stakeholder-card:hover .icon-bg {
+            animation: iconBounce 0.6s ease;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 8px 25px rgba(168, 85, 247, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 12px 35px rgba(168, 85, 247, 0.5);
+            }
+        }
+
+        @keyframes iconBounce {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2) rotate(10deg);
+            }
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #475569;
+        }
+
+        .card-subtitle {
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: linear-gradient(
+                135deg,
+                #a855f7 0%,
+                #ec4899 50%,
+                #8b5cf6 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s linear infinite;
+        }
+
+        /* Bottom Text Section */
+        .conclusion-text {
+            text-align: center;
+            max-width: 900px;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out 0.5s;
+        }
+
+        .conclusion-text.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .conclusion-normal {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: #475569;
+            margin-bottom: 0.3rem;
+        }
+
+        .conclusion-bold {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+        }
+
+        .cta-button.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1s ease-out 0.8s;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ec4899, #a855f7);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(168, 85, 247, 0.6);
+        }
+
+        /* Card stagger animation delays */
+        .stakeholder-card:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .stakeholder-card:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .stakeholder-card:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+
+        .stakeholder-card:nth-child(4) {
+            transition-delay: 0.4s;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+
+            .title-normal, .title-gradient {
+                font-size: 2rem;
+            }
+
+            .conclusion-normal, .conclusion-bold {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shape shape1"></div>
+        <div class="floating-shape shape2"></div>
+        <div class="floating-shape shape3"></div>
+    </div>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <!-- Title -->
+        <div class="section-title">
+            <h2 class="title-normal">Everyone is trying their best.</h2>
+            <h3 class="title-gradient" id="typingTitle"></h3>
+        </div>
+
+        <!-- Cards Container -->
+        <div class="cards-container">
+            <!-- Students Card -->
+            <div class="stakeholder-card">
+                <div class="icon-container">
+                    <div class="icon-bg">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                        </svg>
+                    </div>
+                </div>
+                <h4 class="card-title">Students</h4>
+                <p class="card-subtitle">study harder.</p>
+            </div>
+
+            <!-- Teachers Card -->
+            <div class="stakeholder-card">
+                <div class="icon-container">
+                    <div class="icon-bg">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                </div>
+                <h4 class="card-title">Teachers</h4>
+                <p class="card-subtitle">prepare longer.</p>
+            </div>
+
+            <!-- Parents Card -->
+            <div class="stakeholder-card">
+                <div class="icon-container">
+                    <div class="icon-bg">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                            <path d="M12 12h.01"/>
+                        </svg>
+                    </div>
+                </div>
+                <h4 class="card-title">Parents</h4>
+                <p class="card-subtitle">worry more.</p>
+            </div>
+
+            <!-- Schools Card -->
+            <div class="stakeholder-card">
+                <div class="icon-container">
+                    <div class="icon-bg">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                    </div>
+                </div>
+                <h4 class="card-title">Schools</h4>
+                <p class="card-subtitle">invest further.</p>
+            </div>
+        </div>
+
+        <!-- Conclusion Text -->
+        <div class="conclusion-text">
+            <p class="conclusion-normal">
+                Yet every day, learning still slips through the cracks — not because people stopped caring,
+            </p>
+            <p class="conclusion-bold">
+                but because systems stopped seeing.
+            </p>
+        </div>
+
+        <!-- CTA Button -->
+        <button class="cta-button" onclick="window.parent.location.href='../Pages/what_we_discovered.html'">See What We Discovered</button>
+    </section>
+
+    <script>
+        // Typing Animation
+        const typingTitle = document.getElementById('typingTitle');
+        const fullText = "But no one really sees what's happening in between.";
+        let charIndex = 0;
+        let typingStarted = false;
+
+        function typeText() {
+            if (charIndex < fullText.length) {
+                typingTitle.textContent = fullText.substring(0, charIndex + 1);
+                charIndex++;
+                setTimeout(typeText, 50);
+            } else {
+                // Add cursor after typing is complete
+                typingTitle.innerHTML += '<span class="typing-cursor"></span>';
+            }
+        }
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    
+                    // Start typing animation when section title is visible
+                    if (entry.target.classList.contains('section-title') && !typingStarted) {
+                        typingStarted = true;
+                        setTimeout(typeText, 800);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const sectionTitle = document.querySelector('.section-title');
+            const cards = document.querySelectorAll('.stakeholder-card');
+            const conclusionText = document.querySelector('.conclusion-text');
+            const ctaButton = document.querySelector('.cta-button');
+
+            observer.observe(sectionTitle);
+            cards.forEach(card => observer.observe(card));
+            observer.observe(conclusionText);
+            observer.observe(ctaButton);
+
+            // Add 3D tilt effect on mouse move
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px) scale(1.05)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

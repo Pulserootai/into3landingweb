@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Your 14-Day Free Trial | into3.ai for Teachers</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0e27; color: #e2e8f0; line-height: 1.8; min-height: 100vh;
+        }
+        .navbar {
+            position: fixed; top: 0; width: 100%; padding: 1.2rem 5%;
+            background: rgba(10, 14, 39, 0.95); backdrop-filter: blur(20px);
+            z-index: 1000; border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .nav-content {
+            max-width: 1400px; margin: 0 auto; display: flex;
+            justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-size: 1.6rem; font-weight: 800;
+            background: linear-gradient(90deg, #10b981, #8b5cf6);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nav-link {
+            color: rgba(255, 255, 255, 0.7); text-decoration: none;
+            font-weight: 500; transition: color 0.3s;
+        }
+        .nav-link:hover { color: #10b981; }
+        .trial-section {
+            min-height: 100vh; padding: 120px 5% 60px;
+            display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(ellipse at top, #064e3b 0%, #0a0e27 50%);
+            position: relative;
+        }
+        .glow {
+            position: absolute; width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.15), transparent);
+            border-radius: 50%; filter: blur(100px); top: 0; right: 0;
+            animation: pulse 8s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.6; } }
+        .trial-container {
+            max-width: 1200px; width: 100%; display: grid;
+            grid-template-columns: 1fr 1fr; gap: 4rem; position: relative; z-index: 10;
+        }
+        .trial-info { display: flex; flex-direction: column; justify-content: center; }
+        .info-badge {
+            display: inline-block; padding: 0.6rem 1.5rem;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 50px;
+            color: #10b981; font-size: 0.85rem; font-weight: 700;
+            margin-bottom: 1.5rem; text-transform: uppercase; width: fit-content;
+        }
+        .info-title {
+            font-size: 3rem; font-weight: 900;
+            background: linear-gradient(90deg, #fff, #10b981);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem; line-height: 1.2;
+        }
+        .info-subtitle {
+            font-size: 1.2rem; color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem; line-height: 1.6;
+        }
+        .features-list { list-style: none; margin-bottom: 2rem; }
+        .features-list li {
+            display: flex; align-items: center; gap: 1rem;
+            margin-bottom: 1rem; color: rgba(255, 255, 255, 0.85); font-size: 1rem;
+        }
+        .check-icon {
+            width: 24px; height: 24px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; color: white; font-weight: 700; flex-shrink: 0;
+        }
+        .trial-form-container {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 24px; padding: 3rem; backdrop-filter: blur(10px);
+        }
+        .form-header { text-align: center; margin-bottom: 2rem; }
+        .form-title { font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; }
+        .form-subtitle { color: rgba(255, 255, 255, 0.6); font-size: 0.95rem; }
+        .trial-badge {
+            text-align: center; padding: 1.5rem; margin-bottom: 2rem;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(6, 182, 212, 0.2));
+            border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        .trial-badge .big-text {
+            font-size: 2.5rem; font-weight: 900;
+            background: linear-gradient(90deg, #10b981, #06b6d4);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .trial-badge .small-text { color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin-top: 0.5rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; color: rgba(255, 255, 255, 0.9); font-weight: 600; margin-bottom: 0.5rem; }
+        input, select {
+            width: 100%; padding: 0.9rem 1rem; background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px;
+            color: #fff; font-size: 0.95rem; transition: all 0.3s;
+        }
+        input:focus, select:focus {
+            outline: none; border-color: #10b981;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        input::placeholder { color: rgba(255, 255, 255, 0.4); }
+        .password-input { position: relative; }
+        .toggle-password {
+            position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);
+            cursor: pointer; color: rgba(255, 255, 255, 0.5); font-size: 1.2rem;
+        }
+        .checkbox-group { display: flex; align-items: start; gap: 0.8rem; margin-bottom: 1.5rem; }
+        input[type="checkbox"] { width: auto; margin-top: 0.2rem; cursor: pointer; accent-color: #10b981; }
+        .checkbox-label { font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); line-height: 1.5; }
+        .checkbox-label a { color: #10b981; text-decoration: none; }
+        .checkbox-label a:hover { text-decoration: underline; }
+        .submit-btn {
+            width: 100%; padding: 1.2rem;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white; border: none; border-radius: 12px;
+            font-size: 1.1rem; font-weight: 700; cursor: pointer;
+            transition: all 0.3s; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(16, 185, 129, 0.5); }
+        .login-link {
+            text-align: center; margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;
+        }
+        .login-link a { color: #10b981; text-decoration: none; font-weight: 600; }
+        .login-link a:hover { text-decoration: underline; }
+        .guarantee { text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); }
+        .testimonial {
+            margin-top: 2rem; padding: 1.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid #10b981;
+            border-radius: 8px;
+        }
+        .testimonial-text {
+            font-style: italic; color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.5rem; line-height: 1.6;
+        }
+        .testimonial-author {
+            font-size: 0.9rem; color: rgba(255, 255, 255, 0.6);
+            font-weight: 600;
+        }
+        @media (max-width: 968px) {
+            .trial-container { grid-template-columns: 1fr; gap: 2rem; }
+            .trial-info { text-align: center; align-items: center; }
+            .info-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo"><img src="../White Logo.svg" alt="into3.ai" class="logo-img"></div>
+            <a href="../index.html" class="nav-link">← Back to Home</a>
+        </div>
+    </nav>
+
+    <section class="trial-section">
+        <div class="glow"></div>
+        <div class="trial-container">
+            <div class="trial-info">
+                <div class="info-badge">👨‍🏫 For Teachers</div>
+                <h1 class="info-title">Empower Your Teaching in 14 Days</h1>
+                <p class="info-subtitle">
+                    Start your extended free trial. Access AI-powered teaching tools, 
+                    classroom management, and student analytics. No credit card required.
+                </p>
+                <ul class="features-list">
+                    <li><span class="check-icon">✓</span><span>AI Teaching Assistant for Lesson Planning</span></li>
+                    <li><span class="check-icon">✓</span><span>Classroom Management Dashboard</span></li>
+                    <li><span class="check-icon">✓</span><span>Student Progress Analytics</span></li>
+                    <li><span class="check-icon">✓</span><span>Automated Assignment Grading</span></li>
+                    <li><span class="check-icon">✓</span><span>Virtual Labs for Demonstrations</span></li>
+                    <li><span class="check-icon">✓</span><span>Parent Communication Tools</span></li>
+                    <li><span class="check-icon">✓</span><span>Content Library & Resources</span></li>
+                </ul>
+
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "into3.ai saved me 10+ hours per week on lesson planning and grading. 
+                        My students are more engaged than ever before!"
+                    </div>
+                    <div class="testimonial-author">- Rajesh Kumar, Science Teacher, Mumbai</div>
+                </div>
+            </div>
+
+            <div class="trial-form-container">
+                <div class="form-header">
+                    <h2 class="form-title">Start Your Free Trial</h2>
+                    <p class="form-subtitle">No payment info needed today</p>
+                </div>
+
+                <div class="trial-badge">
+                    <div class="big-text">14 Days FREE</div>
+                    <div class="small-text">Then ₹699/month for teachers • Cancel anytime</div>
+                </div>
+
+                <form onsubmit="event.preventDefault(); alert('Trial activated! Welcome to into3.ai'); window.location.href='teacher_landing_page.html';">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="your@email.com or school email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject You Teach</label>
+                        <select id="subject" required>
+                            <option value="">Select your subject</option>
+                            <option value="mathematics">Mathematics</option>
+                            <option value="science">Science (Physics/Chemistry/Biology)</option>
+                            <option value="english">English</option>
+                            <option value="social">Social Studies</option>
+                            <option value="hindi">Hindi</option>
+                            <option value="computer">Computer Science</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="school">School Name (Optional)</label>
+                        <input type="text" id="school" placeholder="Your school name">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Create Password</label>
+                        <div class="password-input">
+                            <input type="password" id="password" placeholder="Create a password (min 8 characters)" required>
+                            <span class="toggle-password" onclick="const f=document.getElementById('password');f.type=f.type==='password'?'text':'password'">👁️</span>
+                        </div>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms" class="checkbox-label">
+                            I agree to <a href="terms_of_service.html">Terms</a> and <a href="privacy_policy.html">Privacy Policy</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn">Start My 14-Day Free Trial</button>
+                    <div class="guarantee">
+                        🔒 100% secure • ✓ No credit card required • ⏰ Cancel anytime
+                    </div>
+                </form>
+
+                <div class="login-link">
+                    Already have an account? <a href="login.html">Log In</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

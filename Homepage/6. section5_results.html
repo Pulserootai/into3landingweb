@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - into3.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(180deg, #0a0e27 0%, #1a1f3a 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #a855f7;
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-100px) translateX(50px);
+                opacity: 0.8;
+            }
+        }
+
+        /* Results Section */
+        .results-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 5% 40px;
+            overflow: hidden;
+        }
+
+        /* Title Section */
+        .title-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: all 1s ease-out;
+        }
+
+        .title-section.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .title-normal {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .title-gradient {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(
+                90deg,
+                #a855f7 0%,
+                #ec4899 25%,
+                #8b5cf6 50%,
+                #a855f7 75%,
+                #ec4899 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s linear infinite;
+            min-height: 3rem;
+            line-height: 1.2;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 2rem;
+            background: #a855f7;
+            margin-left: 5px;
+            animation: blink 0.8s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 0.8rem;
+        }
+
+        /* Stats Container */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto 2rem;
+            z-index: 2;
+        }
+
+        /* Stakeholder Card */
+        .stakeholder-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 1.8rem 1.5rem;
+            text-align: center;
+            position: relative;
+            opacity: 0;
+            transform: translateY(80px);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+        }
+
+        .stakeholder-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stakeholder-card:nth-child(1) { transition-delay: 0.1s; }
+        .stakeholder-card:nth-child(2) { transition-delay: 0.2s; }
+        .stakeholder-card:nth-child(3) { transition-delay: 0.3s; }
+        .stakeholder-card:nth-child(4) { transition-delay: 0.4s; }
+
+        /* Color-coded borders and glows */
+        .students-card {
+            border: 2px solid rgba(99, 102, 241, 0.4);
+        }
+
+        .teachers-card {
+            border: 2px solid rgba(16, 185, 129, 0.4);
+        }
+
+        .parents-card {
+            border: 2px solid rgba(236, 72, 153, 0.4);
+        }
+
+        .schools-card {
+            border: 2px solid rgba(245, 158, 11, 0.4);
+        }
+
+        .stakeholder-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 24px;
+        }
+
+        .students-card::before {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+        }
+
+        .teachers-card::before {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.1));
+        }
+
+        .parents-card::before {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(244, 114, 182, 0.1));
+        }
+
+        .schools-card::before {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.1));
+        }
+
+        .stakeholder-card:hover::before {
+            opacity: 1;
+        }
+
+        .stakeholder-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .students-card:hover {
+            border-color: rgba(99, 102, 241, 0.8);
+            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.4);
+        }
+
+        .teachers-card:hover {
+            border-color: rgba(16, 185, 129, 0.8);
+            box-shadow: 0 20px 50px rgba(16, 185, 129, 0.4);
+        }
+
+        .parents-card:hover {
+            border-color: rgba(236, 72, 153, 0.8);
+            box-shadow: 0 20px 50px rgba(236, 72, 153, 0.4);
+        }
+
+        .schools-card:hover {
+            border-color: rgba(245, 158, 11, 0.8);
+            box-shadow: 0 20px 50px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Stakeholder Header */
+        .stakeholder-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            opacity: 0.7;
+            font-weight: 600;
+        }
+
+        .stakeholder-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .students-card .stakeholder-title {
+            color: #818cf8;
+        }
+
+        .teachers-card .stakeholder-title {
+            color: #34d399;
+        }
+
+        .parents-card .stakeholder-title {
+            color: #f472b6;
+        }
+
+        .schools-card .stakeholder-title {
+            color: #fbbf24;
+        }
+
+        /* Stats */
+        .stat-item {
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+
+        .students-card .stat-number {
+            color: #6366f1;
+        }
+
+        .teachers-card .stat-number {
+            color: #10b981;
+        }
+
+        .parents-card .stat-number {
+            color: #ec4899;
+        }
+
+        .schools-card .stat-number {
+            color: #f59e0b;
+        }
+
+        .arrow {
+            font-size: 1.8rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .arrow-up {
+            color: #10b981;
+        }
+
+        .arrow-down {
+            color: #10b981;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-description {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.4;
+        }
+
+        /* Tagline */
+        .tagline-section {
+            text-align: center;
+            max-width: 900px;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out 0.6s;
+        }
+
+        .tagline-section.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .title-normal, .title-gradient {
+                font-size: 2rem;
+            }
+
+            .stakeholder-title {
+                font-size: 1.4rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Particles -->
+    <div class="bg-particles" id="bgParticles"></div>
+
+    <!-- Results Section -->
+    <section class="results-section">
+        <!-- Title -->
+        <div class="title-section">
+            <h2 class="title-normal">When learning understands humans —</h2>
+            <h3 class="title-gradient" id="titleGradient"></h3>
+            <p class="subtitle">In classrooms powered by into3.ai, something extraordinary happens.</p>
+        </div>
+
+        <!-- Stats Container -->
+        <div class="stats-container">
+            <!-- Students Card -->
+            <div class="stakeholder-card students-card">
+                <p class="stakeholder-label">Students</p>
+                <h4 class="stakeholder-title">Focus Longer</h4>
+                
+                <div class="stat-item">
+                    <div class="stat-number">
+                        <span class="arrow arrow-up">↑</span>
+                        <span class="counter" data-target="27">0</span>%
+                    </div>
+                    <p class="stat-label">Focus Index</p>
+                    <p class="stat-description">Average improvement in sustained classroom attention within 30 days.</p>
+                </div>
+            </div>
+
+            <!-- Teachers Card -->
+            <div class="stakeholder-card teachers-card">
+                <p class="stakeholder-label">Teachers</p>
+                <h4 class="stakeholder-title">Teach Lighter</h4>
+                
+                <div class="stat-item">
+                    <div class="stat-number">
+                        <span class="arrow arrow-up">↑</span>
+                        <span class="counter" data-target="21">0</span>%
+                    </div>
+                    <p class="stat-label">Concept Mastery</p>
+                    <p class="stat-description">Students reach full concept understanding faster, with longer retention.</p>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-number">
+                        <span class="arrow arrow-up">↑</span>
+                        <span class="counter" data-target="38">0</span>%
+                    </div>
+                    <p class="stat-label">Teacher Productivity</p>
+                    <p class="stat-description">More time for meaningful interactions, less on repetitive tasks.</p>
+                </div>
+            </div>
+
+            <!-- Parents Card -->
+            <div class="stakeholder-card parents-card">
+                <p class="stakeholder-label">Parents</p>
+                <h4 class="stakeholder-title">Worry Less</h4>
+                
+                <div class="stat-item">
+                    <div class="stat-number">
+                        <span class="arrow arrow-down">↓</span>
+                        <span class="counter" data-target="23">0</span>%
+                    </div>
+                    <p class="stat-label">Stress Reduction</p>
+                    <p class="stat-description">Emotional stability increases through RTAE-guided teaching.</p>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-number">
+                        <span class="arrow arrow-up">↑</span>
+                        <span class="counter" data-target="41">0</span>%
+                    </div>
+                    <p class="stat-label">Parental Clarity</p>
+                    <p class="stat-description">Real-time insights into learning progress and emotional well-being.</p>
+                </div>
+            </div>
+
+            <!-- Schools Card -->
+            <div class="stakeholder-card schools-card">
+                <p class="stakeholder-label">Schools</p>
+                <h4 class="stakeholder-title">Perform Better</h4>
+                
+                <div class="stat-item">
+                    <div class="stat-number">
+                        <span class="arrow arrow-up">↑</span>
+                        <span class="counter" data-target="19">0</span>%
+                    </div>
+                    <p class="stat-label">School Efficiency</p>
+                    <p class="stat-description">Improved resource allocation and student outcome tracking.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tagline -->
+        <div class="tagline-section">
+            <p class="tagline">Real results. Real impact. Real transformation in education.</p>
+        </div>
+    </section>
+
+    <script>
+        // Create background particles
+        const bgParticles = document.getElementById('bgParticles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 10 + 's';
+            particle.style.animationDuration = (Math.random() * 5 + 10) + 's';
+            bgParticles.appendChild(particle);
+        }
+
+        // Typing Animation
+        const titleGradient = document.getElementById('titleGradient');
+        const titleText = "results follow naturally.";
+        let charIndex = 0;
+        let typingStarted = false;
+
+        function typeText() {
+            if (charIndex < titleText.length) {
+                titleGradient.textContent = titleText.substring(0, charIndex + 1);
+                charIndex++;
+                setTimeout(typeText, 60);
+            } else {
+                titleGradient.innerHTML += '<span class="typing-cursor"></span>';
+            }
+        }
+
+        // Counter Animation
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 60fps
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            };
+
+            updateCounter();
+        }
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px'
+        };
+
+        let countersAnimated = false;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    
+                    // Start typing
+                    if (entry.target.classList.contains('title-section') && !typingStarted) {
+                        typingStarted = true;
+                        setTimeout(typeText, 500);
+                    }
+
+                    // Animate counters when cards are visible
+                    if (entry.target.classList.contains('stats-container') && !countersAnimated) {
+                        countersAnimated = true;
+                        setTimeout(() => {
+                            const counters = document.querySelectorAll('.counter');
+                            counters.forEach(counter => animateCounter(counter));
+                        }, 800);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            const titleSection = document.querySelector('.title-section');
+            const statsContainer = document.querySelector('.stats-container');
+            const cards = document.querySelectorAll('.stakeholder-card');
+            const taglineSection = document.querySelector('.tagline-section');
+
+            observer.observe(titleSection);
+            observer.observe(statsContainer);
+            cards.forEach(card => observer.observe(card));
+            observer.observe(taglineSection);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer - into3.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: white;
+        }
+
+        /* Footer Section */
+        .footer {
+            position: relative;
+            background: linear-gradient(180deg, #0a0e27 0%, #060a1f 100%);
+            padding: 80px 5% 40px;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            overflow: hidden;
+        }
+
+        /* Subtle Background Pattern */
+        .footer-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            pointer-events: none;
+            font-family: 'Courier New', monospace;
+            font-size: 0.7rem;
+            color: #8b5cf6;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .newsletter-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .newsletter-input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #06b6d4;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+        }
+
+        .newsletter-button {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(6, 182, 212, 0.4);
+        }
+
+        .newsletter-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(6, 182, 212, 0.6);
+        }
+
+        /* Footer Links Grid */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 3rem;
+            margin-bottom: 60px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-heading {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-link:hover {
+            color: #06b6d4;
+            transform: translateX(5px);
+        }
+
+        /* Social Media Section */
+        .social-section {
+            margin-top: 2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: rgba(6, 182, 212, 0.2);
+            border-color: #06b6d4;
+            color: #06b6d4;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(6, 182, 212, 0.3);
+        }
+
+        /* Bottom Bar */
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .footer-tagline {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            margin-top: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-icon {
+            color: #06b6d4;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .footer {
+                padding: 60px 5% 30px;
+            }
+
+            .newsletter-section {
+                margin-bottom: 40px;
+                padding-bottom: 40px;
+            }
+
+            .newsletter-title {
+                font-size: 1.5rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-input {
+                min-width: 100%;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-logo-section {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <footer class="footer">
+        <!-- Subtle Background Pattern -->
+        <div class="footer-bg" id="footerBg"></div>
+
+        <div class="footer-content">
+            <!-- Newsletter Section -->
+            <div class="newsletter-section">
+                <h2 class="newsletter-title">Stay Connected</h2>
+                <p class="newsletter-subtitle">Get the latest updates on AI-powered education and exclusive insights</p>
+                <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+                    <input 
+                        type="email" 
+                        class="newsletter-input" 
+                        placeholder="Enter your email"
+                        required
+                    />
+                    <button type="submit" class="newsletter-button">Subscribe</button>
+                </form>
+            </div>
+
+            <!-- Footer Links Grid -->
+            <div class="footer-grid">
+                <!-- Product Column -->
+                <div class="footer-column">
+                    <h3 class="footer-heading">Product</h3>
+                    <a href="../Pages/student_landing_page.html" class="footer-link">For Students</a>
+                    <a href="../Pages/teacher_landing_page.html" class="footer-link">For Teachers</a>
+                    <a href="../Pages/school_landing_page.html" class="footer-link">For Schools</a>
+                    <a href="../Pages/ai_tutor_page.html" class="footer-link">AI Tutor</a>
+                    <a href="../Pages/metalab_page.html" class="footer-link">Metalab</a>
+                    <a href="../Pages/pricing.html" class="footer-link">Pricing</a>
+                </div>
+
+                <!-- Company Column -->
+                <div class="footer-column">
+                    <h3 class="footer-heading">Company</h3>
+                    <a href="../Pages/about_us_page.html" class="footer-link">About Us</a>
+                    <a href="../Pages/about_us_page.html#mission" class="footer-link">Our Mission</a>
+                    <a href="../Pages/how_it_works.html" class="footer-link">How It Works</a>
+                    <a href="../Pages/success_stories_page.html" class="footer-link">Success Stories</a>
+                    <a href="#" class="footer-link">Blog</a>
+                    <a href="../Pages/careers_page.html" class="footer-link">Careers</a>
+                </div>
+
+                <!-- Legal Column -->
+                <div class="footer-column">
+                    <h3 class="footer-heading">Legal</h3>
+                    <a href="../Pages/privacy_policy.html" class="footer-link">Privacy Policy</a>
+                    <a href="../Pages/terms_of_service.html" class="footer-link">Terms of Service</a>
+                    <a href="../Pages/refund_policy.html" class="footer-link">Refund Policy</a>
+                    <a href="../Pages/cookie_policy.html" class="footer-link">Cookie Policy</a>
+                    <a href="../Pages/gdpr_compliance.html" class="footer-link">GDPR Compliance</a>
+                    <a href="../Pages/accessibility.html" class="footer-link">Accessibility</a>
+                </div>
+
+                <!-- Connect Column -->
+                <div class="footer-column">
+                    <h3 class="footer-heading">Connect</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon">✉</span>
+                            <span>info@into3.ai</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <span>Noida, Uttar Pradesh, India</span>
+                        </div>
+                    </div>
+                    <div class="social-section">
+                        <div class="social-icons">
+                            <a href="#" class="social-icon" aria-label="Twitter">𝕏</a>
+                            <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
+                            <a href="#" class="social-icon" aria-label="Instagram">📷</a>
+                            <a href="#" class="social-icon" aria-label="YouTube">▶</a>
+                            <a href="#" class="social-icon" aria-label="Facebook">f</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-logo-section">
+                    <img src="../White Logo.svg" alt="into3.ai" class="footer-logo">
+                    <div class="footer-tagline">Learn × 3  Grow × 3  Achieve × 3</div>
+                </div>
+                <div class="footer-copyright">
+                    © 2025 into3.ai. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Create subtle background pattern
+        const footerBg = document.getElementById('footerBg');
+        const emotions = ['hope', 'joy', 'learn', 'grow', 'inspire', 'believe', 'achieve'];
+        let bgText = '';
+        for (let i = 0; i < 100; i++) {
+            bgText += emotions[Math.floor(Math.random() * emotions.length)] + '    ';
+        }
+        footerBg.textContent = bgText;
+
+        function handleNewsletterSubmit(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input').value;
+            alert(`Thank you for subscribing! We'll send updates to ${email}`);
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>

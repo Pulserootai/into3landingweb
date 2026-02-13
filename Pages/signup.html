@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Start Learning | into3.ai</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0e27; color: #e2e8f0; line-height: 1.8; min-height: 100vh;
+        }
+        .navbar {
+            position: fixed; top: 0; width: 100%; padding: 1.2rem 5%;
+            background: rgba(10, 14, 39, 0.95); backdrop-filter: blur(20px);
+            z-index: 1000; border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        .nav-content {
+            max-width: 1400px; margin: 0 auto; display: flex;
+            justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-size: 1.6rem; font-weight: 800;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nav-link {
+            color: rgba(255, 255, 255, 0.7); text-decoration: none;
+            font-weight: 500; transition: color 0.3s;
+        }
+        .nav-link:hover { color: #8b5cf6; }
+        .signup-section {
+            min-height: 100vh; padding: 120px 5% 60px;
+            display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(ellipse at top, #1e1b4b 0%, #0a0e27 50%);
+            position: relative;
+        }
+        .glow {
+            position: absolute; width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15), transparent);
+            border-radius: 50%; filter: blur(100px); top: 0; right: 0;
+            animation: pulse 8s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.6; } }
+        .signup-container {
+            max-width: 1200px; width: 100%; display: grid;
+            grid-template-columns: 1fr 1fr; gap: 4rem; position: relative; z-index: 10;
+        }
+        .signup-info { display: flex; flex-direction: column; justify-content: center; }
+        .info-badge {
+            display: inline-block; padding: 0.5rem 1.2rem;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 50px;
+            color: #8b5cf6; font-size: 0.85rem; font-weight: 700;
+            margin-bottom: 1.5rem; text-transform: uppercase;
+            letter-spacing: 1px; width: fit-content;
+        }
+        .info-title {
+            font-size: 3rem; font-weight: 900;
+            background: linear-gradient(90deg, #fff, #8b5cf6, #ec4899);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem; line-height: 1.2;
+        }
+        .info-subtitle {
+            font-size: 1.2rem; color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem; line-height: 1.6;
+        }
+        .features-list { list-style: none; margin-bottom: 2rem; }
+        .features-list li {
+            display: flex; align-items: center; gap: 1rem;
+            margin-bottom: 1rem; color: rgba(255, 255, 255, 0.85); font-size: 1rem;
+        }
+        .check-icon {
+            width: 24px; height: 24px;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; color: white; font-weight: 700; flex-shrink: 0;
+        }
+        .signup-form-container {
+            background: rgba(139, 92, 246, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 24px; padding: 3rem; backdrop-filter: blur(10px);
+        }
+        .form-header { text-align: center; margin-bottom: 2rem; }
+        .form-title {
+            font-size: 1.8rem; font-weight: 800;
+            color: #fff; margin-bottom: 0.5rem;
+        }
+        .form-subtitle { color: rgba(255, 255, 255, 0.6); font-size: 0.95rem; }
+        .social-buttons {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 1rem; margin-bottom: 2rem;
+        }
+        .social-btn {
+            padding: 0.9rem; background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px;
+            color: rgba(255, 255, 255, 0.9); font-weight: 600;
+            cursor: pointer; transition: all 0.3s; display: flex;
+            align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(139, 92, 246, 0.5); transform: translateY(-2px);
+        }
+        .divider {
+            display: flex; align-items: center; margin: 2rem 0;
+            color: rgba(255, 255, 255, 0.4); font-size: 0.85rem;
+        }
+        .divider::before, .divider::after {
+            content: ''; flex: 1; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .divider span { padding: 0 1rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        label {
+            display: block; color: rgba(255, 255, 255, 0.9);
+            font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem;
+        }
+        input, select {
+            width: 100%; padding: 0.9rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px;
+            color: #fff; font-size: 0.95rem; transition: all 0.3s;
+        }
+        input:focus, select:focus {
+            outline: none; border-color: #8b5cf6;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+        input::placeholder { color: rgba(255, 255, 255, 0.4); }
+        .password-input { position: relative; }
+        .toggle-password {
+            position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);
+            cursor: pointer; color: rgba(255, 255, 255, 0.5); font-size: 1.2rem;
+        }
+        .checkbox-group {
+            display: flex; align-items: start; gap: 0.8rem; margin-bottom: 1.5rem;
+        }
+        input[type="checkbox"] {
+            width: auto; margin-top: 0.2rem; cursor: pointer; accent-color: #8b5cf6;
+        }
+        .checkbox-label {
+            font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); line-height: 1.5;
+        }
+        .checkbox-label a { color: #8b5cf6; text-decoration: none; }
+        .checkbox-label a:hover { text-decoration: underline; }
+        .submit-btn {
+            width: 100%; padding: 1rem;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white; border: none; border-radius: 12px;
+            font-size: 1rem; font-weight: 700; cursor: pointer;
+            transition: all 0.3s; box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px); box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
+        }
+        .login-link {
+            text-align: center; margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;
+        }
+        .login-link a {
+            color: #8b5cf6; text-decoration: none; font-weight: 600;
+        }
+        .login-link a:hover { text-decoration: underline; }
+        @media (max-width: 968px) {
+            .signup-container { grid-template-columns: 1fr; gap: 2rem; }
+            .signup-info { text-align: center; align-items: center; }
+            .info-title { font-size: 2rem; }
+            .features-list li { justify-content: center; }
+        }
+        @media (max-width: 768px) {
+            .social-buttons { grid-template-columns: 1fr; }
+            .signup-form-container { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo"><img src="../White Logo.svg" alt="into3.ai" class="logo-img"></div>
+            <a href="../index.html" class="nav-link">← Back to Home</a>
+        </div>
+    </nav>
+
+    <section class="signup-section">
+        <div class="glow"></div>
+        <div class="signup-container">
+            <div class="signup-info">
+                <div class="info-badge">🚀 Join 100K+ Learners</div>
+                <h1 class="info-title">Start Your Learning Journey Today</h1>
+                <p class="info-subtitle">
+                    Create your free account and get instant access to AI-powered tutoring, 
+                    virtual labs, and personalized learning paths.
+                </p>
+                <ul class="features-list">
+                    <li><span class="check-icon">✓</span><span>24/7 AI Tutor in Multiple Languages</span></li>
+                    <li><span class="check-icon">✓</span><span>Immersive 3D Virtual Laboratories</span></li>
+                    <li><span class="check-icon">✓</span><span>Personalized Learning Paths</span></li>
+                    <li><span class="check-icon">✓</span><span>Progress Tracking & Analytics</span></li>
+                    <li><span class="check-icon">✓</span><span>Free 7-Day Trial • Cancel Anytime</span></li>
+                </ul>
+            </div>
+
+            <div class="signup-form-container">
+                <div class="form-header">
+                    <h2 class="form-title">Create Account</h2>
+                    <p class="form-subtitle">Get started in less than 2 minutes</p>
+                </div>
+
+                <div class="social-buttons">
+                    <button class="social-btn" onclick="alert('Google OAuth')"><span>🔍</span><span>Google</span></button>
+                    <button class="social-btn" onclick="alert('Microsoft OAuth')"><span>🪟</span><span>Microsoft</span></button>
+                </div>
+
+                <div class="divider"><span>or continue with email</span></div>
+
+                <form onsubmit="event.preventDefault(); alert('Account created!'); window.location.href='student_landing_page.html';">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">I am a</label>
+                        <select id="role" required>
+                            <option value="student">Student</option>
+                            <option value="teacher">Teacher</option>
+                            <option value="parent">Parent</option>
+                            <option value="school">School Administrator</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="password-input">
+                            <input type="password" id="password" placeholder="Create a strong password" required>
+                            <span class="toggle-password" onclick="const f=document.getElementById('password');f.type=f.type==='password'?'text':'password'">👁️</span>
+                        </div>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms" class="checkbox-label">
+                            I agree to the <a href="terms_of_service.html">Terms of Service</a> and 
+                            <a href="privacy_policy.html">Privacy Policy</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn">Create Account</button>
+                </form>
+
+                <div class="login-link">
+                    Already have an account? <a href="login.html">Log In</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

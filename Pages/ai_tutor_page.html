@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tutor - 24/7 Personal Learning Companion | into3.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .back-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #8b5cf6;
+        }
+
+        .nav-cta {
+            padding: 0.7rem 1.8rem;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.6);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            padding: 0 5%;
+            background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 50%, #1a1f3a 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.3), transparent);
+            border-radius: 50%;
+            filter: blur(120px);
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: heroGlow 6s ease-in-out infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { opacity: 0.4; transform: translateX(-50%) scale(1); }
+            50% { opacity: 0.7; transform: translateX(-50%) scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.7rem 2rem;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50px;
+            color: #8b5cf6;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: linear-gradient(90deg, #ffffff, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3.5rem;
+            line-height: 1.8;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1.3rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            box-shadow: 0 15px 50px rgba(139, 92, 246, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.7);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* Cinematic Demo Section */
+        .demo-section {
+            min-height: 100vh;
+            padding: 0;
+            background: #000000;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .demo-classroom {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            background: linear-gradient(180deg, #0a0520 0%, #1a0b2e 50%, #0f051f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Sci-Fi Grid Background */
+        .grid-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+            perspective: 1000px;
+            transform: rotateX(60deg) scale(2);
+            transform-origin: center bottom;
+        }
+
+        /* Classroom Container */
+        .classroom-container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            width: 100%;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        /* Metahuman Teacher */
+        .teacher-avatar {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            aspect-ratio: 1;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.1));
+            border-radius: 50%;
+            border: 3px solid rgba(139, 92, 246, 0.4);
+            box-shadow: 
+                0 0 60px rgba(139, 92, 246, 0.5),
+                inset 0 0 60px rgba(139, 92, 246, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: teacherFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes teacherFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .teacher-avatar::before {
+            content: '👩‍🏫';
+            font-size: 15rem;
+            filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.8));
+        }
+
+        .teacher-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.3), transparent);
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        /* Holographic Board */
+        .holographic-board {
+            background: rgba(10, 14, 39, 0.6);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                inset 0 0 40px rgba(139, 92, 246, 0.1);
+            position: relative;
+        }
+
+        .holographic-board::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #8b5cf6, #ec4899, #06b6d4, #8b5cf6);
+            background-size: 300% 300%;
+            border-radius: 20px;
+            z-index: -1;
+            animation: borderFlow 4s ease infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes borderFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .board-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #8b5cf6;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
+        }
+
+        .problem-statement {
+            background: rgba(139, 92, 246, 0.15);
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #8b5cf6;
+            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .solution-steps {
+            list-style: none;
+        }
+
+        .solution-step {
+            background: rgba(10, 14, 39, 0.8);
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            border-left: 3px solid #ec4899;
+            transition: all 0.3s;
+            animation: stepAppear 0.5s ease-out backwards;
+        }
+
+        .solution-step:nth-child(1) { animation-delay: 0.2s; }
+        .solution-step:nth-child(2) { animation-delay: 0.4s; }
+        .solution-step:nth-child(3) { animation-delay: 0.6s; }
+        .solution-step:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes stepAppear {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .solution-step:hover {
+            background: rgba(139, 92, 246, 0.2);
+            transform: translateX(5px);
+        }
+
+        .step-label {
+            font-weight: 700;
+            color: #8b5cf6;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .step-content {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .final-answer {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
+            padding: 1.3rem 1.5rem;
+            border-radius: 12px;
+            border: 2px solid #ec4899;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .final-answer .step-label {
+            color: #ec4899;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .final-answer .step-content {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* Floating Particles */
+        .demo-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .demo-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #8b5cf6;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #8b5cf6;
+            animation: particleFloat 15s ease-in-out infinite;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translate(0, 0);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(100px, -100px);
+                opacity: 0.8;
+            }
+        }
+
+        /* Features Section */
+        .features-section {
+            min-height: 100vh;
+            padding: 60px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50px;
+            color: #8b5cf6;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.6rem;
+            color: #fff;
+        }
+
+        .section-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.05));
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 14px;
+            padding: 1rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(139, 92, 246, 0.5);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #8b5cf6;
+            margin-bottom: 0.4rem;
+            line-height: 1.3;
+        }
+
+        .feature-description {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.4;
+        }
+
+        /* How It Works Section */
+        .how-it-works-section {
+            min-height: 100vh;
+            padding: 60px 5%;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(236, 72, 153, 0.08));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .steps-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            position: relative;
+        }
+
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            z-index: 1;
+        }
+
+        .step-card {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .step-number {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+            border: 4px solid #0a0e27;
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.6rem;
+        }
+
+        .step-description {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+        }
+
+        /* Use Cases Section */
+        .use-cases-section {
+            min-height: 100vh;
+            padding: 60px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .use-case-card {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 18px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .use-case-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .use-case-icon {
+            font-size: 2rem;
+        }
+
+        .use-case-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #8b5cf6;
+        }
+
+        .use-case-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+        }
+
+        .use-case-example {
+            background: rgba(10, 14, 39, 0.6);
+            border-left: 3px solid #8b5cf6;
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 40px 5%;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-card {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 60px 5%;
+            background: linear-gradient(135deg, #1e1b4b, #4c1d95);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.3), transparent);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(100px);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #fff, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.1rem 3rem;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            transition: all 0.3s;
+            box-shadow: 0 15px 50px rgba(139, 92, 246, 0.5);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.7);
+        }
+
+        .cta-note {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a0f1e;
+            padding: 2rem 5%;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .classroom-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .teacher-avatar {
+                max-width: 350px;
+                margin: 0 auto;
+            }
+
+            .teacher-avatar::before {
+                font-size: 10rem;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps-container::before {
+                display: none;
+            }
+
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .teacher-avatar {
+                max-width: 280px;
+            }
+
+            .teacher-avatar::before {
+                font-size: 8rem;
+            }
+
+            .board-title {
+                font-size: 1.3rem;
+            }
+
+            .problem-statement {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .back-link {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo"><img src="../White Logo.svg" alt="into3.ai" class="logo-img"></div>
+            <div class="nav-actions">
+                <a href="#" class="back-link">← Back to Home</a>
+                <a href="#cta" class="nav-cta">Try AI Tutor Free</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <div class="hero-badge">🤖 AI-Powered Learning</div>
+            <h1 class="hero-title">Your Personal AI Tutor, Available 24/7</h1>
+            <p class="hero-subtitle">
+                Get instant answers, step-by-step explanations, and personalized help for any 
+                subject, any time. Like having a genius tutor in your pocket who never gets tired.
+            </p>
+            <div class="hero-cta-group">
+                <a href="#demo" class="btn-primary">
+                    <span>🚀</span>
+                    <span>Try It Now</span>
+                </a>
+                <a href="#how-it-works" class="btn-secondary">
+                    <span>📖</span>
+                    <span>See How It Works</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cinematic Demo Section -->
+    <section id="demo" class="demo-section">
+        <div class="demo-particles" id="demoParticles"></div>
+        <div class="grid-background"></div>
+        <div class="classroom-container">
+            <div class="teacher-avatar">
+                <div class="teacher-glow"></div>
+            </div>
+            
+            <div class="holographic-board">
+                <h2 class="board-title">🎓 AI Teacher Solving Your Problem</h2>
+                
+                <div class="problem-statement">
+                    📝 Solve: x² + 5x + 6 = 0
+                </div>
+                
+                <ul class="solution-steps">
+                    <li class="solution-step">
+                        <div class="step-label">Step 1: Factor the equation</div>
+                        <div class="step-content">
+                            We need two numbers that multiply to 6 and add to 5.<br>
+                            Those numbers are 2 and 3.
+                        </div>
+                    </li>
+                    
+                    <li class="solution-step">
+                        <div class="step-label">Step 2: Write as factors</div>
+                        <div class="step-content">
+                            (x + 2)(x + 3) = 0
+                        </div>
+                    </li>
+                    
+                    <li class="solution-step">
+                        <div class="step-label">Step 3: Solve for x</div>
+                        <div class="step-content">
+                            x + 2 = 0  →  x = -2<br>
+                            x + 3 = 0  →  x = -3
+                        </div>
+                    </li>
+                    
+                    <li class="solution-step final-answer">
+                        <div class="step-label">✨ Final Answer</div>
+                        <div class="step-content">
+                            x = -2  or  x = -3
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">10M+</div>
+                <div class="stat-label">Questions Answered</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Always Available</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Subjects Covered</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Accuracy Rate</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="section-header">
+            <div class="section-badge">✨ Powerful Capabilities</div>
+            <h2 class="section-title">What Makes Our AI Tutor Special</h2>
+            <p class="section-description">
+                Advanced AI technology that understands context, adapts to your learning style, 
+                and explains concepts in ways you understand.
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3 class="feature-title">Natural Conversations</h3>
+                <p class="feature-description">
+                    Chat naturally like you would with a friend. Ask follow-up questions, 
+                    request clarifications, or explore related topics.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h3 class="feature-title">Step-by-Step Solutions</h3>
+                <p class="feature-description">
+                    Never just get an answer—understand the "why" behind every step with 
+                    detailed explanations.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Personalized Learning</h3>
+                <p class="feature-description">
+                    AI adapts to your level, learning style, and pace. Gets easier or harder 
+                    based on your progress.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🖼️</div>
+                <h3 class="feature-title">Visual Explanations</h3>
+                <p class="feature-description">
+                    Get diagrams, graphs, and visual aids automatically generated to help 
+                    you understand concepts better.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎤</div>
+                <h3 class="feature-title">Voice Input</h3>
+                <p class="feature-description">
+                    Too lazy to type? Just speak your question and get instant voice or text 
+                    responses.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3 class="feature-title">Multi-Language Support</h3>
+                <p class="feature-description">
+                    Ask questions in Hindi, English, or 10+ other languages. AI responds in 
+                    your preferred language.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3 class="feature-title">All Subjects</h3>
+                <p class="feature-description">
+                    Math, Science, English, Social Studies, Computer Science—literally any 
+                    subject from Grade 1-12.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Instant Responses</h3>
+                <p class="feature-description">
+                    No waiting! Get answers in seconds. Perfect for last-minute homework or 
+                    exam preparation.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3 class="feature-title">Context Awareness</h3>
+                <p class="feature-description">
+                    AI remembers your conversation. Reference previous questions without 
+                    repeating yourself.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works-section">
+        <div class="section-header">
+            <div class="section-badge">🚀 Simple Process</div>
+            <h2 class="section-title">How AI Tutor Works</h2>
+            <p class="section-description">
+                Getting help is as easy as asking a question. No complicated setup, no manuals—just ask and learn.
+            </p>
+        </div>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Ask Your Question</h3>
+                <p class="step-description">
+                    Type, speak, or even upload a photo of your problem. AI understands multiple formats.
+                </p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3 class="step-title">AI Analyzes</h3>
+                <p class="step-description">
+                    Advanced AI instantly understands your question, identifies the concept, and determines your level.
+                </p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Get Explanation</h3>
+                <p class="step-description">
+                    Receive step-by-step solutions with explanations, diagrams, and examples tailored to you.
+                </p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3 class="step-title">Master Concept</h3>
+                <p class="step-description">
+                    Practice with similar problems, ask follow-ups, and get instant feedback until you master it.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases-section">
+        <div class="section-header">
+            <div class="section-badge">💡 Real-World Applications</div>
+            <h2 class="section-title">When Students Use AI Tutor</h2>
+            <p class="section-description">
+                From homework help to exam prep—AI Tutor is there for every learning moment.
+            </p>
+        </div>
+
+        <div class="use-cases-grid">
+            <div class="use-case-card">
+                <div class="use-case-header">
+                    <div class="use-case-icon">📖</div>
+                    <h3 class="use-case-title">Homework Help</h3>
+                </div>
+                <p class="use-case-description">
+                    Stuck on homework at 10 PM? No problem! AI Tutor explains concepts and guides 
+                    you through problems without just giving you the answer.
+                </p>
+                <div class="use-case-example">
+                    "I'm stuck on question 7 in my Chemistry homework about balancing equations..."
+                </div>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-header">
+                    <div class="use-case-icon">📝</div>
+                    <h3 class="use-case-title">Exam Preparation</h3>
+                </div>
+                <p class="use-case-description">
+                    Create custom practice tests, get explanations for past papers, and identify 
+                    weak areas before exams. Study smarter, not harder.
+                </p>
+                <div class="use-case-example">
+                    "Can you generate 10 practice questions on photosynthesis for my biology exam?"
+                </div>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-header">
+                    <div class="use-case-icon">🤔</div>
+                    <h3 class="use-case-title">Concept Clarification</h3>
+                </div>
+                <p class="use-case-description">
+                    Didn't understand something in class? Get alternative explanations with examples, 
+                    analogies, and visual aids until it clicks.
+                </p>
+                <div class="use-case-example">
+                    "I don't understand how gravity works. Can you explain it like I'm 10 years old?"
+                </div>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-header">
+                    <div class="use-case-icon">✍️</div>
+                    <h3 class="use-case-title">Essay & Writing Help</h3>
+                </div>
+                <p class="use-case-description">
+                    Get help brainstorming ideas, structuring essays, improving grammar, and learning 
+                    to write more effectively.
+                </p>
+                <div class="use-case-example">
+                    "Can you help me outline an essay on climate change and suggest some strong arguments?"
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="cta-section">
+        <div class="cta-glow"></div>
+        <div class="cta-content">
+            <h2 class="cta-title">Start Learning Smarter Today</h2>
+            <p class="cta-description">
+                Join millions of students who are learning better, faster, and more effectively 
+                with AI Tutor. Try it free for 7 days—no credit card required.
+            </p>
+            <a href="free_trial_student.html" class="cta-button">
+                <span>🚀</span>
+                <span>Start Free Trial</span>
+                <span>→</span>
+            </a>
+            <p class="cta-note">
+                ✓ 7-day free trial • ✓ No credit card required • ✓ Cancel anytime
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 into3.ai. All rights reserved. Empowering learners with AI.</p>
+    </footer>
+
+    <script>
+        // Create floating particles for demo section
+        const demoParticlesContainer = document.getElementById('demoParticles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'demo-particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            demoParticlesContainer.appendChild(particle);
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .use-case-card, .step-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

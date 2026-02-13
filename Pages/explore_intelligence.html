@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore the Intelligence System - into3.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .neuron {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #8b5cf6;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #8b5cf6;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        .connection {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+            transform-origin: left center;
+            opacity: 0.2;
+            animation: dataFlow 2s linear infinite;
+        }
+
+        @keyframes dataFlow {
+            0% { opacity: 0; }
+            50% { opacity: 0.4; }
+            100% { opacity: 0; }
+        }
+
+        /* Content Layer */
+        .content-layer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #8b5cf6;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            max-width: 1100px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-purple {
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            max-width: 900px;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 100px 5%;
+            position: relative;
+        }
+
+        .section-alt {
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* AI Architecture Overview */
+        .architecture-overview {
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+            padding: 3rem;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 24px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .arch-diagram {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .arch-box {
+            padding: 2rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .arch-box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.6);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.3);
+        }
+
+        .arch-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .arch-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            color: #8b5cf6;
+        }
+
+        .arch-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+        }
+
+        /* Intelligence Modules */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .module-card {
+            padding: 2rem;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            border-color: rgba(139, 92, 246, 0.5);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .module-icon {
+            font-size: 2.5rem;
+        }
+
+        .module-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #8b5cf6;
+        }
+
+        .module-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .tech-details {
+            padding: 1.5rem;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 12px;
+            border-left: 3px solid #8b5cf6;
+        }
+
+        .tech-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #8b5cf6;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.6rem;
+        }
+
+        .tech-content {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .tech-list {
+            list-style: none;
+            margin-top: 0.8rem;
+        }
+
+        .tech-list li {
+            padding: 0.3rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+            font-size: 0.85rem;
+        }
+
+        .tech-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #8b5cf6;
+        }
+
+        /* Data Flow Visualization */
+        .data-flow {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 24px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .flow-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 2.5rem;
+            color: #8b5cf6;
+        }
+
+        .flow-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .flow-step {
+            flex: 1;
+            min-width: 120px;
+            padding: 1.5rem 1rem;
+            background: rgba(139, 92, 246, 0.15);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .flow-step-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .flow-step-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: #8b5cf6;
+        }
+
+        /* Performance Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .metric-card {
+            padding: 2rem 1.5rem;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            border-color: rgba(139, 92, 246, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .metric-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .metric-value {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .metric-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-description {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.4;
+        }
+
+        /* Neural Network Visualization */
+        .neural-viz {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 24px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .neural-viz-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: #8b5cf6;
+        }
+
+        .neural-layers {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .neural-layer {
+            flex: 1;
+            text-align: center;
+        }
+
+        .neural-layer-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #8b5cf6;
+            margin-bottom: 1rem;
+        }
+
+        .neural-nodes {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .neural-node {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.5);
+            animation: nodePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes nodePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Privacy & Security */
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .security-card {
+            padding: 2rem;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 16px;
+            border: 2px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .security-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .security-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            color: #10b981;
+        }
+
+        .security-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 100px 5%;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 1.3rem 3rem;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(139, 92, 246, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .arch-diagram {
+                grid-template-columns: 1fr;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-steps {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+
+            .neural-layers {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .architecture-overview,
+            .data-flow,
+            .neural-viz {
+                padding: 2rem;
+            }
+
+            .module-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Neural Network Background -->
+    <div class="animated-bg">
+        <div class="neural-network" id="neuralNetwork"></div>
+    </div>
+
+    <!-- Content Layer -->
+    <div class="content-layer">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">🧠 Deep Technical Dive</div>
+            <h1 class="hero-title">
+                The <span class="gradient-text">Intelligence</span> Behind into3.ai
+            </h1>
+            <p class="hero-subtitle">
+                A comprehensive look at the AI architecture, neural networks, and algorithms that power truly personalized learning.
+            </p>
+        </section>
+
+        <!-- AI Architecture Overview -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Multi-Modal <span class="gradient-purple">AI System</span></h2>
+                <p class="section-subtitle">Enterprise-grade AI infrastructure processing multiple data streams simultaneously</p>
+            </div>
+
+            <div class="architecture-overview">
+                <div class="arch-diagram">
+                    <div class="arch-box">
+                        <div class="arch-icon">📹</div>
+                        <h3 class="arch-title">Computer Vision</h3>
+                        <p class="arch-description">
+                            Real-time facial analysis, eye tracking, gesture recognition. 30 FPS processing with <200ms latency.
+                        </p>
+                    </div>
+
+                    <div class="arch-box">
+                        <div class="arch-icon">💬</div>
+                        <h3 class="arch-title">Natural Language Processing</h3>
+                        <p class="arch-description">
+                            Understands questions, analyzes doubt patterns, generates contextual explanations. Multi-lingual support.
+                        </p>
+                    </div>
+
+                    <div class="arch-box">
+                        <div class="arch-icon">🔄</div>
+                        <h3 class="arch-title">Reinforcement Learning</h3>
+                        <p class="arch-description">
+                            Continuously learns optimal teaching strategies. Adapts based on 10M+ student interactions daily.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Intelligence Modules -->
+        <section class="section section-alt">
+            <div class="section-header">
+                <h2 class="section-title">5 Core <span class="gradient-purple">Intelligence Modules</span></h2>
+                <p class="section-subtitle">Each module specializes in a critical aspect of learning intelligence</p>
+            </div>
+
+            <div class="modules-grid">
+                <!-- Module 1: Focus Detection -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">🎯</div>
+                        <h3 class="module-title">Focus Detection Engine</h3>
+                    </div>
+                    <p class="module-description">
+                        Continuously monitors attention quality through eye gaze patterns, facial micro-expressions, and interaction signals.
+                    </p>
+                    <div class="tech-details">
+                        <div class="tech-label">How It Works</div>
+                        <div class="tech-content">
+                            <strong>Computer Vision Pipeline:</strong>
+                            <ul class="tech-list">
+                                <li>Eye tracking via pupil detection (60 FPS)</li>
+                                <li>Gaze direction mapping to screen regions</li>
+                                <li>Blink rate analysis for fatigue detection</li>
+                                <li>Head pose estimation for engagement</li>
+                                <li>Focus score calculated every 500ms</li>
+                            </ul>
+                            <strong style="display: block; margin-top: 1rem;">Models Used:</strong> MediaPipe Face Mesh, OpenCV Eye Tracking, Custom CNN for attention classification
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 2: Emotional Intelligence -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">😊</div>
+                        <h3 class="module-title">Emotional Intelligence Layer</h3>
+                    </div>
+                    <p class="module-description">
+                        Detects 7 core emotions and responds with appropriate teaching adjustments and empathetic interventions.
+                    </p>
+                    <div class="tech-details">
+                        <div class="tech-label">How It Works</div>
+                        <div class="tech-content">
+                            <strong>Facial Emotion Recognition:</strong>
+                            <ul class="tech-list">
+                                <li>68-point facial landmark detection</li>
+                                <li>Action Unit (AU) classification</li>
+                                <li>7 emotions: joy, confusion, frustration, boredom, excitement, anxiety, neutral</li>
+                                <li>Temporal smoothing for stable predictions</li>
+                                <li>Context-aware emotion understanding</li>
+                            </ul>
+                            <strong style="display: block; margin-top: 1rem;">Models Used:</strong> FER2013-trained ResNet, EfficientNet for real-time inference, LSTM for temporal context
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 3: Adaptive Learning Algorithm -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">🧠</div>
+                        <h3 class="module-title">Adaptive Learning Algorithm</h3>
+                    </div>
+                    <p class="module-description">
+                        Dynamically adjusts content, difficulty, and pacing based on real-time understanding and historical performance.
+                    </p>
+                    <div class="tech-details">
+                        <div class="tech-label">How It Works</div>
+                        <div class="tech-content">
+                            <strong>Reinforcement Learning System:</strong>
+                            <ul class="tech-list">
+                                <li>State: Current knowledge, emotion, focus, context</li>
+                                <li>Actions: 47 personalization parameter adjustments</li>
+                                <li>Reward: Learning efficiency, mastery achievement</li>
+                                <li>Policy trained on 10M+ student sessions</li>
+                                <li>A/B tested continuously for optimization</li>
+                            </ul>
+                            <strong style="display: block; margin-top: 1rem;">Algorithm:</strong> Deep Q-Network (DQN) with experience replay, PPO for policy optimization
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 4: LII Calculator -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">📊</div>
+                        <h3 class="module-title">Learning Impact Index (LII) Calculator</h3>
+                    </div>
+                    <p class="module-description">
+                        Comprehensive scoring system that captures true learning progress across 5 dimensions beyond test scores.
+                    </p>
+                    <div class="tech-details">
+                        <div class="tech-label">How It Works</div>
+                        <div class="tech-content">
+                            <strong>Multi-Dimensional Scoring:</strong>
+                            <ul class="tech-list">
+                                <li>Focus Quality (20%): Avg focus score, consistency</li>
+                                <li>Mastery Achievement (30%): Concept understanding depth</li>
+                                <li>Curiosity Index (15%): Questions asked, exploration</li>
+                                <li>Resilience Score (15%): Persistence through difficulty</li>
+                                <li>Consistency (20%): Regular engagement, habits</li>
+                            </ul>
+                            <strong style="display: block; margin-top: 1rem;">Calculation:</strong> Weighted ensemble of normalized sub-scores, updated in real-time
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 5: Curiosity Measurement -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">💡</div>
+                        <h3 class="module-title">Curiosity Measurement System</h3>
+                    </div>
+                    <p class="module-description">
+                        Tracks and encourages intellectual curiosity through question analysis, exploration patterns, and deep thinking.
+                    </p>
+                    <div class="tech-details">
+                        <div class="tech-label">How It Works</div>
+                        <div class="tech-content">
+                            <strong>Curiosity Indicators:</strong>
+                            <ul class="tech-list">
+                                <li>Question quality analysis via NLP</li>
+                                <li>"Why" and "how" question frequency</li>
+                                <li>Off-syllabus topic exploration</li>
+                                <li>Deep dive duration into concepts</li>
+                                <li>Connection-making between topics</li>
+                            </ul>
+                            <strong style="display: block; margin-top: 1rem;">Models Used:</strong> BERT for question classification, Graph Neural Networks for concept connections
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Flow Visualization -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Real-Time <span class="gradient-purple">Processing Pipeline</span></h2>
+                <p class="section-subtitle">How data flows through the system from capture to action</p>
+            </div>
+
+            <div class="data-flow">
+                <h3 class="flow-title">Data → Intelligence → Action</h3>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="flow-step-icon">📹</div>
+                        <div class="flow-step-title">Input Capture</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">🔍</div>
+                        <div class="flow-step-title">Feature Extraction</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">🧠</div>
+                        <div class="flow-step-title">AI Analysis</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">⚙️</div>
+                        <div class="flow-step-title">Decision Engine</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">⚡</div>
+                        <div class="flow-step-title">Instant Adaptation</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Metrics -->
+        <section class="section section-alt">
+            <div class="section-header">
+                <h2 class="section-title">System <span class="gradient-purple">Performance</span></h2>
+                <p class="section-subtitle">Real-world metrics from production environment</p>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">⚡</div>
+                    <div class="metric-value">&lt;100ms</div>
+                    <div class="metric-label">Response Time</div>
+                    <div class="metric-description">From data capture to adaptation decision</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon">🎯</div>
+                    <div class="metric-value">94.3%</div>
+                    <div class="metric-label">Emotion Accuracy</div>
+                    <div class="metric-description">Validated against human expert annotations</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon">👁️</div>
+                    <div class="metric-value">96.7%</div>
+                    <div class="metric-label">Focus Detection Accuracy</div>
+                    <div class="metric-description">Correlation with ground truth eye tracking</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon">🔄</div>
+                    <div class="metric-value">50+</div>
+                    <div class="metric-label">Adaptations per Session</div>
+                    <div class="metric-description">Real-time adjustments during learning</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon">🧠</div>
+                    <div class="metric-value">99.8%</div>
+                    <div class="metric-label">System Uptime</div>
+                    <div class="metric-description">High-availability infrastructure</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon">📊</div>
+                    <div class="metric-value">10M+</div>
+                    <div class="metric-label">Daily Predictions</div>
+                    <div class="metric-description">AI inferences across all students</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Neural Network Architecture -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Neural Network <span class="gradient-purple">Architecture</span></h2>
+                <p class="section-subtitle">Multi-layer deep learning system powering intelligent decisions</p>
+            </div>
+
+            <div class="neural-viz">
+                <h3 class="neural-viz-title">Simplified Network Structure</h3>
+                <div class="neural-layers">
+                    <div class="neural-layer">
+                        <div class="neural-layer-title">Input Layer</div>
+                        <div class="neural-nodes">
+                            <div class="neural-node">👁️</div>
+                            <div class="neural-node">😊</div>
+                            <div class="neural-node">❤️</div>
+                            <div class="neural-node">🖱️</div>
+                        </div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="neural-layer">
+                        <div class="neural-layer-title">Hidden Layers</div>
+                        <div class="neural-nodes">
+                            <div class="neural-node">🔹</div>
+                            <div class="neural-node">🔹</div>
+                            <div class="neural-node">🔹</div>
+                            <div class="neural-node">🔹</div>
+                            <div class="neural-node">🔹</div>
+                            <div class="neural-node">🔹</div>
+                        </div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="neural-layer">
+                        <div class="neural-layer-title">Output Layer</div>
+                        <div class="neural-nodes">
+                            <div class="neural-node">📊</div>
+                            <div class="neural-node">⚙️</div>
+                            <div class="neural-node">🎯</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Privacy & Security -->
+        <section class="section section-alt">
+            <div class="section-header">
+                <h2 class="section-title">Privacy & <span class="gradient-purple">Security</span></h2>
+                <p class="section-subtitle">Enterprise-grade protection of sensitive student data</p>
+            </div>
+
+            <div class="security-grid">
+                <div class="security-card">
+                    <div class="security-icon">🔒</div>
+                    <h3 class="security-title">End-to-End Encryption</h3>
+                    <p class="security-description">
+                        All data encrypted in transit (TLS 1.3) and at rest (AES-256). Zero-knowledge architecture for video streams.
+                    </p>
+                </div>
+
+                <div class="security-card">
+                    <div class="security-icon">🎭</div>
+                    <h3 class="security-title">Anonymous Processing</h3>
+                    <p class="security-description">
+                        Facial features processed locally, only anonymized embeddings sent to servers. No raw video stored.
+                    </p>
+                </div>
+
+                <div class="security-card">
+                    <div class="security-icon">✅</div>
+                    <h3 class="security-title">GDPR & COPPA Compliant</h3>
+                    <p class="security-description">
+                        Full compliance with international data protection laws. Parental consent for minors, data deletion on request.
+                    </p>
+                </div>
+
+                <div class="security-card">
+                    <div class="security-icon">🛡️</div>
+                    <h3 class="security-title">Regular Security Audits</h3>
+                    <p class="security-description">
+                        Quarterly penetration testing, annual third-party security audits, SOC 2 Type II certified.
+                    </p>
+                </div>
+
+                <div class="security-card">
+                    <div class="security-icon">📊</div>
+                    <h3 class="security-title">Transparent Data Usage</h3>
+                    <p class="security-description">
+                        Clear documentation of what data is collected, how it's used, and how long it's retained. Full user control.
+                    </p>
+                </div>
+
+                <div class="security-card">
+                    <div class="security-icon">🔐</div>
+                    <h3 class="security-title">Access Controls</h3>
+                    <p class="security-description">
+                        Role-based access, multi-factor authentication, audit logs for all data access. Students control their data.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="cta-section">
+            <h2 class="cta-title">
+                Experience the <span class="gradient-purple">Intelligent System</span>
+            </h2>
+            <p class="cta-subtitle">
+                See how our AI adapts to you in real-time. Book a technical demo with our team.
+            </p>
+            <div class="cta-buttons">
+                <a href="book_demo_page.html" class="btn-primary">🔬 Schedule Technical Demo</a>
+                <a href="talk_to_sales.html" class="btn-primary">💬 Talk to AI Team</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Create neural network background
+        const neuralNetwork = document.getElementById('neuralNetwork');
+        const neurons = [];
+        const connections = [];
+
+        // Create neurons
+        function createNeurons() {
+            const neuronCount = 40;
+            for (let i = 0; i < neuronCount; i++) {
+                const neuron = document.createElement('div');
+                neuron.className = 'neuron';
+                neuron.style.left = Math.random() * 100 + '%';
+                neuron.style.top = Math.random() * 100 + '%';
+                neuron.style.animationDelay = Math.random() * 3 + 's';
+                neuralNetwork.appendChild(neuron);
+                neurons.push({
+                    element: neuron,
+                    x: parseFloat(neuron.style.left),
+                    y: parseFloat(neuron.style.top)
+                });
+            }
+        }
+
+        // Create connections between nearby neurons
+        function createConnections() {
+            for (let i = 0; i < neurons.length; i++) {
+                for (let j = i + 1; j < neurons.length; j++) {
+                    const dx = neurons[j].x - neurons[i].x;
+                    const dy = neurons[j].y - neurons[i].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 20) {
+                        const connection = document.createElement('div');
+                        connection.className = 'connection';
+                        
+                        const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                        const length = distance;
+                        
+                        connection.style.width = length + 'vw';
+                        connection.style.left = neurons[i].x + '%';
+                        connection.style.top = neurons[i].y + '%';
+                        connection.style.transform = `rotate(${angle}deg)`;
+                        connection.style.animationDelay = Math.random() * 2 + 's';
+                        
+                        neuralNetwork.appendChild(connection);
+                        connections.push(connection);
+                    }
+                }
+            }
+        }
+
+        // Initialize
+        createNeurons();
+        createConnections();
+
+        // Recreate on resize
+        window.addEventListener('resize', () => {
+            neuralNetwork.innerHTML = '';
+            neurons.length = 0;
+            connections.length = 0;
+            createNeurons();
+            createConnections();
+        });
+    </script>
+</body>
+</html>

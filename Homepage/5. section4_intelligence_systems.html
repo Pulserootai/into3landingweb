@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connected Intelligence - into3.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        /* Intelligence Section */
+        .intelligence-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 5% 30px;
+            overflow: hidden;
+        }
+
+        /* Animated Background Shapes */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        .shape1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            top: 10%;
+            right: 10%;
+            animation: float1 15s ease-in-out infinite;
+        }
+
+        .shape2 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            bottom: 15%;
+            left: 10%;
+            animation: float2 18s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, 30px); }
+        }
+
+        /* Title Section */
+        .title-section {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: all 1s ease-out;
+        }
+
+        .title-section.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(
+                90deg,
+                #a855f7 0%,
+                #ec4899 25%,
+                #8b5cf6 50%,
+                #a855f7 75%,
+                #ec4899 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s linear infinite;
+            min-height: 3rem;
+            line-height: 1.2;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 2rem;
+            background: #a855f7;
+            margin-left: 5px;
+            animation: blink 0.8s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #475569;
+            margin-top: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-top: 0.3rem;
+        }
+
+        /* Main Content - Split Screen */
+        .content-wrapper {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 48% 52%;
+            gap: 2rem;
+            align-items: center;
+            z-index: 2;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Left - Visual Display */
+        .visual-display {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 1s ease-out 0.3s;
+        }
+
+        .visual-display.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .active-system-display {
+            width: 100%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2rem 2rem;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(168, 85, 247, 0.2);
+            border: 2px solid rgba(168, 85, 247, 0.2);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        .system-icon-large {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 1.2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: iconPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .system-name-large {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.6rem;
+            transition: all 0.5s ease;
+        }
+
+        .system-tagline-large {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            transition: all 0.5s ease;
+        }
+
+        .system-description-large {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #64748b;
+        }
+
+        /* Flying Card Animation */
+        .flying-card {
+            position: fixed;
+            z-index: 1000;
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Right - System Cards Grid */
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 1s ease-out 0.5s;
+        }
+
+        .systems-grid.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .system-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 18px;
+            padding: 1.3rem 1.2rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 2px solid transparent;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .system-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .system-card:nth-child(1) { transition-delay: 0.1s; }
+        .system-card:nth-child(2) { transition-delay: 0.2s; }
+        .system-card:nth-child(3) { transition-delay: 0.3s; }
+        .system-card:nth-child(4) { transition-delay: 0.4s; }
+        .system-card:nth-child(5) { transition-delay: 0.5s; }
+        .system-card:nth-child(6) { transition-delay: 0.6s; }
+
+        .system-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(168, 85, 247, 0.3);
+        }
+
+        .system-card.active {
+            transform: translateY(-8px) scale(1.05);
+        }
+
+        .system-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .system-card:hover .system-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .system-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+            color: #1e293b;
+        }
+
+        .system-tagline {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        /* Color Schemes for Each System */
+        .ilp-engine .system-icon,
+        .ilp-engine .system-icon-large {
+            background: linear-gradient(135deg, #ec4899, #f472b6);
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.4);
+        }
+        .ilp-engine.active,
+        .ilp-engine:hover {
+            border-color: rgba(236, 72, 153, 0.5);
+        }
+        .ilp-engine .system-tagline-large,
+        .ilp-engine .system-name-large {
+            color: #ec4899;
+        }
+
+        .content-stitching .system-icon,
+        .content-stitching .system-icon-large {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+        }
+        .content-stitching.active,
+        .content-stitching:hover {
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+        .content-stitching .system-tagline-large,
+        .content-stitching .system-name-large {
+            color: #10b981;
+        }
+
+        .rtae .system-icon,
+        .rtae .system-icon-large {
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);
+        }
+        .rtae.active,
+        .rtae:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+        }
+        .rtae .system-tagline-large,
+        .rtae .system-name-large {
+            color: #f59e0b;
+        }
+
+        .adaptive .system-icon,
+        .adaptive .system-icon-large {
+            background: linear-gradient(135deg, #ef4444, #f87171);
+            box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+        }
+        .adaptive.active,
+        .adaptive:hover {
+            border-color: rgba(239, 68, 68, 0.5);
+        }
+        .adaptive .system-tagline-large,
+        .adaptive .system-name-large {
+            color: #ef4444;
+        }
+
+        .tutor .system-icon,
+        .tutor .system-icon-large {
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+        }
+        .tutor.active,
+        .tutor:hover {
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+        .tutor .system-tagline-large,
+        .tutor .system-name-large {
+            color: #8b5cf6;
+        }
+
+        .meta-sync .system-icon,
+        .meta-sync .system-icon-large {
+            background: linear-gradient(135deg, #06b6d4, #22d3ee);
+            box-shadow: 0 8px 20px rgba(6, 182, 212, 0.4);
+        }
+        .meta-sync.active,
+        .meta-sync:hover {
+            border-color: rgba(6, 182, 212, 0.5);
+        }
+        .meta-sync .system-tagline-large,
+        .meta-sync .system-name-large {
+            color: #06b6d4;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin-top: 1rem;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-out 0.8s;
+        }
+
+        .cta-section.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            color: white;
+            box-shadow: 0 8px 20px rgba(168, 85, 247, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(168, 85, 247, 0.6);
+        }
+
+        /* Mobile Carousel (Hidden on Desktop) */
+        .carousel-container {
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .content-wrapper {
+                display: none;
+            }
+
+            .carousel-container {
+                display: block;
+                flex: 1;
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 1s ease-out 0.3s;
+            }
+
+            .carousel-container.animate {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .carousel-slide {
+                background: rgba(255, 255, 255, 0.9);
+                backdrop-filter: blur(20px);
+                border-radius: 30px;
+                padding: 3rem 2rem;
+                text-align: center;
+                box-shadow: 0 20px 60px rgba(168, 85, 247, 0.2);
+                margin: 0 auto;
+                max-width: 500px;
+            }
+
+            .carousel-dots {
+                display: flex;
+                justify-content: center;
+                gap: 0.8rem;
+                margin-top: 2rem;
+            }
+
+            .dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: rgba(168, 85, 247, 0.3);
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .dot.active {
+                background: #a855f7;
+                transform: scale(1.3);
+            }
+
+            .main-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 1.8rem;
+                min-height: 5rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Shapes -->
+    <div class="bg-shapes">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+    </div>
+
+    <!-- Intelligence Section -->
+    <section class="intelligence-section">
+        <!-- Title -->
+        <div class="title-section">
+            <h2 class="main-title" id="mainTitle"></h2>
+            <p class="subtitle">At the core of into3.ai lies a living network of six intelligent systems — each one sensing, understanding, adapting, and creating in real time.</p>
+            <p class="tagline">Six minds. One purpose — to make learning human again.</p>
+        </div>
+
+        <!-- Desktop Split Screen -->
+        <div class="content-wrapper">
+            <!-- Left - Active System Display -->
+            <div class="visual-display">
+                <div class="active-system-display" id="activeDisplay">
+                    <div class="system-icon-large ilp-engine" id="activeIcon">🧠</div>
+                    <h3 class="system-name-large ilp-engine" id="activeName">ILP Engine</h3>
+                    <p class="system-tagline-large ilp-engine" id="activeTagline">Intelligent Learning Plan</p>
+                    <p class="system-description-large" id="activeDescription">Crafts a dynamic daily roadmap for every student — balancing lectures, practice, and recovery.</p>
+                </div>
+            </div>
+
+            <!-- Right - System Cards Grid -->
+            <div class="systems-grid">
+                <div class="system-card ilp-engine active" data-system="ilp">
+                    <div class="system-icon">🧠</div>
+                    <h4 class="system-name">ILP Engine</h4>
+                    <p class="system-tagline">Intelligent Learning Plan</p>
+                </div>
+
+                <div class="system-card content-stitching" data-system="content">
+                    <div class="system-icon">🧩</div>
+                    <h4 class="system-name">Content Stitching</h4>
+                    <p class="system-tagline">Hyper-Personalization</p>
+                </div>
+
+                <div class="system-card rtae" data-system="rtae">
+                    <div class="system-icon">⚡</div>
+                    <h4 class="system-name">RTAE</h4>
+                    <p class="system-tagline">Real-Time Adaptation</p>
+                </div>
+
+                <div class="system-card adaptive" data-system="adaptive">
+                    <div class="system-icon">🎯</div>
+                    <h4 class="system-name">Adaptive Learning</h4>
+                    <p class="system-tagline">Dynamic Evolution</p>
+                </div>
+
+                <div class="system-card tutor" data-system="tutor">
+                    <div class="system-icon">🤖</div>
+                    <h4 class="system-name">Tutor Intelligence</h4>
+                    <p class="system-tagline">Human-like Support</p>
+                </div>
+
+                <div class="system-card meta-sync" data-system="meta">
+                    <div class="system-icon">🌐</div>
+                    <h4 class="system-name">Meta Sync</h4>
+                    <p class="system-tagline">Unified Network</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Carousel -->
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <div class="system-icon-large ilp-engine">🧠</div>
+                <h3 class="system-name-large ilp-engine">ILP Engine</h3>
+                <p class="system-tagline-large ilp-engine">Intelligent Learning Plan</p>
+                <p class="system-description-large">Crafts a dynamic daily roadmap for every student — balancing lectures, practice, and recovery.</p>
+            </div>
+            <div class="carousel-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <button class="btn" onclick="window.parent.location.href='../Pages/six_systems.html'">Explore the Six Systems</button>
+        </div>
+    </section>
+
+    <script>
+        const systems = {
+            ilp: {
+                icon: '🧠',
+                name: 'ILP Engine',
+                tagline: 'Intelligent Learning Plan',
+                description: 'Crafts a dynamic daily roadmap for every student — balancing lectures, practice, and recovery.',
+                class: 'ilp-engine'
+            },
+            content: {
+                icon: '🧩',
+                name: 'Content Stitching',
+                tagline: 'Hyper-Personalization',
+                description: 'Builds lectures using 50+ human parameters — no two lessons are ever alike.',
+                class: 'content-stitching'
+            },
+            rtae: {
+                icon: '⚡',
+                name: 'RTAE',
+                tagline: 'Real-Time Adaptation',
+                description: 'Senses focus, emotion, and stress — turning invisible human states into actionable insights.',
+                class: 'rtae'
+            },
+            adaptive: {
+                icon: '🎯',
+                name: 'Adaptive Learning',
+                tagline: 'Dynamic Evolution',
+                description: 'Evolves with each learner\'s performance — adjusting difficulty, pacing, and retention strategy in real time.',
+                class: 'adaptive'
+            },
+            tutor: {
+                icon: '🤖',
+                name: 'Tutor Intelligence',
+                tagline: 'Human-like Support',
+                description: 'Delivers micro-explanations, analogies, and examples on demand — powered by metahuman delivery.',
+                class: 'tutor'
+            },
+            meta: {
+                icon: '🌐',
+                name: 'Meta Sync',
+                tagline: 'Unified Network',
+                description: 'Connects schools, homes, parents, and teachers in one unified feedback loop.',
+                class: 'meta-sync'
+            }
+        };
+
+        // Typing Animation
+        const mainTitle = document.getElementById('mainTitle');
+        const titleText = "It needs connected intelligence.";
+        let charIndex = 0;
+        let typingStarted = false;
+
+        function typeText() {
+            if (charIndex < titleText.length) {
+                mainTitle.textContent = titleText.substring(0, charIndex + 1);
+                charIndex++;
+                setTimeout(typeText, 60);
+            } else {
+                mainTitle.innerHTML += '<span class="typing-cursor"></span>';
+            }
+        }
+
+        // System Card Interaction with Flying Animation
+        const cards = document.querySelectorAll('.system-card');
+        const activeIcon = document.getElementById('activeIcon');
+        const activeName = document.getElementById('activeName');
+        const activeTagline = document.getElementById('activeTagline');
+        const activeDescription = document.getElementById('activeDescription');
+        const activeDisplay = document.getElementById('activeDisplay');
+
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Remove active from all cards
+                cards.forEach(c => c.classList.remove('active'));
+                // Add active to hovered card
+                card.classList.add('active');
+
+                // Get system data
+                const systemKey = card.dataset.system;
+                const system = systems[systemKey];
+
+                // Get card position
+                const cardRect = card.getBoundingClientRect();
+                const displayRect = activeDisplay.getBoundingClientRect();
+
+                // Create flying card clone
+                const flyingCard = card.cloneNode(true);
+                flyingCard.classList.add('flying-card');
+                flyingCard.style.position = 'fixed';
+                flyingCard.style.top = cardRect.top + 'px';
+                flyingCard.style.left = cardRect.left + 'px';
+                flyingCard.style.width = cardRect.width + 'px';
+                flyingCard.style.height = cardRect.height + 'px';
+                flyingCard.style.zIndex = '1000';
+                document.body.appendChild(flyingCard);
+
+                // Trigger animation on next frame
+                requestAnimationFrame(() => {
+                    // Calculate center of display
+                    const targetX = displayRect.left + displayRect.width / 2 - cardRect.width / 2;
+                    const targetY = displayRect.top + displayRect.height / 2 - cardRect.height / 2;
+
+                    // Animate flying card
+                    flyingCard.style.transform = `translate(${targetX - cardRect.left}px, ${targetY - cardRect.top}px) scale(1.8)`;
+                    flyingCard.style.opacity = '0';
+
+                    // Fade out main display temporarily
+                    activeDisplay.style.opacity = '0.3';
+                    activeDisplay.style.transform = 'scale(0.95)';
+
+                    // After animation, update content and fade in
+                    setTimeout(() => {
+                        // Update content
+                        activeIcon.textContent = system.icon;
+                        activeIcon.className = `system-icon-large ${system.class}`;
+                        activeName.textContent = system.name;
+                        activeName.className = `system-name-large ${system.class}`;
+                        activeTagline.textContent = system.tagline;
+                        activeTagline.className = `system-tagline-large ${system.class}`;
+                        activeDescription.textContent = system.description;
+
+                        // Fade in display
+                        activeDisplay.style.opacity = '1';
+                        activeDisplay.style.transform = 'scale(1)';
+
+                        // Remove flying card
+                        flyingCard.remove();
+                    }, 400);
+                });
+            });
+        });
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    
+                    if (entry.target.classList.contains('title-section') && !typingStarted) {
+                        typingStarted = true;
+                        setTimeout(typeText, 500);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            const titleSection = document.querySelector('.title-section');
+            const visualDisplay = document.querySelector('.visual-display');
+            const systemsGrid = document.querySelector('.systems-grid');
+            const systemCards = document.querySelectorAll('.system-card');
+            const ctaSection = document.querySelector('.cta-section');
+            const carouselContainer = document.querySelector('.carousel-container');
+
+            observer.observe(titleSection);
+            observer.observe(visualDisplay);
+            observer.observe(systemsGrid);
+            systemCards.forEach(card => observer.observe(card));
+            observer.observe(ctaSection);
+            if (carouselContainer) observer.observe(carouselContainer);
+        });
+
+        // Mobile Carousel Auto-rotate (simplified for now)
+        let currentSlide = 0;
+        const dots = document.querySelectorAll('.dot');
+        
+        if (window.innerWidth <= 1024) {
+            setInterval(() => {
+                dots.forEach(dot => dot.classList.remove('active'));
+                currentSlide = (currentSlide + 1) % 6;
+                dots[currentSlide].classList.add('active');
+                // Update carousel content here
+            }, 4000);
+        }
+    </script>
+</body>
+</html>

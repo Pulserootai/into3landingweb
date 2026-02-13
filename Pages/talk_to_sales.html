@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talk to Sales - into3.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .words-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .word-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            animation: scrollVertical 60s linear infinite;
+            opacity: 0.2;
+        }
+
+        @keyframes scrollVertical {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .word-column:nth-child(odd) { color: rgba(6, 182, 212, 0.6); }
+        .word-column:nth-child(even) { color: rgba(139, 92, 246, 0.5); }
+
+        .education-word {
+            display: block;
+            white-space: nowrap;
+        }
+
+        .education-word.caught {
+            color: #ffffff !important;
+            font-weight: 900;
+            font-size: 1.2em;
+            text-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+            transform: scale(1.3);
+            opacity: 1 !important;
+        }
+
+        .education-word.caught.glow-cyan { color: #06b6d4 !important; }
+        .education-word.caught.glow-purple { color: #8b5cf6 !important; }
+        .education-word.caught.glow-blue { color: #3b82f6 !important; }
+
+        /* Content Layer */
+        .content-layer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 5%;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            max-width: 1500px;
+            margin: 0 auto;
+            width: 100%;
+            align-items: start;
+        }
+
+        /* Left Side - Info */
+        .hero-left {
+            padding-top: 2rem;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.5rem;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        .contact-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            padding: 1.5rem;
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            min-width: 40px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #3b82f6;
+        }
+
+        .team-info {
+            padding: 2rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+        }
+
+        .team-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #3b82f6;
+        }
+
+        .team-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Right Side - Chatbot */
+        .hero-right {
+            animation: fadeInRight 1s ease-out;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .chatbot-container {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            height: 700px;
+        }
+
+        /* Chat Header */
+        .chat-header {
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chat-avatar {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .chat-header-info {
+            flex: 1;
+        }
+
+        .chat-header-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 0.2rem;
+        }
+
+        .chat-header-status {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .quick-actions-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .quick-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .quick-btn {
+            padding: 0.6rem 1rem;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #3b82f6;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .quick-btn:hover {
+            background: rgba(59, 130, 246, 0.25);
+            border-color: rgba(59, 130, 246, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Chat Messages */
+        .chat-messages {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 4px;
+        }
+
+        .message {
+            display: flex;
+            gap: 1rem;
+            animation: messageSlideIn 0.3s ease-out;
+        }
+
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .message.bot .message-avatar {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        }
+
+        .message.user .message-avatar {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .message-content {
+            max-width: 75%;
+        }
+
+        .message.user .message-content {
+            text-align: right;
+        }
+
+        .message-bubble {
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            display: inline-block;
+        }
+
+        .message.bot .message-bubble {
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .message.user .message-bubble {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 0.5rem;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 1rem 1.5rem;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 16px;
+            width: fit-content;
+        }
+
+        .typing-indicator.active {
+            display: block;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Chat Input */
+        .chat-input-container {
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            color: white;
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .chat-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .send-btn {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .chatbot-container {
+                height: 600px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .chatbot-container {
+                height: 500px;
+            }
+
+            .message-content {
+                max-width: 85%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="words-container" id="wordsContainer"></div>
+    </div>
+
+    <!-- Content Layer -->
+    <div class="content-layer">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <!-- Left Side - Info -->
+                <div class="hero-left">
+                    <div class="hero-badge">
+                        <span class="status-dot"></span>
+                        Sales Team Online
+                    </div>
+                    <h1 class="hero-title">
+                        Let's Talk <span class="gradient-text">Business</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Our AI assistant is here to answer your questions instantly. For complex inquiries, we'll connect you with our sales team.
+                    </p>
+
+                    <div class="contact-options">
+                        <div class="contact-card">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-info">
+                                <div class="contact-label">Email Us</div>
+                                <div class="contact-value">sales@into3.ai</div>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-info">
+                                <div class="contact-label">Call Us</div>
+                                <div class="contact-value">+91 98765 43210</div>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-icon">⏰</div>
+                            <div class="contact-info">
+                                <div class="contact-label">Business Hours</div>
+                                <div class="contact-value">Mon-Fri, 9 AM - 6 PM IST</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-info">
+                        <h3 class="team-title">💼 Enterprise Solutions</h3>
+                        <p class="team-description">
+                            Looking for custom implementation, bulk licensing, or dedicated support? Our enterprise team specializes in tailored solutions for schools and institutions.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Side - Chatbot -->
+                <div class="hero-right">
+                    <div class="chatbot-container">
+                        <!-- Chat Header -->
+                        <div class="chat-header">
+                            <div class="chat-avatar">🤖</div>
+                            <div class="chat-header-info">
+                                <div class="chat-header-title">into3.ai Sales Assistant</div>
+                                <div class="chat-header-status">
+                                    <span class="status-dot"></span>
+                                    Online • Typically replies instantly
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="quick-actions">
+                            <div class="quick-actions-label">Quick Questions</div>
+                            <div class="quick-buttons">
+                                <button class="quick-btn" onclick="sendQuickMessage('pricing')">💰 Pricing</button>
+                                <button class="quick-btn" onclick="sendQuickMessage('demo')">📅 Book Demo</button>
+                                <button class="quick-btn" onclick="sendQuickMessage('enterprise')">🏢 Enterprise</button>
+                                <button class="quick-btn" onclick="sendQuickMessage('implementation')">⚙️ Implementation</button>
+                                <button class="quick-btn" onclick="sendQuickMessage('support')">🎯 Support</button>
+                            </div>
+                        </div>
+
+                        <!-- Chat Messages -->
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message bot">
+                                <div class="message-avatar">🤖</div>
+                                <div class="message-content">
+                                    <div class="message-bubble">
+                                        Hi! I'm the into3.ai Sales Assistant. 👋<br><br>
+                                        I'm here to help you learn more about our AI-powered learning platform. What would you like to know?
+                                    </div>
+                                    <div class="message-time">Just now</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Typing Indicator -->
+                        <div class="typing-indicator" id="typingIndicator">
+                            <div class="typing-dots">
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                            </div>
+                        </div>
+
+                        <!-- Chat Input -->
+                        <div class="chat-input-container">
+                            <div class="chat-input-wrapper">
+                                <input 
+                                    type="text" 
+                                    class="chat-input" 
+                                    id="chatInput" 
+                                    placeholder="Type your message..."
+                                    onkeypress="handleKeyPress(event)"
+                                >
+                                <button class="send-btn" onclick="sendMessage()">
+                                    ➤
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Education words for matrix background
+        const educationWords = [
+            'sales', 'business', 'enterprise', 'pricing', 'demo', 'support', 'solution',
+            'roi', 'implementation', 'scale', 'growth', 'partnership', 'custom', 'licensing'
+        ];
+
+        const glowColors = ['glow-cyan', 'glow-purple', 'glow-blue'];
+        const wordsContainer = document.getElementById('wordsContainer');
+        const numberOfColumns = 12;
+        let allWords = [];
+
+        // Create columns
+        for (let i = 0; i < numberOfColumns; i++) {
+            const column = document.createElement('div');
+            column.className = 'word-column';
+            column.style.animationDuration = (45 + Math.random() * 30) + 's';
+            column.style.animationDelay = -(Math.random() * 40) + 's';
+            
+            for (let j = 0; j < 30; j++) {
+                const word = document.createElement('span');
+                word.className = 'education-word';
+                word.textContent = educationWords[Math.floor(Math.random() * educationWords.length)];
+                column.appendChild(word);
+                allWords.push(word);
+            }
+            
+            const cloned = column.innerHTML;
+            column.innerHTML = cloned + cloned;
+            
+            const newWords = column.querySelectorAll('.education-word');
+            newWords.forEach((word, idx) => {
+                if (idx >= 30) allWords.push(word);
+            });
+            
+            wordsContainer.appendChild(column);
+        }
+
+        // Catch words animation
+        function catchWord() {
+            const caught = document.querySelectorAll('.education-word.caught');
+            if (caught.length > 6) {
+                caught[0].classList.remove('caught', ...glowColors);
+            }
+
+            const word = allWords[Math.floor(Math.random() * allWords.length)];
+            const color = glowColors[Math.floor(Math.random() * glowColors.length)];
+            word.classList.add('caught', color);
+            
+            setTimeout(() => {
+                word.classList.remove('caught', color);
+            }, 2500);
+        }
+
+        setInterval(catchWord, 300);
+
+        // Initial burst
+        setTimeout(() => {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(catchWord, i * 150);
+            }
+        }, 500);
+
+        // Chatbot functionality
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        // Bot responses database
+        const botResponses = {
+            pricing: "Great question! 💰\n\nOur pricing is flexible and based on your needs:\n\n• Individual Students: Starting at ₹999/month\n• Schools (per student): ₹499-799/month depending on scale\n• Enterprise: Custom pricing with volume discounts\n\nWould you like me to connect you with our sales team for a detailed quote?",
+            
+            demo: "Excellent! 📅\n\nI'd love to schedule a personalized demo for you. Our demos typically include:\n\n• Live AI Tutor walkthrough\n• Teacher dashboard tour\n• Real-time analytics showcase\n• Q&A with our team (30-45 min)\n\nShall I book a demo slot for you? Please share your name and email.",
+            
+            enterprise: "Perfect! 🏢\n\nOur Enterprise solutions include:\n\n• Custom implementation & onboarding\n• Dedicated account manager\n• Bulk licensing with discounts\n• API access & integrations\n• Priority support (24/7)\n• Custom training for teachers\n\nCan you tell me about your institution's size and requirements?",
+            
+            implementation: "Great question! ⚙️\n\nOur implementation process is smooth:\n\n1. Discovery call (1 week)\n2. Custom setup & integration (2-3 weeks)\n3. Teacher training (1 week)\n4. Student onboarding (ongoing)\n5. Go-live support\n\nTotal timeline: 4-6 weeks from contract signing.\n\nWould you like to discuss your specific requirements?",
+            
+            support: "We've got you covered! 🎯\n\nSupport options:\n\n• Standard: Email support (24hr response)\n• Premium: Live chat + phone (4hr response)\n• Enterprise: 24/7 dedicated support + Slack channel\n\nAll plans include:\n✓ Knowledge base access\n✓ Video tutorials\n✓ Community forum\n\nWhat level of support are you interested in?",
+            
+            default: "That's a great question! 🤔\n\nI'd love to connect you with our sales team who can provide detailed information about that.\n\nCould you please share:\n• Your name\n• Email\n• Phone number\n• Best time to reach you\n\nOr feel free to email us directly at sales@into3.ai"
+        };
+
+        function getCurrentTime() {
+            const now = new Date();
+            return now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        }
+
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${isUser ? '👤' : '🤖'}</div>
+                <div class="message-content">
+                    <div class="message-bubble">${text.replace(/\n/g, '<br>')}</div>
+                    <div class="message-time">${getCurrentTime()}</div>
+                </div>
+            `;
+            
+            // Remove typing indicator before adding message
+            typingIndicator.classList.remove('active');
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            typingIndicator.classList.add('active');
+            chatMessages.appendChild(typingIndicator);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function getBotResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            
+            if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('pricing')) {
+                return botResponses.pricing;
+            } else if (lowerMessage.includes('demo')) {
+                return botResponses.demo;
+            } else if (lowerMessage.includes('enterprise') || lowerMessage.includes('institution') || lowerMessage.includes('school')) {
+                return botResponses.enterprise;
+            } else if (lowerMessage.includes('implement') || lowerMessage.includes('setup') || lowerMessage.includes('install')) {
+                return botResponses.implementation;
+            } else if (lowerMessage.includes('support') || lowerMessage.includes('help')) {
+                return botResponses.support;
+            } else if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+                return "Hello! 👋 Great to connect with you. How can I help you learn more about into3.ai today?";
+            } else {
+                return botResponses.default;
+            }
+        }
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            
+            if (message === '') return;
+            
+            // Add user message
+            addMessage(message, true);
+            chatInput.value = '';
+            
+            // Show typing indicator
+            showTypingIndicator();
+            
+            // Simulate bot thinking and respond
+            setTimeout(() => {
+                const response = getBotResponse(message);
+                addMessage(response, false);
+            }, 1500 + Math.random() * 1000); // Random delay 1.5-2.5s
+        }
+
+        function sendQuickMessage(type) {
+            const quickMessages = {
+                pricing: "What's your pricing?",
+                demo: "I'd like to book a demo",
+                enterprise: "Tell me about enterprise solutions",
+                implementation: "How does implementation work?",
+                support: "What support options do you offer?"
+            };
+            
+            const message = quickMessages[type];
+            chatInput.value = message;
+            sendMessage();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Auto-focus input on load
+        window.addEventListener('load', () => {
+            chatInput.focus();
+        });
+    </script>
+</body>
+</html>

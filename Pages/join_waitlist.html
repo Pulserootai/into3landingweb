@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Waitlist - into3.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .words-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .word-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            animation: scrollVertical 60s linear infinite;
+            opacity: 0.2;
+        }
+
+        @keyframes scrollVertical {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .word-column:nth-child(odd) { color: rgba(6, 182, 212, 0.6); }
+        .word-column:nth-child(even) { color: rgba(139, 92, 246, 0.5); }
+
+        .education-word {
+            display: block;
+            white-space: nowrap;
+        }
+
+        .education-word.caught {
+            color: #ffffff !important;
+            font-weight: 900;
+            font-size: 1.2em;
+            text-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+            transform: scale(1.3);
+            opacity: 1 !important;
+        }
+
+        .education-word.caught.glow-cyan { color: #06b6d4 !important; }
+        .education-word.caught.glow-purple { color: #8b5cf6 !important; }
+        .education-word.caught.glow-green { color: #10b981 !important; }
+
+        /* Content Layer */
+        .content-layer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 5% 80px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            align-items: start;
+        }
+
+        /* Left Side - Content */
+        .hero-left {
+            animation: fadeInLeft 1s ease-out;
+            padding-top: 2rem;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.5rem;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .waitlist-counter {
+            display: inline-block;
+            padding: 1.5rem 2rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .counter-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+        }
+
+        .counter-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #10b981;
+            line-height: 1;
+        }
+
+        .benefits-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .benefit-icon {
+            font-size: 1.5rem;
+            min-width: 30px;
+        }
+
+        /* Right Side - Form */
+        .hero-right {
+            animation: fadeInRight 1s ease-out;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .form-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-subtitle {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .registration-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .required {
+            color: #ef4444;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            padding: 0.9rem 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #06b6d4;
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-select {
+            cursor: pointer;
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .checkbox-input {
+            width: 20px;
+            height: 20px;
+            margin-top: 0.2rem;
+            cursor: pointer;
+        }
+
+        .checkbox-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+        }
+
+        .checkbox-label a {
+            color: #06b6d4;
+            text-decoration: none;
+        }
+
+        .checkbox-label a:hover {
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .form-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 1rem;
+        }
+
+        /* What to Expect Section */
+        .expect-section {
+            padding: 80px 5%;
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 80px;
+            bottom: -2.5rem;
+            width: 2px;
+            background: linear-gradient(180deg, #06b6d4, #8b5cf6);
+            opacity: 0.3;
+        }
+
+        .timeline-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 900;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
+        }
+
+        .timeline-content {
+            padding: 1.5rem 0;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: #06b6d4;
+        }
+
+        .timeline-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            padding: 80px 5%;
+        }
+
+        .proof-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            padding: 2.5rem;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(6, 182, 212, 0.5);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Success Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(30, 41, 59, 0.95);
+            border: 2px solid rgba(6, 182, 212, 0.5);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 500px;
+            text-align: center;
+            animation: modalSlideIn 0.4s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .modal-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .modal-close {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .form-card {
+                padding: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .counter-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="words-container" id="wordsContainer"></div>
+    </div>
+
+    <!-- Content Layer -->
+    <div class="content-layer">
+        <!-- Hero Section with Form -->
+        <section class="hero">
+            <div class="hero-content">
+                <!-- Left Side -->
+                <div class="hero-left">
+                    <div class="hero-badge">
+                        <span class="pulse-dot"></span>
+                        Limited Early Access
+                    </div>
+                    <h1 class="hero-title">
+                        Join the <span class="gradient-text">AI Learning</span> Revolution
+                    </h1>
+                    <p class="hero-subtitle">
+                        Be among the first students to experience truly personalized learning powered by AI that sees, understands, and adapts to you.
+                    </p>
+
+                    <div class="waitlist-counter">
+                        <div class="counter-label">Students on Waitlist</div>
+                        <div class="counter-number" id="waitlistCount">3,247</div>
+                    </div>
+
+                    <ul class="benefits-list">
+                        <li class="benefit-item">
+                            <span class="benefit-icon">🎓</span>
+                            <span>Free access for first 1,000 students</span>
+                        </li>
+                        <li class="benefit-item">
+                            <span class="benefit-icon">🚀</span>
+                            <span>Early access to new features</span>
+                        </li>
+                        <li class="benefit-item">
+                            <span class="benefit-icon">💎</span>
+                            <span>Exclusive founder's benefits</span>
+                        </li>
+                        <li class="benefit-item">
+                            <span class="benefit-icon">🏆</span>
+                            <span>Priority scholarship consideration</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Right Side - Form -->
+                <div class="hero-right">
+                    <div class="form-card">
+                        <div class="form-header">
+                            <h2 class="form-title">Reserve Your Spot</h2>
+                            <p class="form-subtitle">Get early access when we launch</p>
+                        </div>
+
+                        <form class="registration-form" id="waitlistForm">
+                            <!-- Personal Information -->
+                            <div class="form-group">
+                                <label class="form-label">Full Name <span class="required">*</span></label>
+                                <input type="text" class="form-input" name="fullName" placeholder="Enter your full name" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Email <span class="required">*</span></label>
+                                    <input type="email" class="form-input" name="email" placeholder="your@email.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Phone Number <span class="required">*</span></label>
+                                    <input type="tel" class="form-input" name="phone" placeholder="+91 00000 00000" required>
+                                </div>
+                            </div>
+
+                            <!-- Educational Information -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Current Class <span class="required">*</span></label>
+                                    <select class="form-select" name="class" required>
+                                        <option value="">Select class</option>
+                                        <option value="8">Class 8</option>
+                                        <option value="9">Class 9</option>
+                                        <option value="10">Class 10</option>
+                                        <option value="11">Class 11</option>
+                                        <option value="12">Class 12</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Board <span class="required">*</span></label>
+                                    <select class="form-select" name="board" required>
+                                        <option value="">Select board</option>
+                                        <option value="cbse">CBSE</option>
+                                        <option value="icse">ICSE</option>
+                                        <option value="state">State Board</option>
+                                        <option value="ib">IB</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">School Name <span class="required">*</span></label>
+                                <input type="text" class="form-input" name="school" placeholder="Enter school name" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">City <span class="required">*</span></label>
+                                    <input type="text" class="form-input" name="city" placeholder="Your city" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">State <span class="required">*</span></label>
+                                    <select class="form-select" name="state" required>
+                                        <option value="">Select state</option>
+                                        <option value="AP">Andhra Pradesh</option>
+                                        <option value="AR">Arunachal Pradesh</option>
+                                        <option value="AS">Assam</option>
+                                        <option value="BR">Bihar</option>
+                                        <option value="CG">Chhattisgarh</option>
+                                        <option value="DL">Delhi</option>
+                                        <option value="GA">Goa</option>
+                                        <option value="GJ">Gujarat</option>
+                                        <option value="HR">Haryana</option>
+                                        <option value="HP">Himachal Pradesh</option>
+                                        <option value="JK">Jammu and Kashmir</option>
+                                        <option value="JH">Jharkhand</option>
+                                        <option value="KA">Karnataka</option>
+                                        <option value="KL">Kerala</option>
+                                        <option value="MP">Madhya Pradesh</option>
+                                        <option value="MH">Maharashtra</option>
+                                        <option value="MN">Manipur</option>
+                                        <option value="ML">Meghalaya</option>
+                                        <option value="MZ">Mizoram</option>
+                                        <option value="NL">Nagaland</option>
+                                        <option value="OD">Odisha</option>
+                                        <option value="PB">Punjab</option>
+                                        <option value="RJ">Rajasthan</option>
+                                        <option value="SK">Sikkim</option>
+                                        <option value="TN">Tamil Nadu</option>
+                                        <option value="TS">Telangana</option>
+                                        <option value="TR">Tripura</option>
+                                        <option value="UP">Uttar Pradesh</option>
+                                        <option value="UK">Uttarakhand</option>
+                                        <option value="WB">West Bengal</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Subjects of Interest -->
+                            <div class="form-group">
+                                <label class="form-label">Subjects You Want to Focus On</label>
+                                <input type="text" class="form-input" name="subjects" placeholder="e.g., Math, Physics, Chemistry">
+                            </div>
+
+                            <!-- Learning Goals -->
+                            <div class="form-group">
+                                <label class="form-label">What are your learning goals? (Optional)</label>
+                                <textarea class="form-textarea" name="goals" placeholder="Tell us what you want to achieve..."></textarea>
+                            </div>
+
+                            <!-- Parent/Guardian Info -->
+                            <div class="form-group">
+                                <label class="form-label">Parent/Guardian Name <span class="required">*</span></label>
+                                <input type="text" class="form-input" name="parentName" placeholder="Parent or guardian name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Parent/Guardian Phone <span class="required">*</span></label>
+                                <input type="tel" class="form-input" name="parentPhone" placeholder="+91 00000 00000" required>
+                            </div>
+
+                            <!-- Terms & Conditions -->
+                            <div class="checkbox-group">
+                                <input type="checkbox" class="checkbox-input" id="terms" name="terms" required>
+                                <label class="checkbox-label" for="terms">
+                                    I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>. I consent to receive updates about into3.ai.
+                                </label>
+                            </div>
+
+                            <button type="submit" class="submit-btn" id="submitBtn">
+                                🚀 Join the Waitlist
+                            </button>
+
+                            <p class="form-note">
+                                We'll notify you as soon as spots open up!
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What to Expect Section -->
+        <section class="expect-section">
+            <div class="section-header">
+                <h2 class="section-title">What Happens <span class="gradient-text">Next</span>?</h2>
+                <p class="section-subtitle">Your journey from waitlist to AI-powered learning</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Instant Confirmation</h3>
+                        <p class="timeline-description">
+                            You'll receive an email confirmation with your waitlist position and estimated access date.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Regular Updates</h3>
+                        <p class="timeline-description">
+                            Get exclusive behind-the-scenes updates, learning tips, and sneak peeks of new features.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Early Access Invitation</h3>
+                        <p class="timeline-description">
+                            When your spot opens, you'll get an exclusive invitation link to create your account.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Personalized Onboarding</h3>
+                        <p class="timeline-description">
+                            Our AI will assess your learning style and create your first personalized learning path.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">5</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Start Learning</h3>
+                        <p class="timeline-description">
+                            Begin your AI-powered learning journey with full access to adaptive tutoring and LII tracking.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof -->
+        <section class="social-proof">
+            <div class="section-header">
+                <h2 class="section-title">Join <span class="gradient-text">Thousands</span> of Students</h2>
+                <p class="section-subtitle">Early testers are already seeing incredible results</p>
+            </div>
+
+            <div class="proof-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">🎓</div>
+                    <div class="stat-value">3,247</div>
+                    <div class="stat-label">On Waitlist</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🏫</div>
+                    <div class="stat-value">127</div>
+                    <div class="stat-label">Schools Interested</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🌍</div>
+                    <div class="stat-value">24</div>
+                    <div class="stat-label">States Represented</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-value">4.9/5</div>
+                    <div class="stat-label">Beta User Rating</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">🎉</div>
+            <h2 class="modal-title">You're On The List!</h2>
+            <p class="modal-text">
+                Welcome to the into3.ai family! Check your email for confirmation and your waitlist position.
+            </p>
+            <button class="modal-close" onclick="closeModal()">Got It!</button>
+        </div>
+    </div>
+
+    <script>
+        // Education words for matrix background
+        const educationWords = [
+            'waitlist', 'early-access', 'beta', 'launch', 'pioneer', 'first', 'exclusive',
+            'join', 'reserve', 'signup', 'register', 'start', 'begin', 'explore', 'discover'
+        ];
+
+        const glowColors = ['glow-cyan', 'glow-purple', 'glow-green'];
+        const wordsContainer = document.getElementById('wordsContainer');
+        const numberOfColumns = 12;
+        let allWords = [];
+
+        // Create columns
+        for (let i = 0; i < numberOfColumns; i++) {
+            const column = document.createElement('div');
+            column.className = 'word-column';
+            column.style.animationDuration = (45 + Math.random() * 30) + 's';
+            column.style.animationDelay = -(Math.random() * 40) + 's';
+            
+            for (let j = 0; j < 30; j++) {
+                const word = document.createElement('span');
+                word.className = 'education-word';
+                word.textContent = educationWords[Math.floor(Math.random() * educationWords.length)];
+                column.appendChild(word);
+                allWords.push(word);
+            }
+            
+            const cloned = column.innerHTML;
+            column.innerHTML = cloned + cloned;
+            
+            const newWords = column.querySelectorAll('.education-word');
+            newWords.forEach((word, idx) => {
+                if (idx >= 30) allWords.push(word);
+            });
+            
+            wordsContainer.appendChild(column);
+        }
+
+        // Catch words animation
+        function catchWord() {
+            const caught = document.querySelectorAll('.education-word.caught');
+            if (caught.length > 6) {
+                caught[0].classList.remove('caught', ...glowColors);
+            }
+
+            const word = allWords[Math.floor(Math.random() * allWords.length)];
+            const color = glowColors[Math.floor(Math.random() * glowColors.length)];
+            word.classList.add('caught', color);
+            
+            setTimeout(() => {
+                word.classList.remove('caught', color);
+            }, 2500);
+        }
+
+        setInterval(catchWord, 300);
+
+        // Initial burst
+        setTimeout(() => {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(catchWord, i * 150);
+            }
+        }, 500);
+
+        // Waitlist counter animation
+        function animateCounter() {
+            const counter = document.getElementById('waitlistCount');
+            const target = 3247;
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    counter.textContent = Math.floor(current).toLocaleString();
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target.toLocaleString();
+                }
+            };
+
+            updateCounter();
+        }
+
+        // Run counter animation on page load
+        setTimeout(animateCounter, 500);
+
+        // Form submission
+        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Joining...';
+
+            // Simulate API call
+            setTimeout(() => {
+                // Here you would send data to your backend
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                console.log('Form data:', data);
+
+                // Show success modal
+                document.getElementById('successModal').classList.add('active');
+                
+                // Update counter
+                const counter = document.getElementById('waitlistCount');
+                const currentCount = parseInt(counter.textContent.replace(',', ''));
+                counter.textContent = (currentCount + 1).toLocaleString();
+
+                // Reset form
+                this.reset();
+                submitBtn.disabled = false;
+                submitBtn.textContent = '🚀 Join the Waitlist';
+            }, 1500);
+        });
+
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

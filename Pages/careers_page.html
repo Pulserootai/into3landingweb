@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Join the into3.ai Team | Current Openings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(236, 72, 153, 0.2);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ec4899, #8b5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .back-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #ec4899;
+        }
+
+        .nav-cta {
+            padding: 0.7rem 1.8rem;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(236, 72, 153, 0.4);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(236, 72, 153, 0.6);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            padding: 0 5%;
+            background: linear-gradient(135deg, #7c3aed 0%, #ec4899 50%, #f97316 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.4), transparent);
+            border-radius: 50%;
+            filter: blur(120px);
+            top: -300px;
+            right: -200px;
+            animation: heroGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.7; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.7rem 2rem;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            color: #ffffff;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            text-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 3.5rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.1rem 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: #7c3aed;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            transition: all 0.3s;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Why Join Section */
+        .why-join-section {
+            min-height: 100vh;
+            padding: 60px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: rgba(236, 72, 153, 0.1);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            border-radius: 50px;
+            color: #ec4899;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            color: #fff;
+        }
+
+        .section-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .perks-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .perk-card {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(139, 92, 246, 0.05));
+            border: 1px solid rgba(236, 72, 153, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .perk-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(236, 72, 153, 0.5);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.2);
+        }
+
+        .perk-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .perk-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ec4899;
+            margin-bottom: 0.8rem;
+        }
+
+        .perk-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+        }
+
+        /* Job Openings Section */
+        .jobs-section {
+            min-height: 100vh;
+            padding: 60px 5%;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.08), rgba(139, 92, 246, 0.08));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .jobs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .job-card {
+            background: rgba(236, 72, 153, 0.1);
+            border: 1px solid rgba(236, 72, 153, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ec4899, #8b5cf6);
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(236, 72, 153, 0.5);
+            box-shadow: 0 20px 50px rgba(236, 72, 153, 0.2);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .job-title-area {
+            flex: 1;
+        }
+
+        .job-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ec4899;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .job-badge {
+            padding: 0.5rem 1.2rem;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .job-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .job-requirements {
+            margin-bottom: 1.5rem;
+        }
+
+        .job-requirements h4 {
+            font-size: 1.1rem;
+            color: #ec4899;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .job-requirements ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .job-requirements li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .job-requirements li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ec4899;
+            font-weight: 700;
+        }
+
+        .job-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .job-tags {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .job-tag {
+            padding: 0.4rem 1rem;
+            background: rgba(236, 72, 153, 0.15);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #ec4899;
+            font-weight: 600;
+        }
+
+        .apply-button {
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(236, 72, 153, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .apply-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(236, 72, 153, 0.6);
+        }
+
+        /* Culture Section */
+        .culture-section {
+            min-height: 100vh;
+            padding: 60px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .culture-card {
+            background: rgba(236, 72, 153, 0.1);
+            border: 1px solid rgba(236, 72, 153, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+        }
+
+        .culture-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(236, 72, 153, 0.5);
+            box-shadow: 0 20px 50px rgba(236, 72, 153, 0.2);
+        }
+
+        .culture-icon {
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .culture-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ec4899;
+            margin-bottom: 1rem;
+        }
+
+        .culture-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 60px 5%;
+            background: linear-gradient(135deg, #7c3aed, #ec4899);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.3), transparent);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(100px);
+            animation: ctaPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes ctaPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.1rem 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: #7c3aed;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            transition: all 0.3s;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-email:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a0f1e;
+            padding: 2rem 5%;
+            border-top: 1px solid rgba(236, 72, 153, 0.2);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .perks-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .culture-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .perks-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .job-header {
+                flex-direction: column;
+                align-items: start;
+            }
+
+            .job-footer {
+                flex-direction: column;
+                align-items: start;
+            }
+
+            .back-link {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo"><img src="../White Logo.svg" alt="into3.ai" class="logo-img"></div>
+            <div class="nav-actions">
+                <a href="#" class="back-link">← Back to Home</a>
+                <a href="#openings" class="nav-cta">View Open Roles</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <div class="hero-badge">💼 Careers at into3.ai</div>
+            <h1 class="hero-title">Build the Future of Learning</h1>
+            <p class="hero-subtitle">
+                Join a team that's reimagining education for millions. We're looking for 
+                talented creators, engineers, and dreamers who want to make a real impact.
+            </p>
+            <a href="#openings" class="hero-cta">
+                <span>🚀</span>
+                <span>Explore Open Positions</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Why Join Section -->
+    <section class="why-join-section">
+        <div class="section-header">
+            <div class="section-badge">✨ Why into3.ai?</div>
+            <h2 class="section-title">What Makes Us Different</h2>
+            <p class="section-description">
+                More than just a job—it's a mission to democratize education using AI.
+            </p>
+        </div>
+
+        <div class="perks-grid">
+            <div class="perk-card">
+                <div class="perk-icon">🎯</div>
+                <h3 class="perk-title">Meaningful Impact</h3>
+                <p class="perk-description">
+                    Your work directly helps millions of students learn better every day.
+                </p>
+            </div>
+
+            <div class="perk-card">
+                <div class="perk-icon">🚀</div>
+                <h3 class="perk-title">Cutting-Edge Tech</h3>
+                <p class="perk-description">
+                    Work with latest AI, 3D graphics, and interactive technologies.
+                </p>
+            </div>
+
+            <div class="perk-card">
+                <div class="perk-icon">💰</div>
+                <h3 class="perk-title">Competitive Pay</h3>
+                <p class="perk-description">
+                    Market-leading salaries with equity options and performance bonuses.
+                </p>
+            </div>
+
+            <div class="perk-card">
+                <div class="perk-icon">🏠</div>
+                <h3 class="perk-title">Remote-First</h3>
+                <p class="perk-description">
+                    Work from anywhere in India with flexible hours and work-life balance.
+                </p>
+            </div>
+
+            <div class="perk-card">
+                <div class="perk-icon">📚</div>
+                <h3 class="perk-title">Learning Budget</h3>
+                <p class="perk-description">
+                    Annual budget for courses, conferences, and skill development.
+                </p>
+            </div>
+
+            <div class="perk-card">
+                <div class="perk-icon">🌟</div>
+                <h3 class="perk-title">Creative Freedom</h3>
+                <p class="perk-description">
+                    Autonomy to experiment, innovate, and bring your ideas to life.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Openings Section -->
+    <section id="openings" class="jobs-section">
+        <div class="section-header">
+            <div class="section-badge">🎯 Current Openings</div>
+            <h2 class="section-title">Join Our Team</h2>
+            <p class="section-description">
+                We're hiring talented individuals to help us transform education.
+            </p>
+        </div>
+
+        <div class="jobs-container">
+            <!-- Frontend Engineer -->
+            <div class="job-card">
+                <div class="job-header">
+                    <div class="job-title-area">
+                        <h3 class="job-title">Frontend Engineer</h3>
+                        <div class="job-meta">
+                            <span class="meta-item">📍 Remote (India)</span>
+                            <span class="meta-item">💼 Full-Time</span>
+                            <span class="meta-item">⏰ 3-4 Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="job-badge">Hiring Now</div>
+                </div>
+
+                <p class="job-description">
+                    We're looking for an experienced Frontend Engineer to build beautiful, 
+                    performant, and interactive user experiences for millions of students. 
+                    You'll work on our core learning platform, creating engaging interfaces 
+                    that make education delightful.
+                </p>
+
+                <div class="job-requirements">
+                    <h4>What You'll Do:</h4>
+                    <ul>
+                        <li>Build responsive web applications using React.js and modern JavaScript</li>
+                        <li>Create smooth animations and interactions for educational content</li>
+                        <li>Collaborate with designers to implement pixel-perfect UIs</li>
+                        <li>Optimize application performance for low-bandwidth environments</li>
+                        <li>Work with AI/ML APIs to integrate intelligent features</li>
+                    </ul>
+                </div>
+
+                <div class="job-requirements">
+                    <h4>What We're Looking For:</h4>
+                    <ul>
+                        <li>3-4 years of experience with React.js, TypeScript, and modern CSS</li>
+                        <li>Strong understanding of responsive design and web performance</li>
+                        <li>Experience with state management (Redux, Context API, etc.)</li>
+                        <li>Familiarity with animation libraries and interactive UI patterns</li>
+                        <li>Passion for creating user-centric experiences</li>
+                    </ul>
+                </div>
+
+                <div class="job-footer">
+                    <div class="job-tags">
+                        <span class="job-tag">React</span>
+                        <span class="job-tag">TypeScript</span>
+                        <span class="job-tag">CSS</span>
+                        <span class="job-tag">Animations</span>
+                    </div>
+                    <a href="signup.html" class="apply-button">
+                        Apply Now →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Video Editor -->
+            <div class="job-card">
+                <div class="job-header">
+                    <div class="job-title-area">
+                        <h3 class="job-title">Video Editor</h3>
+                        <div class="job-meta">
+                            <span class="meta-item">📍 Remote (India)</span>
+                            <span class="meta-item">💼 Full-Time</span>
+                            <span class="meta-item">⏰ 2-4 Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="job-badge">Hiring Now</div>
+                </div>
+
+                <p class="job-description">
+                    Join our content team to create engaging educational videos that make 
+                    learning exciting. You'll edit high-quality video content, add motion 
+                    graphics, and help bring educational concepts to life through visual storytelling.
+                </p>
+
+                <div class="job-requirements">
+                    <h4>What You'll Do:</h4>
+                    <ul>
+                        <li>Edit educational videos for various subjects and grade levels</li>
+                        <li>Add motion graphics, animations, and visual effects to enhance learning</li>
+                        <li>Create engaging thumbnails and promotional video content</li>
+                        <li>Collaborate with educators to visualize complex concepts</li>
+                        <li>Maintain consistent visual style across all video content</li>
+                    </ul>
+                </div>
+
+                <div class="job-requirements">
+                    <h4>What We're Looking For:</h4>
+                    <ul>
+                        <li>2-4 years of professional video editing experience</li>
+                        <li>Proficiency in Adobe Premiere Pro, After Effects, or DaVinci Resolve</li>
+                        <li>Strong understanding of color grading, audio mixing, and pacing</li>
+                        <li>Experience with motion graphics and visual storytelling</li>
+                        <li>Portfolio showcasing educational or explainer video work</li>
+                    </ul>
+                </div>
+
+                <div class="job-footer">
+                    <div class="job-tags">
+                        <span class="job-tag">Premiere Pro</span>
+                        <span class="job-tag">After Effects</span>
+                        <span class="job-tag">Motion Graphics</span>
+                        <span class="job-tag">Storytelling</span>
+                    </div>
+                    <a href="signup.html" class="apply-button">
+                        Apply Now →
+                    </a>
+                </div>
+            </div>
+
+            <!-- AI Video Generator Specialist -->
+            <div class="job-card">
+                <div class="job-header">
+                    <div class="job-title-area">
+                        <h3 class="job-title">AI Video Generator Specialist</h3>
+                        <div class="job-meta">
+                            <span class="meta-item">📍 Remote (India)</span>
+                            <span class="meta-item">💼 Full-Time</span>
+                            <span class="meta-item">⏰ 1-3 Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="job-badge">Hiring Now</div>
+                </div>
+
+                <p class="job-description">
+                    Be at the forefront of AI-powered content creation! You'll use cutting-edge 
+                    AI tools to generate and customize educational videos at scale, helping us 
+                    create personalized learning content for millions of students.
+                </p>
+
+                <div class="job-requirements">
+                    <h4>What You'll Do:</h4>
+                    <ul>
+                        <li>Use AI tools (Runway, Pika, Synthesia, etc.) to generate educational videos</li>
+                        <li>Create prompts and workflows for AI video generation</li>
+                        <li>Fine-tune AI outputs to match educational standards and brand guidelines</li>
+                        <li>Experiment with new AI video tools and techniques</li>
+                        <li>Scale video production using AI automation</li>
+                    </ul>
+                </div>
+
+                <div class="job-requirements">
+                    <h4>What We're Looking For:</h4>
+                    <ul>
+                        <li>1-3 years of experience with AI video generation tools</li>
+                        <li>Familiarity with text-to-video, image-to-video AI platforms</li>
+                        <li>Understanding of prompt engineering and AI workflows</li>
+                        <li>Basic video editing skills and eye for visual quality</li>
+                        <li>Curiosity about emerging AI technologies in content creation</li>
+                    </ul>
+                </div>
+
+                <div class="job-footer">
+                    <div class="job-tags">
+                        <span class="job-tag">AI Tools</span>
+                        <span class="job-tag">Runway</span>
+                        <span class="job-tag">Synthesia</span>
+                        <span class="job-tag">Prompt Engineering</span>
+                    </div>
+                    <a href="signup.html" class="apply-button">
+                        Apply Now →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Rive Animation Specialist -->
+            <div class="job-card">
+                <div class="job-header">
+                    <div class="job-title-area">
+                        <h3 class="job-title">Rive Animation Specialist</h3>
+                        <div class="job-meta">
+                            <span class="meta-item">📍 Remote (India)</span>
+                            <span class="meta-item">💼 Full-Time</span>
+                            <span class="meta-item">⏰ 2-4 Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="job-badge">Hiring Now</div>
+                </div>
+
+                <p class="job-description">
+                    Create stunning interactive animations using Rive that bring educational 
+                    content to life. You'll design and develop high-performance animations that 
+                    make learning engaging and memorable for students.
+                </p>
+
+                <div class="job-requirements">
+                    <h4>What You'll Do:</h4>
+                    <ul>
+                        <li>Design and build interactive animations using Rive</li>
+                        <li>Create animated characters, illustrations, and UI elements</li>
+                        <li>Develop state machines for interactive learning experiences</li>
+                        <li>Optimize animations for web and mobile performance</li>
+                        <li>Collaborate with developers to integrate Rive animations seamlessly</li>
+                    </ul>
+                </div>
+
+                <div class="job-requirements">
+                    <h4>What We're Looking For:</h4>
+                    <ul>
+                        <li>2-4 years of experience with Rive or similar animation tools</li>
+                        <li>Strong illustration and motion design skills</li>
+                        <li>Understanding of animation principles and interactive design</li>
+                        <li>Experience with creating state machines and interactive animations</li>
+                        <li>Portfolio showcasing Rive projects or interactive animations</li>
+                    </ul>
+                </div>
+
+                <div class="job-footer">
+                    <div class="job-tags">
+                        <span class="job-tag">Rive</span>
+                        <span class="job-tag">Animation</span>
+                        <span class="job-tag">Illustration</span>
+                        <span class="job-tag">Interactive Design</span>
+                    </div>
+                    <a href="signup.html" class="apply-button">
+                        Apply Now →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Section -->
+    <section class="culture-section">
+        <div class="section-header">
+            <div class="section-badge">🌈 Our Culture</div>
+            <h2 class="section-title">What It's Like Working Here</h2>
+            <p class="section-description">
+                A glimpse into the into3.ai work environment and values.
+            </p>
+        </div>
+
+        <div class="culture-grid">
+            <div class="culture-card">
+                <div class="culture-icon">🎨</div>
+                <h3 class="culture-title">Creative Freedom</h3>
+                <p class="culture-description">
+                    We encourage experimentation and give you the autonomy to try new ideas. 
+                    Your creativity drives our innovation. No micromanagement—just trust and support.
+                </p>
+            </div>
+
+            <div class="culture-card">
+                <div class="culture-icon">🤝</div>
+                <h3 class="culture-title">Collaborative Team</h3>
+                <p class="culture-description">
+                    Work with passionate educators, engineers, and designers who care deeply 
+                    about education. We support each other, celebrate wins together, and learn from failures.
+                </p>
+            </div>
+
+            <div class="culture-card">
+                <div class="culture-icon">⚡</div>
+                <h3 class="culture-title">Fast-Paced Growth</h3>
+                <p class="culture-description">
+                    We're scaling rapidly, which means incredible opportunities for career growth. 
+                    Take on new challenges, lead projects, and shape the future of education.
+                </p>
+            </div>
+
+            <div class="culture-card">
+                <div class="culture-icon">🌟</div>
+                <h3 class="culture-title">Impact-Driven</h3>
+                <p class="culture-description">
+                    Every project you work on helps real students learn better. See the direct 
+                    impact of your work through student success stories and improved learning outcomes.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="cta-section">
+        <div class="cta-glow"></div>
+        <div class="cta-content">
+            <h2 class="cta-title">Don't See Your Role?</h2>
+            <p class="cta-description">
+                We're always looking for exceptional talent. Send us your resume and tell us 
+                how you can help transform education with into3.ai.
+            </p>
+            <a href="mailto:careers@into3.ai?subject=General Application" class="cta-email">
+                <span>✉️</span>
+                <span>careers@into3.ai</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 into3.ai. All rights reserved. Building the future of learning together.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.perk-card, .job-card, .culture-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

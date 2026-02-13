@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>into3.ai - Hero Section Enhanced</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Particle Canvas */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 2;
+        }
+
+        /* Content Container */
+        .hero-content {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        /* Left Content */
+        .hero-left {
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-subtitle {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Animated Glow Effect for "Learning didn't." */
+        .glow-text {
+            background: linear-gradient(
+                90deg,
+                #a855f7 0%,
+                #ec4899 25%,
+                #8b5cf6 50%,
+                #a855f7 75%,
+                #ec4899 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glowMove 3s linear infinite;
+            filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5));
+        }
+
+        @keyframes glowMove {
+            0% {
+                background-position: 0% center;
+                filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.6));
+            }
+            50% {
+                background-position: 100% center;
+                filter: drop-shadow(0 0 30px rgba(236, 72, 153, 0.8));
+            }
+            100% {
+                background-position: 0% center;
+                filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.6));
+            }
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Buttons */
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            color: white;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #c084fc, #818cf8);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(168, 85, 247, 0.15);
+            color: white;
+            border: 2px solid #a855f7;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(236, 72, 153, 0.3));
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-secondary:hover::before {
+            left: 0;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(168, 85, 247, 0.25);
+            border-color: #ec4899;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+        }
+
+        /* Pulsing animation for scholarship button */
+        .btn-secondary {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(168, 85, 247, 0);
+            }
+        }
+
+        /* Right Content Box */
+        .hero-right {
+            animation: fadeInRight 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .vision-box {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #a855f7, #6366f1, #ec4899);
+            border-radius: 24px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .vision-box:hover::before {
+            opacity: 0.3;
+        }
+
+        .vision-intro {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .vision-brand {
+            color: #a855f7;
+            font-weight: 700;
+        }
+
+        /* Typing Text Container */
+        .typing-container {
+            min-height: 80px;
+            margin-bottom: 1.5rem;
+        }
+
+        .vision-statement {
+            font-size: 1.5rem;
+            line-height: 1.5;
+            font-weight: 700;
+            background: linear-gradient(
+                90deg,
+                #a855f7 0%,
+                #ec4899 25%,
+                #8b5cf6 50%,
+                #a855f7 75%,
+                #ec4899 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glowMove 3s linear infinite;
+            filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5));
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.5rem;
+            background: #a855f7;
+            margin-left: 2px;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .vision-tagline {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+
+        .highlight-word {
+            color: #a855f7;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-title, .hero-subtitle {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title, .hero-subtitle {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+            }
+
+            .btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            .vision-box {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <!-- Left Content -->
+            <div class="hero-left">
+                <h1 class="hero-title">The world changed.</h1>
+                <h2 class="hero-subtitle glow-text">Learning didn't.</h2>
+                
+                <p class="hero-description">
+                    Classrooms became screens. Knowledge became searchable. 
+                    Attention became shorter — but curiosity didn't. 
+                    Potential continues to be immense.
+                </p>
+
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="window.parent.location.href='../Pages/book_demo_page.html'">Book Demo</button>
+                    <button class="btn btn-secondary" onclick="window.parent.location.href='../project-gyan-setu/'">Project Gyan Setu</button>
+                </div>
+            </div>
+
+            <!-- Right Content -->
+            <div class="hero-right">
+                <div class="vision-box">
+                    <p class="vision-intro">
+                        We built <span class="vision-brand">into3.ai</span> because education was never broken —
+                    </p>
+                    
+                    <div class="typing-container">
+                        <p class="vision-statement" id="typingText"></p>
+                    </div>
+
+                    <p class="vision-tagline">
+                        A new kind of intelligence — one that learns from <span class="highlight-word">humans</span>, not just <span class="highlight-word">data</span>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Educational Symbols Particle System
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 150 };
+
+        // Educational symbols from various subjects
+        const symbols = [
+            // Math symbols
+            '∑', '∫', '∞', '√', 'π', '∆', '≈', '≠', '≤', '≥', 'α', 'β', 'θ', '∂', '∇', 'λ',
+            // Chemistry symbols
+            'H₂O', 'CO₂', 'O₂', 'H⁺', 'OH⁻', 'Na⁺', 'Cl⁻', '⇌', '→', 'Δ', 'e⁻',
+            // Physics symbols
+            'E=mc²', 'F=ma', 'ℏ', 'Ω', 'μ', 'ν', 'σ', 'ε', 'φ', 'ψ', 'γ', '℃',
+            // Biology/General
+            'DNA', 'RNA', '⚛', '🧬', 'ATP', 'pH'
+        ];
+
+        class EducationalParticle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 12 + 10;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.symbol = symbols[Math.floor(Math.random() * symbols.length)];
+                this.opacity = Math.random() * 0.5 + 0.2;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.hue = Math.random() * 60 + 260; // Purple to pink range
+            }
+
+            update() {
+                // Mouse interaction
+                if (mouse.x && mouse.y) {
+                    const dx = mouse.x - this.x;
+                    const dy = mouse.y - this.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < mouse.radius) {
+                        const force = (mouse.radius - distance) / mouse.radius;
+                        const dirX = dx / distance;
+                        const dirY = dy / distance;
+                        
+                        this.x -= dirX * force * 3;
+                        this.y -= dirY * force * 3;
+                    }
+                }
+
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.rotation += this.rotationSpeed;
+
+                // Boundary check with wrap-around
+                if (this.x < -50) this.x = canvas.width + 50;
+                if (this.x > canvas.width + 50) this.x = -50;
+                if (this.y < -50) this.y = canvas.height + 50;
+                if (this.y > canvas.height + 50) this.y = -50;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                
+                ctx.font = `${this.size}px Arial`;
+                ctx.fillStyle = `hsla(${this.hue}, 70%, 65%, ${this.opacity})`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(this.symbol, 0, 0);
+                
+                ctx.restore();
+            }
+        }
+
+        // Initialize particles
+        function initParticles() {
+            particles = [];
+            const numberOfParticles = Math.floor((canvas.width * canvas.height) / 20000);
+            for (let i = 0; i < numberOfParticles; i++) {
+                particles.push(new EducationalParticle());
+            }
+        }
+
+        // Connect particles
+        function connectParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        const opacity = (1 - distance / 150) * 0.2;
+                        ctx.strokeStyle = `rgba(168, 85, 247, ${opacity})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        // Animation loop
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            connectParticles();
+            requestAnimationFrame(animate);
+        }
+
+        // Mouse move event
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        // Mouse leave event
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        // Resize event
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        });
+
+        // Typing Animation
+        const typingText = document.getElementById('typingText');
+        const fullText = "it was just waiting to understand people again.";
+        let charIndex = 0;
+
+        function typeText() {
+            if (charIndex < fullText.length) {
+                typingText.textContent = fullText.substring(0, charIndex + 1);
+                charIndex++;
+                setTimeout(typeText, 50);
+            } else {
+                // Add cursor after typing is complete
+                typingText.innerHTML += '<span class="typing-cursor"></span>';
+            }
+        }
+
+        // Start animations after page load
+        window.addEventListener('load', () => {
+            initParticles();
+            animate();
+            setTimeout(typeText, 1000); // Start typing after 1 second
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Six Connected Systems - into3.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+        }
+
+        .connection-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .connection-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.3), transparent);
+            animation: dataFlow 3s linear infinite;
+        }
+
+        @keyframes dataFlow {
+            0% { opacity: 0; transform: scaleX(0); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: scaleX(1); }
+        }
+
+        /* Content Layer */
+        .content-layer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 5% 60px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: rgba(168, 85, 247, 0.15);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #a855f7;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            max-width: 1100px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            max-width: 900px;
+        }
+
+        /* Typing Animation */
+        .typing-text {
+            overflow: hidden;
+            border-right: 3px solid #a855f7;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+            display: inline-block;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #a855f7; }
+        }
+
+        /* Highlighted Important Terms */
+        .highlight {
+            position: relative;
+            display: inline-block;
+            color: #a855f7;
+            font-weight: 700;
+            padding: 0 4px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .highlight::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #a855f7, #ec4899);
+            animation: underlineExpand 1.5s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { 
+                color: #a855f7;
+                text-shadow: 0 0 5px rgba(168, 85, 247, 0.5);
+            }
+            50% { 
+                color: #ec4899;
+                text-shadow: 0 0 15px rgba(236, 72, 153, 0.8);
+            }
+        }
+
+        @keyframes underlineExpand {
+            0%, 100% { transform: scaleX(1); }
+            50% { transform: scaleX(1.1); }
+        }
+
+        /* Fade In Animation */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Slide In Animations */
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Stagger animation delays */
+        .feature-box:nth-child(1) { animation-delay: 0.1s; }
+        .feature-box:nth-child(2) { animation-delay: 0.2s; }
+        .feature-box:nth-child(3) { animation-delay: 0.3s; }
+        .feature-box:nth-child(4) { animation-delay: 0.4s; }
+
+        .feature-box {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .feature-box.animate {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 60px 5% 40px;
+            position: relative;
+        }
+
+        .section-alt {
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* System Cards - Detailed */
+        .system-detailed {
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            padding: 2rem;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 24px;
+            border: 2px solid rgba(168, 85, 247, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .system-detailed:hover {
+            border-color: rgba(168, 85, 247, 0.6);
+            box-shadow: 0 20px 60px rgba(168, 85, 247, 0.3);
+        }
+
+        .system-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .system-icon-large {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 10px 40px rgba(168, 85, 247, 0.5);
+            flex-shrink: 0;
+        }
+
+        .system-title-block {
+            flex: 1;
+        }
+
+        .system-number {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #a855f7;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.3rem;
+        }
+
+        .system-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 0.3rem;
+            color: white;
+        }
+
+        .system-tagline {
+            font-size: 1rem;
+            color: #a855f7;
+            font-weight: 600;
+        }
+
+        .system-content {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .system-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .system-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+
+        .feature-box {
+            padding: 1.2rem;
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 12px;
+        }
+
+        .feature-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .feature-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: white;
+        }
+
+        .feature-description {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+        }
+
+        .system-tech {
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border-left: 3px solid #a855f7;
+        }
+
+        .tech-title {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #a855f7;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tech-content {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* Interconnection Diagram */
+        .interconnection-diagram {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 24px;
+            border: 2px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .diagram-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: #a855f7;
+        }
+
+        .diagram-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            position: relative;
+        }
+
+        .diagram-node {
+            padding: 1.5rem;
+            background: rgba(168, 85, 247, 0.15);
+            border: 2px solid rgba(168, 85, 247, 0.4);
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .diagram-node:hover {
+            transform: scale(1.05);
+            border-color: rgba(168, 85, 247, 0.8);
+            box-shadow: 0 10px 40px rgba(168, 85, 247, 0.4);
+        }
+
+        .diagram-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .diagram-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .center-hub {
+            grid-column: 2;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            border-color: transparent;
+            transform: scale(1.1);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 60px 5% 80px;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 1.3rem 3rem;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(168, 85, 247, 0.4);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(168, 85, 247, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .diagram-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .center-hub {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .system-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .system-title {
+                font-size: 2rem;
+            }
+
+            .diagram-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .system-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="connection-lines" id="connectionLines"></div>
+    </div>
+
+    <!-- Content Layer -->
+    <div class="content-layer">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">🔗 Connected Intelligence</div>
+            <h1 class="hero-title">
+                The <span class="gradient-text">Six Systems</span> Working as One
+            </h1>
+            <p class="hero-subtitle">
+                Six specialized AI systems, interconnected in real-time, creating the most adaptive learning experience ever built.
+            </p>
+        </section>
+
+        <!-- System 1: ILP Engine -->
+        <section class="section">
+            <div class="system-detailed">
+                <div class="system-header">
+                    <div class="system-icon-large">🧠</div>
+                    <div class="system-title-block">
+                        <div class="system-number">System 01</div>
+                        <h2 class="system-title">ILP Engine</h2>
+                        <p class="system-tagline">Intelligent Learning Plan</p>
+                    </div>
+                </div>
+
+                <div class="system-content">
+                    <p class="system-description">
+                        The ILP Engine is your <span class="highlight">personal learning strategist</span>. It crafts a <span class="highlight">dynamic, daily roadmap</span> for every student—balancing lectures, practice, revision, and recovery. No two days are identical.
+                    </p>
+
+                    <div class="system-features">
+                        <div class="feature-box">
+                            <div class="feature-icon">📅</div>
+                            <h4 class="feature-title">Daily Roadmap</h4>
+                            <p class="feature-description">Creates optimized daily schedules based on your goals, energy patterns, and upcoming deadlines.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">⚖️</div>
+                            <h4 class="feature-title">Smart Balancing</h4>
+                            <p class="feature-description">Allocates time between new concepts, practice, revision, and rest for optimal retention.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">🎯</div>
+                            <h4 class="feature-title">Goal Alignment</h4>
+                            <p class="feature-description">Keeps you on track toward exam dates, target scores, and long-term learning objectives.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">🔄</div>
+                            <h4 class="feature-title">Adaptive Replanning</h4>
+                            <p class="feature-description">Adjusts plans in real-time based on your performance, energy levels, and unexpected events.</p>
+                        </div>
+                    </div>
+
+                    <div class="system-tech">
+                        <h4 class="tech-title">How It Works</h4>
+                        <p class="tech-content">
+                            Uses constraint satisfaction algorithms and multi-objective optimization to balance competing priorities. Considers 20+ factors including syllabus coverage, spaced repetition intervals, cognitive load limits, and personal preferences. Continuously recalibrates based on actual learning velocity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System 2: Content Stitching -->
+        <section class="section section-alt">
+            <div class="system-detailed">
+                <div class="system-header">
+                    <div class="system-icon-large">🧩</div>
+                    <div class="system-title-block">
+                        <div class="system-number">System 02</div>
+                        <h2 class="system-title">Content Stitching Engine</h2>
+                        <p class="system-tagline">Hyper-Personalization</p>
+                    </div>
+                </div>
+
+                <div class="system-content">
+                    <p class="system-description">
+                        The Content Stitching Engine builds lectures <span class="highlight">uniquely for you</span>—using <span class="highlight">50+ human parameters</span>. Your teaching style, examples, pace, and difficulty are calibrated to your exact learning profile. <span class="highlight">No two students see the same lesson.</span>
+                    </p>
+
+                    <div class="system-features">
+                        <div class="feature-box">
+                            <div class="feature-icon">🎨</div>
+                            <h4 class="feature-title">50+ Parameters</h4>
+                            <p class="feature-description">Controls difficulty, pacing, visual density, example types, humor level, formality, and 40+ more dimensions.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">🔗</div>
+                            <h4 class="feature-title">Micro-Content Library</h4>
+                            <p class="feature-description">10,000+ content blocks intelligently sequenced to create your perfect learning path.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">💡</div>
+                            <h4 class="feature-title">Contextual Examples</h4>
+                            <p class="feature-description">Picks analogies and examples from your interests—sports, music, gaming, whatever resonates with you.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">⚡</div>
+                            <h4 class="feature-title">Real-Time Assembly</h4>
+                            <p class="feature-description">Stitches content on-the-fly in milliseconds based on your current state and history.</p>
+                        </div>
+                    </div>
+
+                    <div class="system-tech">
+                        <h4 class="tech-title">How It Works</h4>
+                        <p class="tech-content">
+                            Uses combinatorial optimization and constraint satisfaction to select and sequence content blocks. Each block is tagged with metadata (difficulty, prerequisites, learning style, etc.). The engine solves for optimal sequence given your persona profile and current learning state. Assembly happens in real-time with <50ms latency.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System 3: RTAE -->
+        <section class="section">
+            <div class="system-detailed">
+                <div class="system-header">
+                    <div class="system-icon-large">⚡</div>
+                    <div class="system-title-block">
+                        <div class="system-number">System 03</div>
+                        <h2 class="system-title">RTAE</h2>
+                        <p class="system-tagline">Real-Time Adaptation Engine</p>
+                    </div>
+                </div>
+
+                <div class="system-content">
+                    <p class="system-description">
+                        RTAE is the <span class="highlight">sensory system</span>. It senses focus, emotion, and stress—turning <span class="highlight">invisible human states into actionable insights</span>. Every <span class="highlight">500ms</span>, it evaluates your state and triggers adaptations when needed.
+                    </p>
+
+                    <div class="system-features">
+                        <div class="feature-box">
+                            <div class="feature-icon">😊</div>
+                            <h4 class="feature-title">Emotion Detection</h4>
+                            <p class="feature-description">Detects 7 emotions via facial recognition: joy, confusion, frustration, boredom, excitement, anxiety, neutral.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">👁️</div>
+                            <h4 class="feature-title">Focus Tracking</h4>
+                            <p class="feature-description">Eye gaze analysis identifies attention drift, re-reading patterns, and engagement levels.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">❤️</div>
+                            <h4 class="feature-title">Stress Monitoring</h4>
+                            <p class="feature-description">Heart rate variability and micro-expressions reveal cognitive load and stress states.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">⚡</div>
+                            <h4 class="feature-title">Instant Adaptation</h4>
+                            <p class="feature-description">Triggers content adjustments, difficulty changes, or supportive interventions within seconds.</p>
+                        </div>
+                    </div>
+
+                    <div class="system-tech">
+                        <h4 class="tech-title">How It Works</h4>
+                        <p class="tech-content">
+                            Computer vision models (MediaPipe, OpenCV) process webcam feed at 30 FPS. Facial emotion recognition via FER2013-trained ResNet. Eye tracking via pupil detection and gaze estimation. HRV extracted via remote photoplethysmography (rPPG). All signals fused into composite "learning state" score updated every 500ms. Threshold-based rule engine triggers adaptations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System 4: Adaptive Learning -->
+        <section class="section section-alt">
+            <div class="system-detailed">
+                <div class="system-header">
+                    <div class="system-icon-large">🎯</div>
+                    <div class="system-title-block">
+                        <div class="system-number">System 04</div>
+                        <h2 class="system-title">Adaptive Learning System</h2>
+                        <p class="system-tagline">Dynamic Evolution</p>
+                    </div>
+                </div>
+
+                <div class="system-content">
+                    <p class="system-description">
+                        The Adaptive Learning System <span class="highlight">evolves with each learner's performance</span>—adjusting difficulty, pacing, and retention strategy in <span class="highlight">real time</span>. It ensures you're always in the <span class="highlight">"sweet spot"</span> of challenge.
+                    </p>
+
+                    <div class="system-features">
+                        <div class="feature-box">
+                            <div class="feature-icon">📈</div>
+                            <h4 class="feature-title">Performance Tracking</h4>
+                            <p class="feature-description">Monitors mastery levels across all concepts, identifying strengths and gaps continuously.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">🎚️</div>
+                            <h4 class="feature-title">Difficulty Calibration</h4>
+                            <p class="feature-description">Automatically adjusts content complexity to keep you challenged but not overwhelmed.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">🔄</div>
+                            <h4 class="feature-title">Spaced Repetition</h4>
+                            <p class="feature-description">Schedules reviews at optimal intervals based on your forgetting curve for each topic.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">🧠</div>
+                            <h4 class="feature-title">Knowledge Graph</h4>
+                            <p class="feature-description">Maps concept dependencies and optimizes learning order for maximum retention.</p>
+                        </div>
+                    </div>
+
+                    <div class="system-tech">
+                        <h4 class="tech-title">How It Works</h4>
+                        <p class="tech-content">
+                            Maintains dynamic Bayesian knowledge tracing model for each concept. Uses Item Response Theory (IRT) to estimate question difficulty and learner ability. Reinforcement learning agent trained via Deep Q-Networks (DQN) selects optimal next content. Spaced repetition intervals calculated using modified SM-2 algorithm adjusted by actual performance data.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System 5: Tutor Intelligence -->
+        <section class="section">
+            <div class="system-detailed">
+                <div class="system-header">
+                    <div class="system-icon-large">🤖</div>
+                    <div class="system-title-block">
+                        <div class="system-number">System 05</div>
+                        <h2 class="system-title">Tutor Intelligence</h2>
+                        <p class="system-tagline">Human-like Support</p>
+                    </div>
+                </div>
+
+                <div class="system-content">
+                    <p class="system-description">
+                        Tutor Intelligence delivers <span class="highlight">micro-explanations, analogies, and examples</span> on demand—powered by <span class="highlight">metahuman delivery</span>. It's like having a patient, knowledgeable teacher available <span class="highlight">24/7</span>.
+                    </p>
+
+                    <div class="system-features">
+                        <div class="feature-box">
+                            <div class="feature-icon">💬</div>
+                            <h4 class="feature-title">Instant Doubt Solving</h4>
+                            <p class="feature-description">Ask questions via voice, text, or whiteboard—get context-aware explanations instantly.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">🎭</div>
+                            <h4 class="feature-title">Metahuman Delivery</h4>
+                            <p class="feature-description">Photorealistic AI avatars with natural expressions, gestures, and eye contact.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">📚</div>
+                            <h4 class="feature-title">Multiple Explanations</h4>
+                            <p class="feature-description">Generates alternative explanations if the first doesn't click—visual, verbal, or both.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">🎯</div>
+                            <h4 class="feature-title">Socratic Method</h4>
+                            <p class="feature-description">Guides discovery through strategic questions rather than just giving answers.</p>
+                        </div>
+                    </div>
+
+                    <div class="system-tech">
+                        <h4 class="tech-title">How It Works</h4>
+                        <p class="tech-content">
+                            Large Language Model (LLM) fine-tuned on educational content generates explanations. Context includes student profile, current topic, and question history. Metahuman rendering via Unreal Engine with real-time lip sync. Natural language processing detects question intent and complexity. Response adapted to student's comprehension level using readability metrics and vocabulary matching.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System 6: Meta Sync -->
+        <section class="section section-alt">
+            <div class="system-detailed">
+                <div class="system-header">
+                    <div class="system-icon-large">🌐</div>
+                    <div class="system-title-block">
+                        <div class="system-number">System 06</div>
+                        <h2 class="system-title">Meta Sync</h2>
+                        <p class="system-tagline">Unified Network</p>
+                    </div>
+                </div>
+
+                <div class="system-content">
+                    <p class="system-description">
+                        Meta Sync connects <span class="highlight">schools, homes, parents, and teachers</span> in one <span class="highlight">unified feedback loop</span>. Everyone sees the <span class="highlight">full picture</span>—not just test scores, but real learning behavior.
+                    </p>
+
+                    <div class="system-features">
+                        <div class="feature-box">
+                            <div class="feature-icon">🏫</div>
+                            <h4 class="feature-title">School Dashboard</h4>
+                            <p class="feature-description">Administrators see institution-wide patterns, cohort analytics, and performance trends.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">👨‍🏫</div>
+                            <h4 class="feature-title">Teacher Console</h4>
+                            <p class="feature-description">Real-time student insights, intervention alerts, and progress tracking for every learner.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">👪</div>
+                            <h4 class="feature-title">Parent Portal</h4>
+                            <p class="feature-description">Daily updates on learning progress, focus quality, emotional state, and areas needing support.</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">🔄</div>
+                            <h4 class="feature-title">Feedback Loop</h4>
+                            <p class="feature-description">Insights flow seamlessly between all stakeholders, enabling coordinated support.</p>
+                        </div>
+                    </div>
+
+                    <div class="system-tech">
+                        <h4 class="tech-title">How It Works</h4>
+                        <p class="tech-content">
+                            Real-time data sync via WebSocket connections. Role-based access control (RBAC) ensures appropriate data visibility. Aggregate analytics computed via stream processing (Apache Kafka). Push notifications triggered based on configurable alert thresholds. Secure multi-tenant architecture with data isolation. Mobile apps for on-the-go access (iOS/Android).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interconnection Diagram -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">How the Systems <span class="gradient-text">Work Together</span></h2>
+                <p class="section-subtitle">Six specialized systems, one unified intelligence</p>
+            </div>
+
+            <div class="interconnection-diagram">
+                <h3 class="diagram-title">Real-Time Data Flow</h3>
+                <div class="diagram-grid">
+                    <div class="diagram-node">
+                        <div class="diagram-icon">🧠</div>
+                        <div class="diagram-name">ILP Engine</div>
+                    </div>
+
+                    <div class="diagram-node">
+                        <div class="diagram-icon">🧩</div>
+                        <div class="diagram-name">Content Stitching</div>
+                    </div>
+
+                    <div class="diagram-node">
+                        <div class="diagram-icon">⚡</div>
+                        <div class="diagram-name">RTAE</div>
+                    </div>
+
+                    <div class="diagram-node center-hub">
+                        <div class="diagram-icon">🔗</div>
+                        <div class="diagram-name">Central Intelligence Hub</div>
+                    </div>
+
+                    <div class="diagram-node">
+                        <div class="diagram-icon">🎯</div>
+                        <div class="diagram-name">Adaptive Learning</div>
+                    </div>
+
+                    <div class="diagram-node">
+                        <div class="diagram-icon">🤖</div>
+                        <div class="diagram-name">Tutor Intelligence</div>
+                    </div>
+
+                    <div class="diagram-node">
+                        <div class="diagram-icon">🌐</div>
+                        <div class="diagram-name">Meta Sync</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="cta-section">
+            <h2 class="cta-title">
+                Experience <span class="gradient-text">Connected Intelligence</span>
+            </h2>
+            <p class="cta-subtitle">
+                See how all six systems work together to create the most adaptive learning experience ever built.
+            </p>
+            <div class="cta-buttons">
+                <a href="join_waitlist.html" class="btn-primary">🚀 Start Free Trial</a>
+                <a href="book_demo_page.html" class="btn-primary">📅 Book Live Demo</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Create connection lines
+        const connectionLines = document.getElementById('connectionLines');
+        
+        function createConnectionLines() {
+            for (let i = 0; i < 20; i++) {
+                const line = document.createElement('div');
+                line.className = 'connection-line';
+                line.style.top = Math.random() * 100 + '%';
+                line.style.left = Math.random() * 100 + '%';
+                line.style.width = (Math.random() * 200 + 100) + 'px';
+                line.style.transform = `rotate(${Math.random() * 360}deg)`;
+                line.style.animationDelay = Math.random() * 3 + 's';
+                line.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                connectionLines.appendChild(line);
+            }
+        }
+
+        createConnectionLines();
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate feature boxes
+                    if (entry.target.classList.contains('feature-box')) {
+                        entry.target.classList.add('animate');
+                    }
+                    
+                    // Animate system cards
+                    if (entry.target.classList.contains('system-detailed')) {
+                        const featureBoxes = entry.target.querySelectorAll('.feature-box');
+                        featureBoxes.forEach((box, index) => {
+                            setTimeout(() => {
+                                box.classList.add('animate');
+                            }, index * 100);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature boxes and system cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const featureBoxes = document.querySelectorAll('.feature-box');
+            const systemCards = document.querySelectorAll('.system-detailed');
+            
+            featureBoxes.forEach(box => observer.observe(box));
+            systemCards.forEach(card => observer.observe(card));
+        });
+
+        // Typing effect for hero subtitle
+        const heroSubtitle = document.querySelector('.hero-subtitle');
+        const originalText = heroSubtitle.textContent;
+        
+        function typeText() {
+            heroSubtitle.textContent = '';
+            heroSubtitle.style.borderRight = '3px solid #a855f7';
+            let charIndex = 0;
+            
+            const typingInterval = setInterval(() => {
+                if (charIndex < originalText.length) {
+                    heroSubtitle.textContent += originalText.charAt(charIndex);
+                    charIndex++;
+                } else {
+                    clearInterval(typingInterval);
+                    setTimeout(() => {
+                        heroSubtitle.style.borderRight = 'none';
+                    }, 500);
+                }
+            }, 30);
+        }
+
+        // Start typing animation after a short delay
+        setTimeout(typeText, 500);
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

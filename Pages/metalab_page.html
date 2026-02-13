@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metalab - Immersive 3D Virtual Laboratory | into3.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #000000;
+            color: #e2e8f0;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .back-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #06b6d4;
+        }
+
+        .nav-cta {
+            padding: 0.7rem 1.8rem;
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(6, 182, 212, 0.4);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(6, 182, 212, 0.6);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            padding: 0 5%;
+            background: radial-gradient(ellipse at top, #0a1628 0%, #000000 50%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stars-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent);
+            border-radius: 50%;
+            filter: blur(120px);
+            top: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: heroGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(1); }
+            50% { opacity: 0.6; transform: translateX(-50%) scale(1.2); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.7rem 2rem;
+            background: rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 50px;
+            color: #06b6d4;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: linear-gradient(90deg, #ffffff, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3.5rem;
+            line-height: 1.8;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1.3rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            color: white;
+            box-shadow: 0 15px 50px rgba(6, 182, 212, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 60px rgba(6, 182, 212, 0.7);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* 3D Lab Demo Section */
+        .lab-demo-section {
+            min-height: 100vh;
+            padding: 0;
+            background: linear-gradient(180deg, #000000 0%, #0a1a2e 50%, #000814 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grid-floor {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(rgba(6, 182, 212, 0.15) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(6, 182, 212, 0.15) 2px, transparent 2px);
+            background-size: 80px 80px;
+            perspective: 1000px;
+            transform: rotateX(60deg) translateY(100px);
+            transform-origin: center center;
+            opacity: 0.6;
+        }
+
+        .lab-container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            width: 100%;
+            padding: 0 5%;
+        }
+
+        .lab-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #06b6d4;
+            margin-bottom: 3rem;
+            text-shadow: 0 0 30px rgba(6, 182, 212, 0.8);
+        }
+
+        .lab-environment {
+            background: rgba(10, 26, 46, 0.6);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(6, 182, 212, 0.3);
+            border-radius: 24px;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.8),
+                inset 0 0 60px rgba(6, 182, 212, 0.1);
+        }
+
+        .lab-environment::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #06b6d4, #8b5cf6, #ec4899, #06b6d4);
+            background-size: 400% 400%;
+            border-radius: 24px;
+            z-index: -1;
+            animation: borderGlow 6s ease infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .lab-viewport {
+            aspect-ratio: 16/9;
+            background: radial-gradient(ellipse at center, #1a2f4a 0%, #0a1628 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* 3D Lab Elements */
+        .lab-scene {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .lab-equipment {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .lab-equipment:nth-child(1) { animation-delay: 0s; }
+        .lab-equipment:nth-child(2) { animation-delay: 0.5s; }
+        .lab-equipment:nth-child(3) { animation-delay: 1s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .equipment-icon {
+            font-size: 6rem;
+            filter: drop-shadow(0 10px 40px rgba(6, 182, 212, 0.6));
+            transition: all 0.3s;
+        }
+
+        .equipment-icon:hover {
+            transform: scale(1.1) rotateY(20deg);
+            filter: drop-shadow(0 15px 60px rgba(6, 182, 212, 0.9));
+        }
+
+        .equipment-label {
+            background: rgba(6, 182, 212, 0.2);
+            border: 1px solid rgba(6, 182, 212, 0.4);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            color: #06b6d4;
+            font-weight: 700;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .interaction-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            color: #06b6d4;
+            font-size: 0.95rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* Features Section */
+        .features-section {
+            min-height: 100vh;
+            padding: 60px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: radial-gradient(ellipse at center, #0a1628 0%, #000000 100%);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 50px;
+            color: #06b6d4;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.6rem;
+            color: #fff;
+        }
+
+        .section-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(139, 92, 246, 0.05));
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 14px;
+            padding: 1rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #06b6d4;
+            margin-bottom: 0.4rem;
+            line-height: 1.3;
+        }
+
+        .feature-description {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.4;
+        }
+
+        /* Subjects Section */
+        .subjects-section {
+            min-height: 100vh;
+            padding: 60px 5%;
+            background: linear-gradient(180deg, #000000 0%, #0a1628 50%, #000814 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .subjects-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .subject-card {
+            background: rgba(6, 182, 212, 0.08);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 18px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 20px 50px rgba(6, 182, 212, 0.3);
+        }
+
+        .subject-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 5px 20px rgba(6, 182, 212, 0.5));
+        }
+
+        .subject-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #06b6d4;
+            margin-bottom: 0.8rem;
+        }
+
+        .subject-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .subject-experiments {
+            font-size: 0.85rem;
+            color: rgba(6, 182, 212, 0.8);
+            font-weight: 600;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            min-height: 100vh;
+            padding: 60px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: radial-gradient(ellipse at center, #0a1628 0%, #000000 100%);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .benefit-card {
+            background: rgba(6, 182, 212, 0.08);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 18px;
+            padding: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(6, 182, 212, 0.4);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.2);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-content h3 {
+            font-size: 1.2rem;
+            color: #06b6d4;
+            margin-bottom: 0.6rem;
+        }
+
+        .benefit-content p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 60px 5%;
+            background: linear-gradient(135deg, #0a1628, #0a2540);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.3), transparent);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(100px);
+            animation: ctaPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes ctaPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #fff, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.1rem 3rem;
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            transition: all 0.3s;
+            box-shadow: 0 15px 50px rgba(6, 182, 212, 0.5);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 20px 60px rgba(6, 182, 212, 0.7);
+        }
+
+        .cta-note {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Footer */
+        .footer {
+            background: #000000;
+            padding: 2rem 5%;
+            border-top: 1px solid rgba(6, 182, 212, 0.2);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .subjects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .lab-title {
+                font-size: 1.8rem;
+            }
+
+            .lab-scene {
+                flex-direction: column;
+                padding: 2rem 1rem;
+            }
+
+            .equipment-icon {
+                font-size: 4rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .back-link {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo"><img src="../White Logo.svg" alt="into3.ai" class="logo-img"></div>
+            <div class="nav-actions">
+                <a href="#" class="back-link">← Back to Home</a>
+                <a href="#cta" class="nav-cta">Try Metalab Free</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="stars-background" id="starsBackground"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <div class="hero-badge">🔬 Virtual Laboratory</div>
+            <h1 class="hero-title">Step Into the Future of Learning</h1>
+            <p class="hero-subtitle">
+                Experience science like never before in our immersive 3D virtual laboratory. 
+                Conduct experiments, interact with equipment, and learn by doing—all from your device. 
+                Safe, unlimited, and mind-blowing.
+            </p>
+            <div class="hero-cta-group">
+                <a href="#demo" class="btn-primary">
+                    <span>🚀</span>
+                    <span>Enter Metalab</span>
+                </a>
+                <a href="#features" class="btn-secondary">
+                    <span>🎬</span>
+                    <span>Watch Demo</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D Lab Demo Section -->
+    <section id="demo" class="lab-demo-section">
+        <div class="grid-floor"></div>
+        <div class="lab-container">
+            <h2 class="lab-title">🔬 Your Personal 3D Laboratory</h2>
+            
+            <div class="lab-environment">
+                <div class="lab-viewport">
+                    <div class="lab-scene">
+                        <div class="lab-equipment">
+                            <div class="equipment-icon">🧪</div>
+                            <div class="equipment-label">Test Tube</div>
+                        </div>
+                        
+                        <div class="lab-equipment">
+                            <div class="equipment-icon">🔬</div>
+                            <div class="equipment-label">Microscope</div>
+                        </div>
+                        
+                        <div class="lab-equipment">
+                            <div class="equipment-icon">⚗️</div>
+                            <div class="equipment-label">Beaker</div>
+                        </div>
+                    </div>
+                    
+                    <div class="interaction-hint">
+                        ✨ Click and drag to interact with equipment
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="section-header">
+            <div class="section-badge">✨ Powerful Features</div>
+            <h2 class="section-title">Why Metalab Changes Everything</h2>
+            <p class="section-description">
+                Advanced 3D technology meets education—giving you a lab experience that's impossible in the real world.
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3 class="feature-title">Fully Immersive 3D</h3>
+                <p class="feature-description">
+                    Walk around, zoom in, rotate objects. Every detail rendered in stunning 3D graphics.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎮</div>
+                <h3 class="feature-title">Interactive Experiments</h3>
+                <p class="feature-description">
+                    Mix chemicals, adjust equipment, observe reactions in real-time. Learn by doing.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3 class="feature-title">100% Safe Environment</h3>
+                <p class="feature-description">
+                    Make mistakes without consequences. Experiment freely without safety concerns.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">♾️</div>
+                <h3 class="feature-title">Unlimited Resources</h3>
+                <p class="feature-description">
+                    Never run out of chemicals, equipment, or specimens. Repeat experiments endlessly.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Guided Tutorials</h3>
+                <p class="feature-description">
+                    Step-by-step instructions, visual cues, and AI assistance guide you through every experiment.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Real-Time Data</h3>
+                <p class="feature-description">
+                    See measurements, reactions, and results instantly. Record and analyze everything.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3 class="feature-title">Access Anywhere</h3>
+                <p class="feature-description">
+                    Desktop, tablet, or VR headset. Your lab goes wherever you go.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3 class="feature-title">Collaborative Labs</h3>
+                <p class="feature-description">
+                    Work with classmates in shared virtual spaces. Learn together, experiment together.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3 class="feature-title">200+ Experiments</h3>
+                <p class="feature-description">
+                    From simple reactions to complex procedures—every curriculum experiment available.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subjects Section -->
+    <section class="subjects-section">
+        <div class="section-header">
+            <div class="section-badge">🧬 Available Labs</div>
+            <h2 class="section-title">Every Science Subject Covered</h2>
+            <p class="section-description">
+                Complete virtual laboratories for every science discipline—from Grade 6 to Grade 12.
+            </p>
+        </div>
+
+        <div class="subjects-grid">
+            <div class="subject-card">
+                <div class="subject-icon">🧪</div>
+                <h3 class="subject-title">Chemistry Lab</h3>
+                <p class="subject-description">
+                    Mix compounds, observe reactions, test pH levels, distillations, titrations, and more.
+                </p>
+                <div class="subject-experiments">80+ Experiments Available</div>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">🔬</div>
+                <h3 class="subject-title">Biology Lab</h3>
+                <p class="subject-description">
+                    Dissections, cell observation, DNA extraction, microscopy, and organism studies.
+                </p>
+                <div class="subject-experiments">60+ Experiments Available</div>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">⚡</div>
+                <h3 class="subject-title">Physics Lab</h3>
+                <p class="subject-description">
+                    Circuit building, mechanics, optics, magnetism, waves, and thermodynamics experiments.
+                </p>
+                <div class="subject-experiments">70+ Experiments Available</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="section-header">
+            <div class="section-badge">💎 Key Advantages</div>
+            <h2 class="section-title">Why Virtual Labs Beat Physical Labs</h2>
+            <p class="section-description">
+                Experience advantages that traditional laboratories simply cannot offer.
+            </p>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <div class="benefit-content">
+                    <h3>Cost Effective</h3>
+                    <p>
+                        No expensive equipment purchases, no chemical refills, no maintenance costs. 
+                        One subscription replaces millions in lab infrastructure.
+                    </p>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🔒</div>
+                <div class="benefit-content">
+                    <h3>Zero Risk</h3>
+                    <p>
+                        No chemical burns, no broken glassware, no hazardous spills. Students explore 
+                        freely without any danger to themselves or others.
+                    </p>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">⏰</div>
+                <div class="benefit-content">
+                    <h3>24/7 Availability</h3>
+                    <p>
+                        Practice at midnight or during weekends. No scheduling conflicts, no waiting 
+                        for turns. Your lab is always open.
+                    </p>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🎓</div>
+                <div class="benefit-content">
+                    <h3>Better Learning Outcomes</h3>
+                    <p>
+                        Students who use Metalab score 35% higher in practical exams. Interactive 
+                        learning creates lasting understanding.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="cta-section">
+        <div class="cta-glow"></div>
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Enter Metalab?</h2>
+            <p class="cta-description">
+                Start conducting experiments in minutes. No setup, no equipment needed—just 
+                pure scientific exploration in stunning 3D. Try free for 7 days.
+            </p>
+            <a href="#" class="cta-button">
+                <span>🔬</span>
+                <span>Start Free Trial</span>
+                <span>→</span>
+            </a>
+            <p class="cta-note">
+                ✓ 7-day free trial • ✓ No credit card required • ✓ Full access to all labs
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 into3.ai. All rights reserved. Reimagining science education.</p>
+    </footer>
+
+    <script>
+        // Create stars background
+        const starsBackground = document.getElementById('starsBackground');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            starsBackground.appendChild(star);
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .subject-card, .benefit-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>12 Section Single Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #333;
+      color: white;
+      z-index: 1000;
+      padding: 10px 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 5px 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      height: 100vh;
+      padding: 100px 20px 20px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+    }
+
+    /* Different background colors for each section */
+    section:nth-child(odd) {
+      background: #3498db;
+    }
+
+    section:nth-child(even) {
+      background: #2ecc71;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #111;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="#section1">Section 1</a>
+      <a href="#section2">Section 2</a>
+      <a href="#section3">Section 3</a>
+      <a href="#section4">Section 4</a>
+      <a href="#section5">Section 5</a>
+      <a href="#section6">Section 6</a>
+      <a href="#section7">Section 7</a>
+      <a href="#section8">Section 8</a>
+      <a href="#section9">Section 9</a>
+      <a href="#section10">Section 10</a>
+      <a href="#section11">Section 11</a>
+      <a href="#section12">Section 12</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="section1"><h1>Section 1</h1><p>Content for section 1.</p></section>
+    <section id="section2"><h1>Section 2</h1><p>Content for section 2.</p></section>
+    <section id="section3"><h1>Section 3</h1><p>Content for section 3.</p></section>
+    <section id="section4"><h1>Section 4</h1><p>Content for section 4.</p></section>
+    <section id="section5"><h1>Section 5</h1><p>Content for section 5.</p></section>
+    <section id="section6"><h1>Section 6</h1><p>Content for section 6.</p></section>
+    <section id="section7"><h1>Section 7</h1><p>Content for section 7.</p></section>
+    <section id="section8"><h1>Section 8</h1><p>Content for section 8.</p></section>
+    <section id="section9"><h1>Section 9</h1><p>Content for section 9.</p></section>
+    <section id="section10"><h1>Section 10</h1><p>Content for section 10.</p></section>
+    <section id="section11"><h1>Section 11</h1><p>Content for section 11.</p></section>
+    <section id="section12"><h1>Section 12</h1><p>Content for section 12.</p></section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Your Website</p>
+  </footer>
+
+</body>
+</html>

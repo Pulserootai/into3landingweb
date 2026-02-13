@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>into3.ai for Schools - Complete AI Classroom Transformation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #10b981, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .back-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #10b981;
+        }
+
+        .nav-cta {
+            padding: 0.7rem 1.8rem;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.6);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            padding: 120px 5% 60px;
+            background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #0f172a 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.3), transparent);
+            border-radius: 50%;
+            filter: blur(120px);
+            top: -200px;
+            right: -100px;
+            animation: heroGlow 6s ease-in-out infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-left {
+            text-align: left;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 50px;
+            color: #10b981;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(90deg, #ffffff, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .hero-right {
+            position: relative;
+        }
+
+        .hero-stats-box {
+            background: rgba(16, 185, 129, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 24px;
+            padding: 2rem;
+        }
+
+        .stat-item {
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #10b981;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Trust Bar */
+        .trust-section {
+            padding: 2rem 5%;
+            background: rgba(16, 185, 129, 0.05);
+            border-top: 1px solid rgba(16, 185, 129, 0.1);
+        }
+
+        .trust-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .trust-item {
+            text-align: center;
+        }
+
+        .trust-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #10b981;
+        }
+
+        .trust-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Features Section */
+        .features-section {
+            min-height: 100vh;
+            padding: 80px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 50px;
+            color: #10b981;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            color: #fff;
+        }
+
+        .section-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(139, 92, 246, 0.05));
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 16px;
+            padding: 1.2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #10b981, #8b5cf6);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(16, 185, 129, 0.5);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .feature-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .feature-description {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.4;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            min-height: 100vh;
+            padding: 80px 5%;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(139, 92, 246, 0.08));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .benefits-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.2);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-content h3 {
+            font-size: 1.3rem;
+            color: #10b981;
+            margin-bottom: 0.8rem;
+        }
+
+        .benefit-content p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 80px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(139, 92, 246, 0.1));
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            border-radius: 32px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #10b981, #059669);
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(16, 185, 129, 0.2);
+            border-radius: 50px;
+            color: #10b981;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-amount {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #10b981;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-period {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .pricing-note {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .pricing-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .pricing-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+
+        .pricing-feature-icon {
+            font-size: 1.5rem;
+            color: #10b981;
+            flex-shrink: 0;
+        }
+
+        .pricing-feature-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+        }
+
+        .pricing-feature-text strong {
+            color: #fff;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .pricing-cta {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+
+        .pricing-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.3rem 3.5rem;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            transition: all 0.3s;
+            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.5);
+        }
+
+        .pricing-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.7);
+        }
+
+        .pricing-disclaimer {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 80px 5%;
+            background: linear-gradient(180deg, rgba(16, 185, 129, 0.05), rgba(139, 92, 246, 0.05));
+        }
+
+        .testimonials-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .quote-icon {
+            font-size: 2.5rem;
+            color: rgba(16, 185, 129, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            color: #10b981;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 16px;
+            margin-bottom: 1.2rem;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            color: #10b981;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: #10b981;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 2rem 1.5rem;
+        }
+
+        /* Final CTA Section */
+        .final-cta-section {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, #064e3b, #065f46);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta-glow {
+            position: absolute;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.3), transparent);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(100px);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .final-cta-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .final-cta-title {
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(90deg, #fff, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .final-cta-description {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .final-cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.4rem 4rem;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            transition: all 0.4s;
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.6);
+            animation: buttonPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% {
+                box-shadow: 0 20px 60px rgba(16, 185, 129, 0.6);
+            }
+            50% {
+                box-shadow: 0 25px 80px rgba(16, 185, 129, 0.8);
+            }
+        }
+
+        .final-cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .final-cta-note {
+            margin-top: 2rem;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a0f1e;
+            padding: 3rem 5%;
+            border-top: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            color: #10b981;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #10b981;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-features {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .final-cta-title {
+                font-size: 2.2rem;
+            }
+
+            .pricing-amount {
+                font-size: 2.5rem;
+            }
+
+            .back-link {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo"><img src="../White Logo.svg" alt="into3.ai" class="logo-img"></div>
+            <div class="nav-actions">
+                <a href="#" class="back-link">← Back to Plans</a>
+                <a href="#pricing" class="nav-cta">Request Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <div class="hero-left">
+                <div class="hero-badge">🏫 For Schools</div>
+                <h1 class="hero-title">Transform Your School with AI-Powered Education</h1>
+                <p class="hero-description">
+                    Complete AI classroom ecosystem for modern schools. Empower teachers, 
+                    engage students, improve outcomes—all while reducing costs. Join 1,000+ 
+                    schools already leading the AI education revolution.
+                </p>
+                <div class="hero-cta-group">
+                    <a href="book_demo_page.html" class="btn-primary">
+                        <span>📞</span>
+                        <span>Schedule Demo</span>
+                    </a>
+                    <a href="#features" class="btn-secondary">
+                        <span>📖</span>
+                        <span>See Features</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="hero-stats-box">
+                    <div class="stat-item">
+                        <div class="stat-number">1,000+</div>
+                        <div class="stat-label">Schools Using into3.ai</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">35%</div>
+                        <div class="stat-label">Average Performance Increase</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">₹15L+</div>
+                        <div class="stat-label">Average Annual Savings</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">School Satisfaction Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="trust-section">
+        <div class="trust-content">
+            <div class="trust-item">
+                <div class="trust-number">🏆 ISO 27001</div>
+                <div class="trust-text">Data Security Certified</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-number">✓ CBSE</div>
+                <div class="trust-text">Recommended Partner</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-number">⭐ 4.9/5</div>
+                <div class="trust-text">School Admin Rating</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-number">🌐 Pan-India</div>
+                <div class="trust-text">28 States & 8 UTs</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="section-header">
+            <div class="section-badge">✨ Complete Ecosystem</div>
+            <h2 class="section-title">Everything Your School Needs in One Platform</h2>
+            <p class="section-description">
+                A comprehensive AI-powered solution that transforms teaching, learning, and administration.
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎓</div>
+                <h3 class="feature-title">Full AI Classroom Ecosystem</h3>
+                <p class="feature-description">
+                    Complete digital classroom infrastructure with AI tutors, interactive content, 
+                    and smart assessments for every subject and grade.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3 class="feature-title">Multi-Role Dashboards</h3>
+                <p class="feature-description">
+                    Separate dashboards for principals, teachers, students, and parents—each with 
+                    role-specific features and insights.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">School-Wide Analytics</h3>
+                <p class="feature-description">
+                    Real-time performance tracking across all classes, subjects, and students with 
+                    predictive insights and recommendations.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">👩‍🏫</div>
+                <h3 class="feature-title">All Teachers Auto-Enrolled</h3>
+                <p class="feature-description">
+                    Every teacher gets full access to AI tools, content library, and professional 
+                    development—included in your school plan.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3 class="feature-title">Enterprise Security</h3>
+                <p class="feature-description">
+                    Bank-level encryption, ISO 27001 certified, GDPR compliant with dedicated 
+                    support and 99.9% uptime guarantee.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Custom Integration</h3>
+                <p class="feature-description">
+                    Seamless integration with your existing ERP, LMS, and student information 
+                    systems—no disruption to current workflows.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="section-header">
+            <div class="section-badge">💡 Key Benefits</div>
+            <h2 class="section-title">Why Schools Choose into3.ai</h2>
+            <p class="section-description">
+                Measurable improvements in academics, operations, and reputation.
+            </p>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">📈</div>
+                <div class="benefit-content">
+                    <h3>35% Better Academic Performance</h3>
+                    <p>
+                        Schools using into3.ai see average 35% improvement in board exam scores 
+                        within the first year. Personalized learning ensures every student reaches 
+                        their potential.
+                    </p>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <div class="benefit-content">
+                    <h3>Save ₹15+ Lakhs Annually</h3>
+                    <p>
+                        Reduce spending on content, training, and infrastructure. One platform 
+                        replaces multiple vendors—better results at lower cost.
+                    </p>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">⭐</div>
+                <div class="benefit-content">
+                    <h3>Attract Premium Enrollments</h3>
+                    <p>
+                        AI-powered schools command higher fees and attract quality students. 
+                        Stand out with cutting-edge technology that parents demand.
+                    </p>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">👨‍🏫</div>
+                <div class="benefit-content">
+                    <h3>Retain Top Teachers</h3>
+                    <p>
+                        Reduce teacher workload by 10 hours/week. Happy, empowered teachers 
+                        stay longer and perform better—reducing costly turnover.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="section-header">
+            <div class="section-badge">💳 School Pricing</div>
+            <h2 class="section-title">Custom Plans for Every School</h2>
+            <p class="section-description">
+                Flexible pricing based on your school size, needs, and budget. 
+                Talk to us for a personalized quote.
+            </p>
+        </div>
+
+        <div class="pricing-card">
+            <div class="pricing-header">
+                <div class="pricing-badge">🏫 Most Popular</div>
+                <h3 class="pricing-title">School Enterprise Plan</h3>
+                <div class="pricing-amount">Custom</div>
+                <div class="pricing-period">Tailored quote based on your needs</div>
+                <div class="pricing-note">Starting from ₹50,000/month for schools with 500+ students</div>
+            </div>
+
+            <div class="pricing-features">
+                <div class="pricing-feature">
+                    <div class="pricing-feature-icon">✓</div>
+                    <div class="pricing-feature-text">
+                        <strong>Unlimited Students & Teachers</strong>
+                        All your staff and students get full access
+                    </div>
+                </div>
+
+                <div class="pricing-feature">
+                    <div class="pricing-feature-icon">✓</div>
+                    <div class="pricing-feature-text">
+                        <strong>Complete AI Platform</strong>
+                        AI tutors, content, assessments, analytics
+                    </div>
+                </div>
+
+                <div class="pricing-feature">
+                    <div class="pricing-feature-icon">✓</div>
+                    <div class="pricing-feature-text">
+                        <strong>Multi-Role Dashboards</strong>
+                        Principal, teacher, student, parent portals
+                    </div>
+                </div>
+
+                <div class="pricing-feature">
+                    <div class="pricing-feature-icon">✓</div>
+                    <div class="pricing-feature-text">
+                        <strong>Custom Branding</strong>
+                        White-label option with your school logo
+                    </div>
+                </div>
+
+                <div class="pricing-feature">
+                    <div class="pricing-feature-icon">✓</div>
+                    <div class="pricing-feature-text">
+                        <strong>Dedicated Support</strong>
+                        24/7 technical support + account manager
+                    </div>
+                </div>
+
+                <div class="pricing-feature">
+                    <div class="pricing-feature-icon">✓</div>
+                    <div class="pricing-feature-text">
+                        <strong>On-Site Training</strong>
+                        Complete onboarding for all staff included
+                    </div>
+                </div>
+
+                <div class="pricing-feature">
+                    <div class="pricing-feature-icon">✓</div>
+                    <div class="pricing-feature-text">
+                        <strong>API Integration</strong>
+                        Connect with your existing systems
+                    </div>
+                </div>
+
+                <div class="pricing-feature">
+                    <div class="pricing-feature-icon">✓</div>
+                    <div class="pricing-feature-text">
+                        <strong>Priority Updates</strong>
+                        Early access to new features and content
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-cta">
+                <a href="book_demo_page.html" class="pricing-button">
+                    <span>📞</span>
+                    <span>Schedule Demo & Get Quote</span>
+                    <span>→</span>
+                </a>
+                <p class="pricing-disclaimer">
+                    ✓ 30-day free trial for your school • ✓ No long-term contracts • ✓ ROI guarantee
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="section-header">
+            <div class="section-badge">💬 Success Stories</div>
+            <h2 class="section-title">Trusted by Leading Schools</h2>
+            <p class="section-description">
+                See how schools across India are transforming education with into3.ai.
+            </p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">
+                    "Our board exam results improved by 40% in just one year. Teachers love 
+                    the AI tools, students are more engaged, and parents are thrilled. Best 
+                    investment we've made in a decade."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">🏫</div>
+                    <div class="author-info">
+                        <h4>Dr. Ramesh Kumar</h4>
+                        <p>Principal, DPS Greater Noida</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">
+                    "into3.ai helped us differentiate in a competitive market. We raised fees 
+                    by 15% and still saw 30% enrollment growth. Parents specifically choose 
+                    us because of our AI-powered education."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">🏫</div>
+                    <div class="author-info">
+                        <h4>Mrs. Sunita Patel</h4>
+                        <p>Director, Cambridge School, Pune</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">
+                    "We saved ₹18 lakhs annually by replacing multiple vendors with into3.ai. 
+                    The analytics dashboard gives me real-time visibility into every classroom. 
+                    Implementation was smooth, support is excellent."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">🏫</div>
+                    <div class="author-info">
+                        <h4>Mr. Anil Sharma</h4>
+                        <p>Trustee, Modern Public School, Jaipur</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="section-header">
+            <div class="section-badge">❓ Common Questions</div>
+            <h2 class="section-title">Everything School Administrators Ask</h2>
+            <p class="section-description">
+                Get answers to questions about implementation, pricing, and support.
+            </p>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How is pricing calculated for schools?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Pricing is based on student count, grade levels covered, and features required. 
+                    A typical school with 500-1000 students pays ₹50,000-₹80,000 per month. This 
+                    includes unlimited teachers, all features, training, and support. We offer 
+                    volume discounts for larger schools and school chains. Schedule a demo for 
+                    exact pricing.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How long does implementation take?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Standard implementation takes 2-4 weeks from contract signing to full deployment. 
+                    This includes data migration, teacher training, parent communication, and student 
+                    onboarding. We provide dedicated project managers and handle everything—your 
+                    team just needs to coordinate. Many schools go live mid-semester with zero disruption.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What training is provided to teachers?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    We provide comprehensive training: 2-day on-site workshops for all teachers, 
+                    ongoing video tutorials, weekly Q&A webinars, and a dedicated support team. 
+                    Most teachers become proficient within one week. We also offer specialized 
+                    training for principals and coordinators on analytics and reporting features.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can it integrate with our existing systems?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes! We integrate with all major school ERP systems, LMS platforms, and student 
+                    information systems via API. This includes popular platforms like Fedena, MyClassCampus, 
+                    SAP, and others. Data syncs automatically—no manual uploads needed. Our technical 
+                    team handles all integration work.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is student data secure?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Absolutely. We're ISO 27001 certified for information security and GDPR compliant. 
+                    All data is encrypted in transit and at rest. We never share student data with 
+                    third parties. Regular security audits, penetration testing, and 99.9% uptime SLA. 
+                    Many banking and government schools trust us with their data.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What if teachers or students face issues?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    We provide 24/7 support via phone, email, and chat—in English and Hindi. Average 
+                    response time: under 30 minutes. Your school gets a dedicated account manager who 
+                    knows your setup. We also maintain a comprehensive help center, video guides, and 
+                    community forum. Critical issues are resolved within hours, not days.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you offer a trial period?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes! We offer a 30-day free trial for schools with full access to all features. 
+                    You can pilot with selected grades or the entire school. Our team helps with setup 
+                    and training during the trial. If you're not satisfied, there's no obligation. 
+                    Most schools extend to full deployment after seeing results in the first month.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can we customize the platform for our school?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes! We offer white-labeling with your school logo and colors. You can customize 
+                    dashboards, reports, and content libraries. We also build custom features for 
+                    unique requirements. Many schools use our platform as their official LMS with 
+                    complete branding. Customization is included in enterprise plans.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta-section">
+        <div class="final-cta-glow"></div>
+        <div class="final-cta-content">
+            <h2 class="final-cta-title">Ready to Transform Your School?</h2>
+            <p class="final-cta-description">
+                Join 1,000+ schools leading the AI education revolution. Better results, 
+                happier teachers, engaged students, and impressed parents. Schedule a demo 
+                to see how into3.ai can transform your school in just 30 days.
+            </p>
+            <a href="book_demo_page.html" class="final-cta-button">
+                <span>📞</span>
+                <span>Schedule Your Demo Now</span>
+                <span>→</span>
+            </a>
+            <p class="final-cta-note">
+                ✓ 30-day free trial • ✓ No credit card required • ✓ Cancel anytime<br>
+                Questions? Call us at 1800-SCHOOLS (Toll Free) or email schools@into3.ai
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Product</h3>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Integrations</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>For Schools</h3>
+                <ul>
+                    <li><a href="#">Implementation</a></li>
+                    <li><a href="#">Training</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                    <li><a href="#">ROI Calculator</a></li>
+                    <li><a href="#">Resources</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                    <li><a href="#">Schedule Demo</a></li>
+                    <li><a href="#">Video Tutorials</a></li>
+                    <li><a href="#">API Documentation</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press Kit</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 into3.ai. All rights reserved. Transforming schools through AI-powered education.</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .benefit-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

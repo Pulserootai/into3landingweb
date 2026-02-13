@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Choose Your Plan | into3.ai</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0e27; color: #e2e8f0; line-height: 1.8;
+        }
+        .navbar {
+            position: fixed; top: 0; width: 100%; padding: 1.2rem 5%;
+            background: rgba(10, 14, 39, 0.95); backdrop-filter: blur(20px);
+            z-index: 1000; border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        .nav-content {
+            max-width: 1400px; margin: 0 auto; display: flex;
+            justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-size: 1.6rem; font-weight: 800;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nav-link {
+            color: rgba(255, 255, 255, 0.7); text-decoration: none;
+            font-weight: 500; transition: color 0.3s;
+        }
+        .nav-link:hover { color: #8b5cf6; }
+        
+        /* Particles */
+        .particle {
+            position: absolute; width: 2px; height: 2px;
+            background: rgba(6, 182, 212, 0.5); border-radius: 50%;
+            box-shadow: 0 0 8px rgba(6, 182, 212, 0.8);
+            animation: particleFloat 20s ease-in-out infinite;
+        }
+        @keyframes particleFloat {
+            0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+            50% { transform: translate(100px, -100px); opacity: 0.7; }
+        }
+        
+        /* Ambient Glows */
+        .ambient-glow {
+            position: absolute; border-radius: 50%; filter: blur(120px);
+            z-index: 1; pointer-events: none;
+        }
+        .glow-left {
+            top: 10%; left: 5%; width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent);
+            animation: glowPulse 8s ease-in-out infinite;
+        }
+        .glow-right {
+            bottom: 10%; right: 5%; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.25), transparent);
+            animation: glowPulse 8s ease-in-out 4s infinite;
+        }
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+        }
+        
+        /* Header Section */
+        .pricing-header {
+            padding: 140px 5% 60px; text-align: center;
+            background: radial-gradient(ellipse at top, #1e1b4b 0%, #0a0e27 50%);
+            position: relative;
+        }
+        .badge {
+            display: inline-block; padding: 0.5rem 1.2rem;
+            background: rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 50px; color: #06b6d4;
+            font-size: 0.85rem; font-weight: 700;
+            margin-bottom: 1.5rem; text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        h1 {
+            font-size: 3.5rem; font-weight: 900;
+            background: linear-gradient(90deg, #fff, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem; line-height: 1.2;
+        }
+        .subtitle {
+            font-size: 1.2rem; color: rgba(255, 255, 255, 0.7);
+            max-width: 700px; margin: 0 auto 3rem;
+        }
+        
+        /* Pricing Cards */
+        .pricing-cards {
+            max-width: 1400px; margin: 0 auto; padding: 0 5% 80px;
+            display: flex; justify-content: center; align-items: flex-end;
+            gap: 3.5rem; position: relative; z-index: 10;
+        }
+        .pricing-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 24px; padding: 2.5rem 2rem;
+            width: 320px; text-align: center;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        .pricing-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Student Card - HERO */
+        .student-card {
+            transform: scale(1.1);
+            background: rgba(6, 182, 212, 0.15);
+            border: 2px solid #06b6d4;
+            box-shadow: 0 20px 60px rgba(6, 182, 212, 0.3), 0 0 60px rgba(6, 182, 212, 0.2);
+        }
+        .student-card:hover { transform: scale(1.1) translateY(-12px); }
+        .student-card::before {
+            content: 'MOST POPULAR';
+            position: absolute; top: -12px; left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            color: white; padding: 0.4rem 1.5rem;
+            border-radius: 20px; font-size: 0.75rem;
+            font-weight: 700; letter-spacing: 1px;
+        }
+        
+        .teacher-card { border-color: rgba(139, 92, 246, 0.3); }
+        .teacher-card:hover { border-color: rgba(139, 92, 246, 0.6); }
+        .school-card { border-color: rgba(16, 185, 129, 0.3); }
+        .school-card:hover { border-color: rgba(16, 185, 129, 0.6); }
+        
+        .plan-icon {
+            font-size: 3rem; margin-bottom: 1rem;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        .plan-name {
+            font-size: 1.8rem; font-weight: 800;
+            color: white; margin-bottom: 0.8rem;
+        }
+        .student-card .plan-name { color: #06b6d4; }
+        
+        .plan-description {
+            font-size: 0.95rem; color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1.5rem; line-height: 1.6;
+        }
+        
+        .features-list {
+            list-style: none; margin-bottom: 2rem;
+            text-align: left;
+        }
+        .feature-item {
+            display: flex; align-items: center; gap: 0.8rem;
+            margin-bottom: 0.8rem; font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .feature-icon { color: #10b981; font-weight: 700; }
+        
+        .price-section { margin-bottom: 2rem; }
+        .price {
+            font-size: 3.5rem; font-weight: 900;
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .price-period {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem; margin-top: 0.5rem;
+        }
+        .custom-price {
+            font-size: 2rem; font-weight: 900; color: white;
+        }
+        
+        .cta-button {
+            width: 100%; padding: 1rem;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white; border: none; border-radius: 50px;
+            font-size: 1rem; font-weight: 700; cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.6);
+        }
+        .student-card .cta-button {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.5);
+        }
+        .student-card .cta-button:hover {
+            box-shadow: 0 12px 35px rgba(6, 182, 212, 0.7);
+        }
+        .school-card .cta-button {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+        
+        /* Trust Bar */
+        .trust-bar {
+            text-align: center; padding: 2rem 5%;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Comparison Section */
+        .comparison-section {
+            padding: 80px 5%;
+            background: rgba(139, 92, 246, 0.02);
+            position: relative;
+        }
+        .section-title {
+            font-size: 2.5rem; font-weight: 900;
+            color: #fff; margin-bottom: 3rem;
+            text-align: center;
+        }
+        .comparison-table {
+            max-width: 1200px; margin: 0 auto;
+            background: rgba(139, 92, 246, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 16px; overflow: hidden;
+        }
+        table { width: 100%; border-collapse: collapse; }
+        thead { background: rgba(139, 92, 246, 0.1); }
+        th, td {
+            padding: 1.2rem; text-align: left;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+        }
+        th { font-weight: 700; color: #fff; font-size: 0.95rem; }
+        td { color: rgba(255, 255, 255, 0.85); font-size: 0.9rem; }
+        .highlight-row { background: rgba(6, 182, 212, 0.08); }
+        .company-name { font-weight: 700; color: #fff; }
+        .into3 { color: #06b6d4; }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 5%; max-width: 900px; margin: 0 auto;
+        }
+        .faq-item {
+            background: rgba(139, 92, 246, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 12px; padding: 1.5rem;
+            margin-bottom: 1rem; cursor: pointer;
+            transition: all 0.3s;
+        }
+        .faq-item:hover { background: rgba(139, 92, 246, 0.08); }
+        .faq-question {
+            font-size: 1.1rem; font-weight: 700; color: #fff;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .faq-answer {
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 1rem; display: none; line-height: 1.6;
+        }
+        .faq-item.active .faq-answer { display: block; }
+        
+        @media (max-width: 1024px) {
+            .pricing-cards {
+                flex-direction: column; align-items: center;
+            }
+            .student-card { transform: scale(1); }
+            .student-card:hover { transform: translateY(-8px) scale(1); }
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .pricing-card { width: 100%; max-width: 350px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-glow glow-left"></div>
+    <div class="ambient-glow glow-right"></div>
+    <div id="particlesContainer"></div>
+    
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo"><img src="../White Logo.svg" alt="into3.ai" class="logo-img"></div>
+            <a href="../index.html" class="nav-link">← Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="pricing-header">
+        <div class="badge">Choose Your Path</div>
+        <h1>Start your journey with into3.ai</h1>
+        <p class="subtitle">
+            Learn. Teach. Lead. The movement begins with you.
+        </p>
+    </section>
+
+    <!-- Pricing Cards -->
+    <section class="pricing-cards">
+        <!-- Teacher Card -->
+        <div class="pricing-card teacher-card">
+            <div class="plan-icon">👩‍🏫</div>
+            <h2 class="plan-name">Teacher</h2>
+            <p class="plan-description">Empower your teaching with AI assistance and insights</p>
+            
+            <ul class="features-list">
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>AI class prep & content builder</span>
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>Real-time teaching analytics</span>
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>₹1 Crore Award eligibility</span>
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>Teacher Pension Fund</span>
+                </li>
+            </ul>
+
+            <div class="price-section">
+                <div class="price">₹99</div>
+                <div class="price-period">per month</div>
+            </div>
+
+            <button class="cta-button" onclick="window.location.href='teacher_landing_page.html'">Join as Teacher</button>
+        </div>
+
+        <!-- Student Card - CENTER HERO -->
+        <div class="pricing-card student-card">
+            <div class="plan-icon">👨‍🎓</div>
+            <h2 class="plan-name">Student</h2>
+            <p class="plan-description">Your personal AI learning companion for academic excellence</p>
+            
+            <ul class="features-list">
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>AI Tutor & Metalab access</span>
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>24×7 handheld doubt classes</span>
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>Real-time Adaptive Engine</span>
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>Hyperpersonalization at core</span>
+                </li>
+            </ul>
+
+            <div class="price-section">
+                <div class="price">₹1,499</div>
+                <div class="price-period">per month</div>
+            </div>
+
+            <button class="cta-button" onclick="window.location.href='student_landing_page.html'">Start Learning Now</button>
+        </div>
+
+        <!-- School Card -->
+        <div class="pricing-card school-card">
+            <div class="plan-icon">🏫</div>
+            <h2 class="plan-name">School</h2>
+            <p class="plan-description">Complete AI-powered transformation for your institution</p>
+            
+            <ul class="features-list">
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>Full AI classroom ecosystem</span>
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>Multi-role dashboards</span>
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>School-wide analytics</span>
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>All teachers auto-enrolled</span>
+                </li>
+            </ul>
+
+            <div class="price-section">
+                <div class="custom-price">Custom</div>
+                <div class="price-period">tailored quote</div>
+            </div>
+
+            <button class="cta-button" onclick="window.location.href='school_landing_page.html'">Partner With Us</button>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+        <p>Trusted by 150,000+ students • 50,000+ teachers • 1,000+ schools</p>
+    </div>
+
+    <!-- Comparison Table -->
+    <section class="comparison-section">
+        <h2 class="section-title">How into3.ai Compares</h2>
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Platform</th>
+                        <th>Student Price</th>
+                        <th>Teacher Price</th>
+                        <th>AI Tutor</th>
+                        <th>Virtual Labs</th>
+                        <th>24×7 Support</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight-row">
+                        <td class="company-name into3">into3.ai</td>
+                        <td>₹1,499/mo</td>
+                        <td>₹99/mo</td>
+                        <td>✓ Unlimited</td>
+                        <td>✓ 3D Metalab</td>
+                        <td>✓ Yes</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">BYJU'S</td>
+                        <td>₹5,000-8,333/mo</td>
+                        <td>N/A</td>
+                        <td>✗ Limited</td>
+                        <td>✗ Videos Only</td>
+                        <td>✗ No</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Vedantu</td>
+                        <td>₹3,000-6,000/mo</td>
+                        <td>N/A</td>
+                        <td>✗ None</td>
+                        <td>✗ None</td>
+                        <td>✗ Limited</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Unacademy Plus</td>
+                        <td>₹1,000-2,500/mo</td>
+                        <td>N/A</td>
+                        <td>✗ None</td>
+                        <td>✗ None</td>
+                        <td>✗ Limited</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Toppr</td>
+                        <td>₹999-1,666/mo</td>
+                        <td>N/A</td>
+                        <td>✓ Limited</td>
+                        <td>✗ None</td>
+                        <td>✗ No</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">
+                <span>What makes into3.ai different from other platforms?</span>
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                into3.ai combines AI tutoring, 3D virtual labs, and hyperpersonalized learning at an affordable price. We offer 24×7 doubt classes, real-time adaptive learning, and unique features like ₹1 Crore Award for teachers and Teacher Pension Fund.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">
+                <span>Can I try before buying?</span>
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                Yes! Students get a 7-day free trial and teachers get a 14-day free trial. No credit card required during trial period.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">
+                <span>What is the ₹1 Crore Award for teachers?</span>
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                into3.ai recognizes and rewards exceptional teachers who demonstrate outstanding impact on student learning. Eligible teachers can compete for this prestigious award based on student outcomes and teaching excellence.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">
+                <span>Can I cancel anytime?</span>
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                Absolutely! You can cancel your subscription at any time with no cancellation fees. Your access continues until the end of your current billing period.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">
+                <span>What payment methods do you accept?</span>
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                We accept all major credit/debit cards, UPI, net banking, and digital wallets. All payments are processed securely through encrypted channels.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">
+                <span>How does School pricing work?</span>
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                School pricing is customized based on student count, features needed, and implementation requirements. Contact our sales team for a tailored quote and demo. All teachers in your school are automatically enrolled in the Teacher plan.
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Create Particles
+        const container = document.getElementById('particlesContainer');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 20) + 's';
+            container.appendChild(particle);
+        }
+    </script>
+</body>
+</html>

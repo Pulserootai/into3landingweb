@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Stories - Real Results from Real Students | into3.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #10b981, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .back-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #10b981;
+        }
+
+        .nav-cta {
+            padding: 0.7rem 1.8rem;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.6);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            padding: 0 5%;
+            background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #0f172a 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.3), transparent);
+            border-radius: 50%;
+            filter: blur(120px);
+            top: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: heroGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.7; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.7rem 2rem;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 50px;
+            color: #10b981;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: linear-gradient(90deg, #ffffff, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3.5rem;
+            line-height: 1.8;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        /* Featured Stories Section */
+        .featured-section {
+            min-height: 100vh;
+            padding: 60px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 50px;
+            color: #10b981;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            color: #fff;
+        }
+
+        .section-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .story-card {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(139, 92, 246, 0.05));
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #10b981, #059669);
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(16, 185, 129, 0.5);
+            box-shadow: 0 20px 50px rgba(16, 185, 129, 0.2);
+        }
+
+        .story-header {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .story-info h3 {
+            font-size: 1.1rem;
+            color: #10b981;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .story-meta {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .story-quote {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 1.2rem;
+        }
+
+        .story-results {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .result-badge {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        /* Case Studies Section */
+        .case-studies-section {
+            min-height: 100vh;
+            padding: 60px 5%;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(139, 92, 246, 0.08));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .case-study {
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+        }
+
+        .case-study:hover {
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: 0 20px 50px rgba(16, 185, 129, 0.2);
+        }
+
+        .case-study-header {
+            margin-bottom: 2rem;
+        }
+
+        .case-study-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #10b981;
+            margin-bottom: 0.5rem;
+        }
+
+        .case-study-subtitle {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .case-study-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .case-study-text {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+        }
+
+        .case-study-text p {
+            margin-bottom: 1rem;
+        }
+
+        .case-study-metrics {
+            background: rgba(10, 14, 39, 0.6);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .metric-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .metric-item:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.3rem;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #10b981;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 60px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(139, 92, 246, 0.15));
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #10b981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            min-height: 100vh;
+            padding: 60px 5%;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(139, 92, 246, 0.08));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .testimonials-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 18px;
+            padding: 1.8rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.2);
+        }
+
+        .quote-icon {
+            font-size: 2rem;
+            color: rgba(16, 185, 129, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            font-size: 0.9rem;
+            color: #10b981;
+            margin-bottom: 0.1rem;
+        }
+
+        .author-info p {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 60px 5%;
+            background: linear-gradient(135deg, #064e3b, #065f46);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.3), transparent);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(100px);
+            animation: ctaPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes ctaPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #fff, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.1rem 3rem;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            transition: all 0.3s;
+            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.5);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.7);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a0f1e;
+            padding: 2rem 5%;
+            border-top: 1px solid rgba(16, 185, 129, 0.2);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .stories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .case-study-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .back-link {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo"><img src="../White Logo.svg" alt="into3.ai" class="logo-img"></div>
+            <div class="nav-actions">
+                <a href="#" class="back-link">← Back to Home</a>
+                <a href="signup.html" class="nav-cta">Start Your Success Story</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <div class="hero-badge">🌟 Success Stories</div>
+            <h1 class="hero-title">Real Students, Real Results</h1>
+            <p class="hero-subtitle">
+                See how students, teachers, and schools are achieving remarkable transformations 
+                with into3.ai. These are real stories from real people—just like you.
+            </p>
+        </div>
+    </section>
+
+    <!-- Featured Stories Section -->
+    <section class="featured-section">
+        <div class="section-header">
+            <div class="section-badge">⭐ Featured Transformations</div>
+            <h2 class="section-title">Student Success Stories</h2>
+            <p class="section-description">
+                Real transformations from students who multiplied their learning with into3.ai.
+            </p>
+        </div>
+
+        <div class="stories-grid">
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="story-avatar">👨‍🎓</div>
+                    <div class="story-info">
+                        <h3>Class 10 Student, Delhi</h3>
+                        <p class="story-meta">Using into3.ai for 6 months</p>
+                    </div>
+                </div>
+                <p class="story-quote">
+                    "I used to struggle with Math, especially algebra. My parents couldn't afford 
+                    private tuition. With into3.ai, I got my own AI tutor that explained everything 
+                    step-by-step until I understood. I went from 45% to 82% in my board exams."
+                </p>
+                <div class="story-results">
+                    <span class="result-badge">📈 45% → 82% in Math</span>
+                    <span class="result-badge">🎯 Passed Board Exams</span>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="story-avatar">👩‍🎓</div>
+                    <div class="story-info">
+                        <h3>Class 12 Student, Mumbai</h3>
+                        <p class="story-meta">Using into3.ai for 8 months</p>
+                    </div>
+                </div>
+                <p class="story-quote">
+                    "Chemistry was my nightmare. I couldn't understand reactions and equations. 
+                    The Metalab let me conduct virtual experiments and actually see what happens. 
+                    Now Chemistry is my favorite subject! Scored 94% in boards."
+                </p>
+                <div class="story-results">
+                    <span class="result-badge">🔬 94% in Chemistry</span>
+                    <span class="result-badge">💡 Top in Class</span>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="story-avatar">👨‍🎓</div>
+                    <div class="story-info">
+                        <h3>Class 9 Student, Rural UP</h3>
+                        <p class="story-meta">Using into3.ai for 4 months</p>
+                    </div>
+                </div>
+                <p class="story-quote">
+                    "My school doesn't have science labs or good teachers. into3.ai gave me access 
+                    to world-class education in Hindi. The AI tutor never gets tired of my questions. 
+                    I'm now preparing for IIT from my village!"
+                </p>
+                <div class="story-results">
+                    <span class="result-badge">🌟 60% → 87% Overall</span>
+                    <span class="result-badge">🎯 IIT Aspirant</span>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="story-avatar">👩‍🎓</div>
+                    <div class="story-info">
+                        <h3>Class 11 Student, Bangalore</h3>
+                        <p class="story-meta">Using into3.ai for 5 months</p>
+                    </div>
+                </div>
+                <p class="story-quote">
+                    "Physics concepts confused me so much. The AI teacher explained Newton's Laws 
+                    with real-world examples and animations. It clicked! I can now solve complex 
+                    problems without help. My confidence is 10x higher."
+                </p>
+                <div class="story-results">
+                    <span class="result-badge">⚡ 55% → 89% in Physics</span>
+                    <span class="result-badge">🚀 Confidence Boost</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Section -->
+    <section class="case-studies-section">
+        <div class="section-header">
+            <div class="section-badge">📊 Case Studies</div>
+            <h2 class="section-title">School-Wide Transformations</h2>
+            <p class="section-description">
+                How entire schools are achieving remarkable results with into3.ai.
+            </p>
+        </div>
+
+        <div class="case-study">
+            <div class="case-study-header">
+                <h3 class="case-study-title">Private School, Noida</h3>
+                <p class="case-study-subtitle">500 students • Grades 6-12 • 1 year with into3.ai</p>
+            </div>
+            <div class="case-study-content">
+                <div class="case-study-text">
+                    <p>
+                        <strong>Challenge:</strong> Despite good infrastructure, the school struggled 
+                        with low science scores and student engagement. Labs were underutilized, and 
+                        students found learning boring.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Implemented into3.ai across all grades for Math and 
+                        Science. Teachers used AI tutors for doubt sessions, and students explored 
+                        Metalab for hands-on experiments.
+                    </p>
+                    <p>
+                        <strong>Results:</strong> Board exam scores increased dramatically. Parent 
+                        satisfaction improved. Students started enjoying science classes. The school 
+                        became known for excellence in STEM.
+                    </p>
+                </div>
+                <div class="case-study-metrics">
+                    <div class="metric-item">
+                        <div class="metric-label">Board Exam Improvement</div>
+                        <div class="metric-value">+42%</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">Student Engagement</div>
+                        <div class="metric-value">+65%</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">Parent Satisfaction</div>
+                        <div class="metric-value">95%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="case-study">
+            <div class="case-study-header">
+                <h3 class="case-study-title">Government School, Rajasthan</h3>
+                <p class="case-study-subtitle">300 students • Grades 8-10 • 6 months with into3.ai</p>
+            </div>
+            <div class="case-study-content">
+                <div class="case-study-text">
+                    <p>
+                        <strong>Challenge:</strong> Limited resources, no labs, teacher shortage, and 
+                        low pass rates in board exams. Students from rural backgrounds with limited 
+                        exposure to technology.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> into3.ai provided virtual labs, Hindi language 
+                        support, and 24/7 AI tutoring. Teachers received training, and the platform 
+                        adapted to each student's pace.
+                    </p>
+                    <p>
+                        <strong>Results:</strong> Pass rates doubled. Students discovered they could 
+                        learn independently. Several students are now considering higher education 
+                        in science—a first for this school.
+                    </p>
+                </div>
+                <div class="case-study-metrics">
+                    <div class="metric-item">
+                        <div class="metric-label">Pass Rate Increase</div>
+                        <div class="metric-value">2x</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">Science Lab Access</div>
+                        <div class="metric-value">100%</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">Higher Ed Interest</div>
+                        <div class="metric-value">+80%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="section-header">
+            <div class="section-badge">📈 By the Numbers</div>
+            <h2 class="section-title">The Impact We're Creating Together</h2>
+            <p class="section-description">
+                Real data from real transformations happening every day on into3.ai.
+            </p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">35%</div>
+                <div class="stat-label">Average Score Improvement</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">92%</div>
+                <div class="stat-label">Students Report Better Understanding</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">87%</div>
+                <div class="stat-label">Improved Confidence in Learning</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Would Recommend to Friends</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="section-header">
+            <div class="section-badge">💬 What People Say</div>
+            <h2 class="section-title">Voices from Our Community</h2>
+            <p class="section-description">
+                Honest feedback from students, teachers, and parents using into3.ai daily.
+            </p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">
+                    My daughter used to cry before Math exams. Now she actually enjoys solving 
+                    problems! The AI tutor is so patient. Worth every rupee.
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👨</div>
+                    <div class="author-info">
+                        <h4>Parent, Pune</h4>
+                        <p>Daughter in Class 8</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">
+                    As a teacher, into3.ai helps me understand where each student is struggling. 
+                    I can provide better support. My class average improved by 28%!
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👩‍🏫</div>
+                    <div class="author-info">
+                        <h4>Science Teacher, Kolkata</h4>
+                        <p>Teaching for 12 years</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">
+                    I study late at night after my part-time job. The AI tutor is always there 
+                    to help. No judgment, just support. Changed my life.
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👨‍🎓</div>
+                    <div class="author-info">
+                        <h4>Student, Lucknow</h4>
+                        <p>Class 12, Working Student</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">
+                    The virtual labs are incredible! My students can do experiments we could 
+                    never afford. They're learning by doing, not just memorizing.
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👨‍🏫</div>
+                    <div class="author-info">
+                        <h4>Principal, Jaipur</h4>
+                        <p>Government School</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">
+                    Finally, something that works in Hindi! My son understands concepts better 
+                    in his mother tongue. His grades went from failing to passing.
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👩</div>
+                    <div class="author-info">
+                        <h4>Parent, Patna</h4>
+                        <p>Son in Class 9</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">
+                    I can learn at my own speed without feeling behind. The AI adapts to me, 
+                    not the other way around. This is the future of education.
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👩‍🎓</div>
+                    <div class="author-info">
+                        <h4>Student, Chennai</h4>
+                        <p>Class 11, NEET Aspirant</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="cta-section">
+        <div class="cta-glow"></div>
+        <div class="cta-content">
+            <h2 class="cta-title">Your Success Story Starts Here</h2>
+            <p class="cta-description">
+                Join thousands of students who are transforming their learning with into3.ai. 
+                Your breakthrough moment is just one click away.
+            </p>
+            <a href="join_waitlist.html" class="cta-button">
+                <span>🚀</span>
+                <span>Start Your Free Trial</span>
+                <span>→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 into3.ai. All rights reserved. Every success story starts with a single step.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.story-card, .case-study, .stat-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

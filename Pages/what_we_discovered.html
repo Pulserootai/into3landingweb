@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What We Discovered - into3.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background - Education Words Matrix */
+        .animated-bg {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .words-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .word-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            animation: scrollVertical 60s linear infinite;
+            opacity: 0.2;
+        }
+
+        @keyframes scrollVertical {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .word-column:nth-child(odd) { color: rgba(6, 182, 212, 0.6); }
+        .word-column:nth-child(even) { color: rgba(139, 92, 246, 0.5); }
+
+        .education-word {
+            display: block;
+            white-space: nowrap;
+        }
+
+        .education-word.caught {
+            color: #ffffff !important;
+            font-weight: 900;
+            font-size: 1.2em;
+            text-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+            transform: scale(1.3);
+            opacity: 1 !important;
+        }
+
+        .education-word.caught.glow-cyan { color: #06b6d4 !important; }
+        .education-word.caught.glow-purple { color: #8b5cf6 !important; }
+        .education-word.caught.glow-pink { color: #ec4899 !important; }
+
+        /* Content Layer */
+        .content-layer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 5% 80px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.4);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #06b6d4;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            max-width: 1100px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            max-width: 800px;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 100px 5%;
+            position: relative;
+        }
+
+        .section-alt {
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Discovery Cards Grid */
+        .discoveries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .discovery-card {
+            padding: 3rem;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .discovery-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .discovery-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 20px 60px rgba(6, 182, 212, 0.2);
+        }
+
+        .discovery-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .discovery-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .discovery-stat {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .discovery-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .discovery-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        /* Comparison Section */
+        .comparison {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .comparison-card {
+            padding: 3rem;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-card.traditional {
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .comparison-card.into3ai {
+            border-color: rgba(6, 182, 212, 0.5);
+            background: rgba(6, 182, 212, 0.05);
+        }
+
+        .comparison-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .comparison-card.traditional .comparison-label {
+            color: #ef4444;
+        }
+
+        .comparison-card.into3ai .comparison-label {
+            color: #06b6d4;
+        }
+
+        .comparison-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .comparison-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .comparison-icon {
+            font-size: 1.5rem;
+            min-width: 30px;
+        }
+
+        .comparison-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* LII Introduction */
+        .lii-intro {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(139, 92, 246, 0.1));
+            border: 2px solid rgba(6, 182, 212, 0.3);
+            border-radius: 32px;
+            text-align: center;
+        }
+
+        .lii-logo {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .lii-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .lii-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .lii-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .lii-component {
+            padding: 2rem;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lii-component-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .lii-component-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #06b6d4;
+        }
+
+        /* Data Story Visualization */
+        .data-story {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .data-viz {
+            padding: 3rem;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 3rem;
+        }
+
+        .data-viz-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #06b6d4, #8b5cf6);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-point {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+            z-index: 2;
+        }
+
+        .timeline-content {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content:first-child {
+            grid-column: 2;
+        }
+
+        .timeline-label {
+            font-size: 0.85rem;
+            color: #06b6d4;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* Case Study Cards */
+        .case-studies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+
+        .case-study {
+            padding: 3rem;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .case-label {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #ef4444;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-label.after {
+            background: rgba(6, 182, 212, 0.2);
+            border-color: rgba(6, 182, 212, 0.5);
+            color: #06b6d4;
+        }
+
+        .case-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .case-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 100px 5%;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            padding: 1.3rem 3rem;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.4);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(6, 182, 212, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-point {
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .discoveries-grid,
+            .case-studies {
+                grid-template-columns: 1fr;
+            }
+
+            .discovery-stat {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="words-container" id="wordsContainer"></div>
+    </div>
+
+    <!-- Content Layer -->
+    <div class="content-layer">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">🔬 Research & Discovery</div>
+            <h1 class="hero-title">
+                We Looked Where <span class="gradient-text">No One Else</span> Was Looking
+            </h1>
+            <p class="hero-subtitle">
+                The hidden patterns between "studying" and "success" that traditional systems never see.
+            </p>
+        </section>
+
+        <!-- Key Discoveries Section -->
+        <section class="section section-alt">
+            <div class="section-header">
+                <h2 class="section-title">The <span class="gradient-text">Invisible Truth</span></h2>
+                <p class="section-subtitle">
+                    After analyzing millions of learning moments, we discovered what really matters — and it's not what you think.
+                </p>
+            </div>
+
+            <div class="discoveries-grid">
+                <div class="discovery-card">
+                    <div class="discovery-icon">📊</div>
+                    <div class="discovery-stat">73%</div>
+                    <h3 class="discovery-title">Focus is Lost</h3>
+                    <p class="discovery-description">
+                        Students lose focus 73% of the time during online classes — yet no system tracks or responds to this in real-time.
+                    </p>
+                </div>
+
+                <div class="discovery-card">
+                    <div class="discovery-icon">😰</div>
+                    <div class="discovery-stat">3×</div>
+                    <h3 class="discovery-title">Emotion Matters More</h3>
+                    <p class="discovery-description">
+                        Emotional state impacts learning outcomes 3 times more than time spent studying. But no one measures it.
+                    </p>
+                </div>
+
+                <div class="discovery-card">
+                    <div class="discovery-icon">🎯</div>
+                    <div class="discovery-stat">80%</div>
+                    <h3 class="discovery-title">Tests Miss Everything</h3>
+                    <p class="discovery-description">
+                        Traditional tests capture only 20% of the actual learning process — ignoring curiosity, effort, and resilience.
+                    </p>
+                </div>
+
+                <div class="discovery-card">
+                    <div class="discovery-icon">🔄</div>
+                    <div class="discovery-stat">10min</div>
+                    <h3 class="discovery-title">Micro-Moments Matter</h3>
+                    <p class="discovery-description">
+                        Real learning happens in 10-minute micro-moments of deep focus, not in 60-minute lecture blocks.
+                    </p>
+                </div>
+
+                <div class="discovery-card">
+                    <div class="discovery-icon">💡</div>
+                    <div class="discovery-stat">2.5×</div>
+                    <h3 class="discovery-title">Curiosity Predicts Success</h3>
+                    <p class="discovery-description">
+                        Students who score high on curiosity metrics outperform their peers by 2.5× — regardless of initial test scores.
+                    </p>
+                </div>
+
+                <div class="discovery-card">
+                    <div class="discovery-icon">⏰</div>
+                    <div class="discovery-stat">4AM</div>
+                    <h3 class="discovery-title">Hidden Effort</h3>
+                    <p class="discovery-description">
+                        The students who study at 4 AM show 5× higher emotional commitment — but traditional systems never reward this.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">What They See vs <span class="gradient-text">What We See</span></h2>
+            </div>
+
+            <div class="comparison">
+                <div class="comparison-grid">
+                    <div class="comparison-card traditional">
+                        <div class="comparison-label">❌ Traditional Systems</div>
+                        <ul class="comparison-list">
+                            <li class="comparison-item">
+                                <span class="comparison-icon">📝</span>
+                                <span class="comparison-text">Only final test scores</span>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="comparison-icon">⏱️</span>
+                                <span class="comparison-text">Time spent, not quality of engagement</span>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="comparison-icon">📊</span>
+                                <span class="comparison-text">Attendance and completion rates</span>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="comparison-icon">🎓</span>
+                                <span class="comparison-text">One-size-fits-all grading</span>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="comparison-icon">🔍</span>
+                                <span class="comparison-text">Backward-looking reports (weeks later)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="comparison-card into3ai">
+                        <div class="comparison-label">✅ into3.ai AI Vision</div>
+                        <ul class="comparison-list">
+                            <li class="comparison-item">
+                                <span class="comparison-icon">🧠</span>
+                                <span class="comparison-text">Real-time focus & emotional state</span>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="comparison-icon">💡</span>
+                                <span class="comparison-text">Curiosity patterns and depth of thinking</span>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="comparison-icon">🎯</span>
+                                <span class="comparison-text">Micro-moment mastery tracking</span>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="comparison-icon">📈</span>
+                                <span class="comparison-text">Growth trajectory, not just current level</span>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="comparison-icon">⚡</span>
+                                <span class="comparison-text">Instant adaptive response</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LII Introduction -->
+        <section class="section section-alt">
+            <div class="lii-intro">
+                <div class="lii-logo">LII</div>
+                <h2 class="lii-title">Learning Impact Index</h2>
+                <p class="lii-subtitle">
+                    The world's first comprehensive measurement system that captures the complete learning journey — not just the destination.
+                </p>
+
+                <div class="lii-components">
+                    <div class="lii-component">
+                        <div class="lii-component-icon">🎯</div>
+                        <div class="lii-component-name">Focus</div>
+                    </div>
+                    <div class="lii-component">
+                        <div class="lii-component-icon">🧠</div>
+                        <div class="lii-component-name">Mastery</div>
+                    </div>
+                    <div class="lii-component">
+                        <div class="lii-component-icon">💡</div>
+                        <div class="lii-component-name">Curiosity</div>
+                    </div>
+                    <div class="lii-component">
+                        <div class="lii-component-icon">💪</div>
+                        <div class="lii-component-name">Resilience</div>
+                    </div>
+                    <div class="lii-component">
+                        <div class="lii-component-icon">📈</div>
+                        <div class="lii-component-name">Consistency</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Story -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">The <span class="gradient-text">Hidden Journey</span></h2>
+                <p class="section-subtitle">
+                    What actually happens between "started learning" and "mastered concept"
+                </p>
+            </div>
+
+            <div class="data-story">
+                <div class="data-viz">
+                    <h3 class="data-viz-title">A Typical Student's Real Learning Pattern</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-label">Traditional View</div>
+                                <p class="timeline-text">Student attended lecture</p>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-label">What We See</div>
+                                <p class="timeline-text">Lost focus 4 times, re-watched 2 sections, struggled with concept #3</p>
+                            </div>
+                            <div class="timeline-point"></div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-label">Traditional View</div>
+                                <p class="timeline-text">Homework submitted</p>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-label">What We See</div>
+                                <p class="timeline-text">Spent 2 hours at night, felt frustrated initially, breakthrough moment at 11 PM</p>
+                            </div>
+                            <div class="timeline-point"></div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-label">Traditional View</div>
+                                <p class="timeline-text">Test score: 75%</p>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-label">What We See</div>
+                                <p class="timeline-text">Mastered 5 concepts deeply, curious about 3 advanced topics, needs support on 2 foundational areas</p>
+                            </div>
+                            <div class="timeline-point"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies -->
+        <section class="section section-alt">
+            <div class="section-header">
+                <h2 class="section-title">Real <span class="gradient-text">Before & After</span></h2>
+            </div>
+
+            <div class="case-studies">
+                <div class="case-study">
+                    <span class="case-label">Before into3.ai</span>
+                    <h3 class="case-title">The Invisible Struggler</h3>
+                    <p class="case-description">
+                        Student A consistently scored 60-70%. Teachers thought they weren't trying hard enough. Parents added more tuition. Nothing changed.
+                    </p>
+                </div>
+
+                <div class="case-study">
+                    <span class="case-label after">After into3.ai</span>
+                    <h3 class="case-title">The Pattern Revealed</h3>
+                    <p class="case-description">
+                        AI discovered they had perfect focus but struggled with foundational gaps from 2 years ago. Personalized path filled those gaps in 3 weeks. Now scoring 85%+.
+                    </p>
+                </div>
+
+                <div class="case-study">
+                    <span class="case-label">Before into3.ai</span>
+                    <h3 class="case-title">The Bored High-Achiever</h3>
+                    <p class="case-description">
+                        Student B scored 95% consistently. Teachers praised them. But they were disengaged, just going through the motions.
+                    </p>
+                </div>
+
+                <div class="case-study">
+                    <span class="case-label after">After into3.ai</span>
+                    <h3 class="case-title">Curiosity Unlocked</h3>
+                    <p class="case-description">
+                        AI detected low curiosity scores despite high grades. Introduced advanced challenges and peer teaching opportunities. Now mentoring 3 students.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="cta-section">
+            <h2 class="cta-title">This Changes <span class="gradient-text">Everything</span></h2>
+            <p class="cta-subtitle">
+                See how we use these discoveries to create personalized learning experiences for every student.
+            </p>
+            <a href="how_we_use_this.html" class="cta-button">See How We Use This →</a>
+        </section>
+    </div>
+
+    <script>
+        // Education words for matrix background
+        const educationWords = [
+            'discover', 'insight', 'pattern', 'hidden', 'reveal', 'truth', 'data', 'research',
+            'focus', 'emotion', 'curiosity', 'learning', 'micro-moment', 'resilience', 'growth',
+            'measure', 'track', 'analyze', 'understand', 'breakthrough', 'invisible', 'journey'
+        ];
+
+        const glowColors = ['glow-cyan', 'glow-purple', 'glow-pink'];
+        const wordsContainer = document.getElementById('wordsContainer');
+        const numberOfColumns = 12;
+        let allWords = [];
+
+        // Create columns
+        for (let i = 0; i < numberOfColumns; i++) {
+            const column = document.createElement('div');
+            column.className = 'word-column';
+            column.style.animationDuration = (45 + Math.random() * 30) + 's';
+            column.style.animationDelay = -(Math.random() * 40) + 's';
+            
+            for (let j = 0; j < 30; j++) {
+                const word = document.createElement('span');
+                word.className = 'education-word';
+                word.textContent = educationWords[Math.floor(Math.random() * educationWords.length)];
+                column.appendChild(word);
+                allWords.push(word);
+            }
+            
+            const cloned = column.innerHTML;
+            column.innerHTML = cloned + cloned;
+            
+            const newWords = column.querySelectorAll('.education-word');
+            newWords.forEach((word, idx) => {
+                if (idx >= 30) allWords.push(word);
+            });
+            
+            wordsContainer.appendChild(column);
+        }
+
+        // Catch words animation
+        function catchWord() {
+            const caught = document.querySelectorAll('.education-word.caught');
+            if (caught.length > 6) {
+                caught[0].classList.remove('caught', ...glowColors);
+            }
+
+            const word = allWords[Math.floor(Math.random() * allWords.length)];
+            const color = glowColors[Math.floor(Math.random() * glowColors.length)];
+            word.classList.add('caught', color);
+            
+            setTimeout(() => {
+                word.classList.remove('caught', color);
+            }, 2500);
+        }
+
+        setInterval(catchWord, 300);
+
+        // Initial burst
+        setTimeout(() => {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(catchWord, i * 150);
+            }
+        }, 500);
+    </script>
+</body>
+</html>

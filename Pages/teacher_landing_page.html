@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>into3.ai for Teachers - AI-Powered Teaching Excellence</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .back-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #8b5cf6;
+        }
+
+        .nav-cta {
+            padding: 0.7rem 1.8rem;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.6);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 140px 5% 80px;
+            background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 50%, #1a1f3a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.3), transparent);
+            border-radius: 50%;
+            filter: blur(120px);
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: heroGlow 6s ease-in-out infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { opacity: 0.4; transform: translateX(-50%) scale(1); }
+            50% { opacity: 0.7; transform: translateX(-50%) scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-left {
+            text-align: left;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50px;
+            color: #8b5cf6;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #ffffff, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1.1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(139, 92, 246, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .hero-right {
+            position: relative;
+        }
+
+        .hero-stats-box {
+            background: rgba(30, 27, 75, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 24px;
+            padding: 2.5rem;
+        }
+
+        .stat-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #8b5cf6;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Trust Indicators */
+        .trust-section {
+            padding: 2rem 5%;
+            background: rgba(139, 92, 246, 0.05);
+            border-top: 1px solid rgba(139, 92, 246, 0.1);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+        }
+
+        .trust-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .trust-item {
+            text-align: center;
+        }
+
+        .trust-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #8b5cf6;
+        }
+
+        .trust-text {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50px;
+            color: #8b5cf6;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(30, 27, 75, 0.6), rgba(76, 29, 149, 0.2));
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139, 92, 246, 0.5);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #8b5cf6;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-benefits {
+            list-style: none;
+        }
+
+        .feature-benefits li {
+            padding: 0.6rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .feature-benefits li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #ec4899;
+            font-weight: 800;
+        }
+
+        /* How It Works Section */
+        .how-it-works-section {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, rgba(30, 27, 75, 0.4), rgba(76, 29, 149, 0.2));
+        }
+
+        .steps-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            z-index: 1;
+        }
+
+        .step-card {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.5);
+            border: 4px solid #0a0e27;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.8rem;
+        }
+
+        .step-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.1));
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 32px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(139, 92, 246, 0.2);
+            border-radius: 50px;
+            color: #8b5cf6;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-amount {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #8b5cf6;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-period {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .pricing-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .pricing-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .pricing-feature-icon {
+            font-size: 1.5rem;
+            color: #10b981;
+            flex-shrink: 0;
+        }
+
+        .pricing-feature-text {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+        }
+
+        .pricing-cta {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+
+        .pricing-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.3rem 3.5rem;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            transition: all 0.3s;
+            box-shadow: 0 15px 50px rgba(139, 92, 246, 0.5);
+        }
+
+        .pricing-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.7);
+        }
+
+        .pricing-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 100px 5%;
+            background: linear-gradient(180deg, rgba(30, 27, 75, 0.3), rgba(76, 29, 149, 0.2));
+        }
+
+        .testimonials-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .testimonial-card {
+            background: rgba(30, 27, 75, 0.5);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .quote-icon {
+            font-size: 3rem;
+            color: rgba(139, 92, 246, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .author-info h4 {
+            font-size: 1.1rem;
+            color: #8b5cf6;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(30, 27, 75, 0.4);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .faq-question {
+            padding: 1.8rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            color: #8b5cf6;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: #8b5cf6;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 2rem 1.8rem;
+        }
+
+        /* Final CTA Section */
+        .final-cta-section {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, #1e1b4b, #4c1d95);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta-glow {
+            position: absolute;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.3), transparent);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(100px);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .final-cta-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .final-cta-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #fff, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .final-cta-description {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .final-cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 4rem;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            transition: all 0.4s;
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.6);
+            animation: buttonPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% {
+                box-shadow: 0 20px 60px rgba(139, 92, 246, 0.6);
+            }
+            50% {
+                box-shadow: 0 25px 80px rgba(139, 92, 246, 0.8);
+            }
+        }
+
+        .final-cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .final-cta-note {
+            margin-top: 2rem;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a0f1e;
+            padding: 3rem 5%;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            color: #8b5cf6;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #8b5cf6;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps-container::before {
+                display: none;
+            }
+
+            .pricing-features {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .final-cta-title {
+                font-size: 2.2rem;
+            }
+
+            .pricing-amount {
+                font-size: 3rem;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-actions {
+                gap: 0.8rem;
+            }
+
+            .back-link {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo"><img src="../White Logo.svg" alt="into3.ai" class="logo-img"></div>
+            <div class="nav-actions">
+                <a href="#" class="back-link">← Back to Plans</a>
+                <a href="#pricing" class="nav-cta">Join Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <div class="hero-left">
+                <div class="hero-badge">👩‍🏫 For Educators</div>
+                <h1 class="hero-title">Empower Your Teaching with AI Excellence</h1>
+                <p class="hero-description">
+                    Transform your classroom with intelligent AI tools designed specifically for 
+                    teachers. From automated content creation to real-time analytics, everything 
+                    you need to become an award-winning educator—all for just ₹99/month.
+                </p>
+                <div class="hero-cta-group">
+                    <a href="#pricing" class="btn-primary">
+                        <span>🚀</span>
+                        <span>Start Free Trial</span>
+                    </a>
+                    <a href="#features" class="btn-secondary">
+                        <span>📖</span>
+                        <span>Explore Features</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="hero-stats-box">
+                    <div class="stat-item">
+                        <div class="stat-number">50,000+</div>
+                        <div class="stat-label">Teachers Using into3.ai</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10 Hours</div>
+                        <div class="stat-label">Saved Per Week on Average</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">₹1 Crore</div>
+                        <div class="stat-label">Award Pool Eligibility</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4.9/5</div>
+                        <div class="stat-label">Average Teacher Rating</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="trust-section">
+        <div class="trust-content">
+            <div class="trust-item">
+                <div class="trust-number">🏆 #1</div>
+                <div class="trust-text">EdTech Platform in India</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-number">✓ 98%</div>
+                <div class="trust-text">Teacher Satisfaction Rate</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-number">⭐ 4.9/5</div>
+                <div class="trust-text">App Store Rating</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-number">🔒 100%</div>
+                <div class="trust-text">Data Security Guaranteed</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="section-header">
+            <div class="section-badge">✨ Platform Features</div>
+            <h2 class="section-title">Everything You Need to Excel as a Teacher</h2>
+            <p class="section-description">
+                Comprehensive AI-powered tools designed to reduce your workload, 
+                enhance student engagement, and elevate your teaching impact.
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3 class="feature-title">AI Class Prep & Content Builder</h3>
+                <p class="feature-description">
+                    Create engaging lesson plans, presentations, worksheets, and assessments 
+                    in minutes using advanced AI. Simply input your topic and let our AI generate 
+                    curriculum-aligned, grade-appropriate content.
+                </p>
+                <ul class="feature-benefits">
+                    <li>Instant lesson plan generation (all subjects)</li>
+                    <li>Auto-create PPTs, PDFs, and worksheets</li>
+                    <li>NCERT/CBSE/ICSE curriculum aligned</li>
+                    <li>Multilingual content support (10+ languages)</li>
+                    <li>Save 8-10 hours per week on prep</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Real-Time Teaching Analytics</h3>
+                <p class="feature-description">
+                    Track student performance, identify learning gaps, and get actionable 
+                    insights to improve your teaching effectiveness. Data-driven decisions 
+                    for better outcomes.
+                </p>
+                <ul class="feature-benefits">
+                    <li>Individual student progress tracking</li>
+                    <li>Class-wide performance dashboards</li>
+                    <li>Learning gap identification</li>
+                    <li>Personalized intervention recommendations</li>
+                    <li>Exportable reports for parent meetings</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3 class="feature-title">₹1 Crore Award Eligibility</h3>
+                <p class="feature-description">
+                    Every teacher on into3.ai is automatically enrolled in our National Teaching 
+                    Excellence Awards program. Your dedication could win you recognition and 
+                    substantial financial rewards.
+                </p>
+                <ul class="feature-benefits">
+                    <li>Auto-enrollment in annual awards</li>
+                    <li>AI-powered performance tracking for eligibility</li>
+                    <li>Multiple award categories (teaching, innovation, impact)</li>
+                    <li>Cash prizes from ₹50,000 to ₹10 lakhs</li>
+                    <li>National recognition & media coverage</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3 class="feature-title">Teacher Pension Fund</h3>
+                <p class="feature-description">
+                    Plan for your future with our exclusive Teacher Pension Fund. A portion 
+                    of your subscription contributes to a retirement fund, plus into3.ai matches 
+                    your contribution annually.
+                </p>
+                <ul class="feature-benefits">
+                    <li>10% of subscription → Pension Fund</li>
+                    <li>into3.ai matches 50% annually</li>
+                    <li>Tax-free growth (Section 80C eligible)</li>
+                    <li>Withdraw after 5 years or at retirement</li>
+                    <li>Average corpus: ₹2-5 lakhs after 10 years</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3 class="feature-title">Smart Question Bank & Assessments</h3>
+                <p class="feature-description">
+                    Access 1 million+ curated questions across all subjects and grades. 
+                    Auto-generate tests, quizzes, and assignments with customizable difficulty 
+                    levels and answer keys.
+                </p>
+                <ul class="feature-benefits">
+                    <li>1M+ questions (MCQ, short, long answer)</li>
+                    <li>Bloom's Taxonomy-based difficulty levels</li>
+                    <li>Auto-grading for objective questions</li>
+                    <li>Plagiarism detection for assignments</li>
+                    <li>Previous year papers & sample tests</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎓</div>
+                <h3 class="feature-title">Professional Development Hub</h3>
+                <p class="feature-description">
+                    Continuous learning opportunities to enhance your teaching skills. 
+                    Access webinars, courses, and certifications from education experts—
+                    all included in your subscription.
+                </p>
+                <ul class="feature-benefits">
+                    <li>100+ free professional development courses</li>
+                    <li>Live webinars with education leaders</li>
+                    <li>Certification programs (recognised nationally)</li>
+                    <li>Teacher community forums & networking</li>
+                    <li>Monthly workshops on latest teaching methods</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section">
+        <div class="section-header">
+            <div class="section-badge">🚀 Getting Started</div>
+            <h2 class="section-title">Start Teaching Smarter in 4 Simple Steps</h2>
+            <p class="section-description">
+                From sign-up to your first AI-powered lesson—in less than 10 minutes.
+            </p>
+        </div>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Create Account</h3>
+                <p class="step-description">
+                    Sign up with your email or phone. Verify your teacher credentials 
+                    (school ID or certificate). Takes less than 2 minutes.
+                </p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3 class="step-title">Set Up Profile</h3>
+                <p class="step-description">
+                    Add your subjects, grades, and teaching preferences. Our AI personalizes 
+                    content recommendations based on your profile.
+                </p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Explore Dashboard</h3>
+                <p class="step-description">
+                    Take a quick 5-minute guided tour. Learn to create lessons, track students, 
+                    and access the question bank.
+                </p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3 class="step-title">Start Creating</h3>
+                <p class="step-description">
+                    Generate your first AI lesson plan. Share with students. Watch the magic 
+                    happen as your teaching transforms!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="section-header">
+            <div class="section-badge">💳 Simple Pricing</div>
+            <h2 class="section-title">Incredible Value for Dedicated Teachers</h2>
+            <p class="section-description">
+                All features included. No hidden costs. Cancel anytime. Your investment 
+                in professional excellence starts here.
+            </p>
+        </div>
+
+        <div class="pricing-card">
+            <div class="pricing-header">
+                <div class="pricing-badge">Most Popular Among Teachers</div>
+                <h3 class="pricing-title">Teacher Plan</h3>
+                <div class="pricing-amount">₹99</div>
+                <div class="pricing-period">per month, billed monthly</div>
+            </div>
+
+            <div class="pricing-features">
+                <div class="pricing-feature">
+                    <div class="pricing-feature-icon">✓</div>
+                    <div class="pricing-feature-text">
+                        <strong>Unlimited AI Content Generation</strong><br>
+                        Create unlimited lessons, presentations, worksheets
+                    </div>
+                </div>
+
+                <div class="pricing-feature">
+                    <div class="pricing-feature-icon">✓</div>
+                    <div class="pricing-feature-text">
+                        <strong>Real-Time Analytics Dashboard</strong><br>
+                        Track up to 500 students simultaneously
+                    </div>
+                </div>
+
+                <div class="pricing-feature">
+                    <div class="pricing-feature-icon">✓</div>
+                    <div class="pricing-feature-text">
+                        <strong>1M+ Question Bank Access</strong><br>
+                        All subjects, all grades, all exam boards
+                    </div>
+                </div>
+
+                <div class="pricing-feature">
+                    <div class="pricing-feature-icon">✓</div>
+                    <div class="pricing-feature-text">
+                        <strong>Auto Awards Enrollment</strong><br>
+                        Compete for ₹1 Crore prize pool annually
+                    </div>
+                </div>
+
+                <div class="pricing-feature">
+                    <div class="pricing-feature-icon">✓</div>
+                    <div class="pricing-feature-text">
+                        <strong>Teacher Pension Fund</strong><br>
+                        ₹9.9/month auto-invested + 50% match
+                    </div>
+                </div>
+
+                <div class="pricing-feature">
+                    <div class="pricing-feature-icon">✓</div>
+                    <div class="pricing-feature-text">
+                        <strong>Professional Development</strong><br>
+                        100+ courses, webinars, certifications
+                    </div>
+                </div>
+
+                <div class="pricing-feature">
+                    <div class="pricing-feature-icon">✓</div>
+                    <div class="pricing-feature-text">
+                        <strong>Priority Support</strong><br>
+                        24/7 chat, email support within 2 hours
+                    </div>
+                </div>
+
+                <div class="pricing-feature">
+                    <div class="pricing-feature-icon">✓</div>
+                    <div class="pricing-feature-text">
+                        <strong>Mobile & Desktop Apps</strong><br>
+                        Teach from anywhere, sync across devices
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-cta">
+                <a href="#" class="pricing-button">
+                    <span>🎉</span>
+                    <span>Start 14-Day Free Trial</span>
+                    <span>→</span>
+                </a>
+                <p class="pricing-note">
+                    No credit card required • Cancel anytime • Full access during trial
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="section-header">
+            <div class="section-badge">💬 Teacher Success Stories</div>
+            <h2 class="section-title">Loved by Educators Across India</h2>
+            <p class="section-description">
+                Real teachers, real results. See how into3.ai is transforming classrooms nationwide.
+            </p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">
+                    "into3.ai completely changed how I teach. I used to spend 3-4 hours 
+                    daily on lesson prep. Now it takes 30 minutes, and the quality is better! 
+                    The AI generates engaging content my students actually enjoy. Plus, the 
+                    analytics help me identify struggling students early."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👩‍🏫</div>
+                    <div class="author-info">
+                        <h4>Anjali Mehta</h4>
+                        <p>Science Teacher, Delhi Public School</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">
+                    "The question bank is a game-changer! I create customized tests in 
+                    minutes, and the auto-grading saves hours. But what really impressed 
+                    me was winning ₹2 lakhs in the Teaching Excellence Awards. I never 
+                    imagined my work would be recognized this way. Thank you, into3.ai!"
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👨‍🏫</div>
+                    <div class="author-info">
+                        <h4>Rajesh Kumar</h4>
+                        <p>Math Teacher, Kendriya Vidyalaya</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">
+                    "As a new teacher, I was overwhelmed. into3.ai became my mentor. 
+                    The professional development courses taught me modern teaching techniques. 
+                    The AI helps me create lessons that match my students' levels. Best ₹99 
+                    I spend every month. My principal even noticed the improvement!"
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👩‍🏫</div>
+                    <div class="author-info">
+                        <h4>Priya Sharma</h4>
+                        <p>English Teacher, Ryan International</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="section-header">
+            <div class="section-badge">❓ Common Questions</div>
+            <h2 class="section-title">Everything You Want to Know</h2>
+            <p class="section-description">
+                Got questions? We've got answers. Still curious? Contact our support team!
+            </p>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do I need to pay ₹99 during the free trial?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    No! Your 14-day free trial is completely free—no credit card required 
+                    at sign-up. We'll remind you 3 days before the trial ends. If you love 
+                    it, you can then subscribe for ₹99/month. If not, simply let the trial 
+                    expire with no charges.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I cancel my subscription anytime?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Absolutely! There are no long-term contracts or cancellation fees. You 
+                    can cancel anytime from your account settings. If you cancel mid-month, 
+                    you'll retain access until the end of your billing period. Your Pension 
+                    Fund contributions are safe and will continue growing.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How does the Teacher Pension Fund work?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    10% of your ₹99 subscription (₹9.9/month) is automatically invested in 
+                    a Teacher Pension Fund managed by HDFC Mutual Fund. into3.ai matches 50% 
+                    of your annual contribution (₹59.4/year). Your fund grows tax-free and 
+                    can be withdrawn after 5 years or at retirement. Average corpus after 10 
+                    years: ₹2-5 lakhs.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Are the awards real? How do I qualify?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes! The National Teaching Excellence Awards are genuine, with a ₹1 Crore 
+                    prize pool. Every active teacher on into3.ai is auto-enrolled. Qualification 
+                    is based on: student performance improvements, content creation quality, 
+                    platform engagement, and peer reviews. Our AI tracks these metrics automatically. 
+                    Winners are announced annually in July.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can teachers from coaching centers join?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes! into3.ai is for ALL educators—school teachers, private tutors, coaching 
+                    center instructors, online educators, and freelance teachers. As long as you're 
+                    teaching students, you're eligible. You'll need to verify your teaching 
+                    credentials during sign-up (school ID, certificates, or student testimonials).
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What subjects and grades are supported?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    All subjects from Pre-K to Grade 12: Math, Science, English, Social Studies, 
+                    Hindi, Sanskrit, Computer Science, Commerce, Arts, and more. We support CBSE, 
+                    ICSE, State Boards, and IB curricula. Content is available in 10+ Indian 
+                    languages. College/University professors can also use the platform for basic 
+                    content creation.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do students need separate accounts?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Not required for basic features! You can share AI-generated content as PDFs or 
+                    links with students. However, if you want to track individual student performance 
+                    and assign homework through the platform, students need free learner accounts. 
+                    Teachers get 500 student slots included in the ₹99 plan.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is training provided? I'm not tech-savvy.</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Don't worry! We have a 5-minute interactive onboarding tour when you first 
+                    log in. Plus, we offer: video tutorials, live webinars (every Saturday), 
+                    24/7 chat support, Hindi language support, and a teacher community forum. 
+                    Most teachers become confident users within their first week. If you're still 
+                    stuck, we offer free 1-on-1 training calls.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta-section">
+        <div class="final-cta-glow"></div>
+        <div class="final-cta-content">
+            <h2 class="final-cta-title">Ready to Transform Your Teaching?</h2>
+            <p class="final-cta-description">
+                Join 50,000+ teachers who are saving time, improving student outcomes, 
+                and earning recognition. Your journey to becoming an award-winning educator 
+                starts today. Try it free for 14 days—no credit card needed!
+            </p>
+            <a href="free_trial_teacher.html" class="final-cta-button">
+                <span>🚀</span>
+                <span>Start Your Free Trial Now</span>
+                <span>→</span>
+            </a>
+            <p class="final-cta-note">
+                ✓ 14-day free trial • ✓ No credit card required • ✓ Cancel anytime<br>
+                Questions? Call us at 1800-123-4567 (Toll Free) or email teachers@into3.ai
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Product</h3>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Mobile App</a></li>
+                    <li><a href="#">Desktop App</a></li>
+                    <li><a href="#">Integrations</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>For Teachers</h3>
+                <ul>
+                    <li><a href="#">Getting Started</a></li>
+                    <li><a href="#">Video Tutorials</a></li>
+                    <li><a href="#">Teacher Community</a></li>
+                    <li><a href="#">Awards Program</a></li>
+                    <li><a href="#">Pension Fund</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Webinars</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Certification</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 into3.ai. All rights reserved. Empowering teachers to inspire excellence.</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQs
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked FAQ if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.feature-card, .step-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

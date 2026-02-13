@@ -1,0 +1,23 @@
+{
+  "s3": {
+    "bucketName": "into3-landing",
+    "region": "ap-south-1",
+    "indexDocument": "intro.html",
+    "errorDocument": "404.html"
+  },
+  "cloudfront": {
+    "priceClass": "PriceClass_100",
+    "defaultRootObject": "intro.html"
+  },
+  "deployment": {
+    "excludeFiles": [
+      ".git/*",
+      ".DS_Store",
+      "node_modules/*",
+      "deploy-*.sh",
+      "deploy-config.json",
+      "DEPLOYMENT.md",
+      "README.md"
+    ]
+  }
+}

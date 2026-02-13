@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>₹25 Lakh National Scholarship - into3.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0e27;
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background - Education Words Matrix */
+        .animated-bg {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .words-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .word-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            animation: scrollVertical 60s linear infinite;
+            opacity: 0.2;
+        }
+
+        @keyframes scrollVertical {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .word-column:nth-child(odd) { color: rgba(6, 182, 212, 0.6); }
+        .word-column:nth-child(even) { color: rgba(139, 92, 246, 0.5); }
+
+        .education-word {
+            display: block;
+            white-space: nowrap;
+        }
+
+        .education-word.caught {
+            color: #ffffff !important;
+            font-weight: 900;
+            font-size: 1.2em;
+            text-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+            transform: scale(1.3);
+            opacity: 1 !important;
+        }
+
+        .education-word.caught.glow-cyan { color: #06b6d4 !important; }
+        .education-word.caught.glow-purple { color: #8b5cf6 !important; }
+        .education-word.caught.glow-yellow { color: #fbbf24 !important; }
+
+        /* Content Layer */
+        .content-layer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 5% 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: rgba(251, 191, 36, 0.15);
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #fbbf24;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            max-width: 1100px;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3rem;
+            max-width: 900px;
+            line-height: 1.6;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #0a0e27;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(251, 191, 36, 0.6);
+        }
+
+        .btn-secondary {
+            padding: 1.2rem 3rem;
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 100px 5%;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .gradient-gold {
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Overview Section */
+        .overview {
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        .overview-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .overview-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .overview-tagline {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 3rem;
+            color: #fbbf24;
+        }
+
+        /* Eligibility Grid */
+        .eligibility-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .eligibility-card {
+            padding: 2.5rem;
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .eligibility-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(251, 191, 36, 0.5);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.2);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: #fbbf24;
+        }
+
+        .card-subtitle {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Evaluation Process */
+        .evaluation-timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            align-items: start;
+        }
+
+        .timeline-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 900;
+            color: #0a0e27;
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+        }
+
+        .timeline-content {
+            background: rgba(30, 41, 59, 0.6);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            color: #fbbf24;
+        }
+
+        .timeline-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .timeline-note {
+            text-align: center;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 2rem;
+        }
+
+        /* Awards Table */
+        .awards-table {
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        }
+
+        thead th {
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 800;
+            color: #0a0e27;
+            font-size: 1.1rem;
+        }
+
+        tbody td {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .award-value {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fbbf24;
+        }
+
+        /* How to Apply Steps */
+        .apply-steps {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            align-items: start;
+        }
+
+        .step-number {
+            min-width: 60px;
+            height: 60px;
+            background: rgba(251, 191, 36, 0.2);
+            border: 2px solid #fbbf24;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #fbbf24;
+        }
+
+        .step-content h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .step-content p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .apply-note {
+            text-align: center;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #fbbf24;
+            margin-top: 3rem;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            padding: 2.5rem;
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            border-left: 4px solid #fbbf24;
+        }
+
+        .testimonial-quote {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #fbbf24;
+        }
+
+        /* Fairness Section */
+        .fairness {
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        .fairness-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 2rem auto;
+        }
+
+        .fairness-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .fairness-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .fairness-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .fairness-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            text-align: center;
+            padding: 100px 5%;
+        }
+
+        .final-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .final-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .final-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="words-container" id="wordsContainer"></div>
+    </div>
+
+    <!-- Content Layer -->
+    <div class="content-layer">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">🏆 into3.ai National Scholarship</div>
+            <h1 class="hero-title">
+                The Future Doesn't Belong to the <span class="highlight">Fastest Learners</span>.<br>
+                It Belongs to the <span class="highlight">Most Curious Ones</span>.
+            </h1>
+            <p class="hero-subtitle">
+                The into3.ai National Scholarship rewards curiosity, effort, and emotional growth — not just marks.
+            </p>
+            <div class="hero-ctas">
+                <a href="signup.html" class="btn-primary">🎓 Apply Now</a>
+                <a href="#evaluation" class="btn-secondary">📘 See How Selection Works</a>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section class="section overview">
+            <div class="section-header">
+                <h2 class="section-title">Why This <span class="gradient-gold">Scholarship Exists</span></h2>
+            </div>
+            <div class="overview-content">
+                <p>
+                    For too long, scholarships have only rewarded marks.
+                </p>
+                <p>
+                    But what about the student who studies at 5 AM, who keeps trying even when it's hard, who learns differently, but learns deeply?
+                </p>
+                <p>
+                    <strong>into3.ai's Future Scholar Program changes that</strong> — by rewarding not only academic mastery, but also focus, creativity, and emotional balance.
+                </p>
+                <p class="overview-tagline">
+                    Different stories. One opportunity.
+                </p>
+            </div>
+        </section>
+
+        <!-- Eligibility Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Eligibility & <span class="gradient-gold">Categories</span></h2>
+                <p class="section-subtitle">Every region has equal opportunity. Rankings are normalized for network and resource access.</p>
+            </div>
+
+            <div class="eligibility-grid">
+                <div class="eligibility-card">
+                    <div class="card-icon">🥇</div>
+                    <h3 class="card-title">National Scholarship</h3>
+                    <p class="card-subtitle">₹25 Lakh</p>
+                    <p class="card-description">
+                        Top 100 learners nationwide based on aggregate Learning Impact Index (LII) performance across focus, mastery & curiosity.
+                    </p>
+                </div>
+
+                <div class="eligibility-card">
+                    <div class="card-icon">🥈</div>
+                    <h3 class="card-title">State Scholarship</h3>
+                    <p class="card-subtitle">₹5 Lakh each</p>
+                    <p class="card-description">
+                        Top 500 learners in each state based on improvement rate and consistency over 3 months.
+                    </p>
+                </div>
+
+                <div class="eligibility-card">
+                    <div class="card-icon">🥉</div>
+                    <h3 class="card-title">District Scholarship</h3>
+                    <p class="card-subtitle">₹50,000 each</p>
+                    <p class="card-description">
+                        Emerging learners showing top emotional resilience & steady focus.
+                    </p>
+                </div>
+
+                <div class="eligibility-card">
+                    <div class="card-icon">💡</div>
+                    <h3 class="card-title">Special Curiosity Award</h3>
+                    <p class="card-subtitle">₹1 Lakh</p>
+                    <p class="card-description">
+                        25 unique students recognized for innovation, creativity, or peer help.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Evaluation Process -->
+        <section class="section" id="evaluation" style="background: rgba(10, 14, 39, 0.5);">
+            <div class="section-header">
+                <h2 class="section-title">How We Select <span class="gradient-gold">Fairly</span></h2>
+                <p class="section-subtitle">No exams. No interviews. Just the truth of your effort.</p>
+            </div>
+
+            <div class="evaluation-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">AI Evaluation</h3>
+                        <p class="timeline-description">
+                            LII automatically tracks each student's consistency, focus, mastery & curiosity through the into3.ai platform.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Data Verification</h3>
+                        <p class="timeline-description">
+                            Independent auditors verify anonymized data samples to ensure no manipulation or bias (Audit Council).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Human Validation</h3>
+                        <p class="timeline-description">
+                            Final 10% of shortlisted students reviewed by certified educators for context & human factors.
+                        </p>
+                    </div>
+                </div>
+
+                <p class="timeline-note">Transparent. Audited. Fair.</p>
+            </div>
+        </section>
+
+        <!-- Awards & Benefits -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Awards & <span class="gradient-gold">Benefits</span></h2>
+                <p class="section-subtitle">All scholarship funds are credited directly to recipients via verified accounts under into3.ai Foundation (Registered Trust).</p>
+            </div>
+
+            <div class="awards-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Level</th>
+                            <th>Award</th>
+                            <th>Add-on Benefits</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>🥇 National</td>
+                            <td><span class="award-value">₹25 Lakh</span></td>
+                            <td>1-year mentorship + "AI Future Scholar" title + Media feature + Internship opportunity</td>
+                        </tr>
+                        <tr>
+                            <td>🥈 State</td>
+                            <td><span class="award-value">₹5 Lakh each</span></td>
+                            <td>Exclusive masterclasses + Recognition event</td>
+                        </tr>
+                        <tr>
+                            <td>🥉 District</td>
+                            <td><span class="award-value">₹50,000 each</span></td>
+                            <td>Digital certificate + Public leaderboard highlight</td>
+                        </tr>
+                        <tr>
+                            <td>💡 Curiosity</td>
+                            <td><span class="award-value">₹1 Lakh</span></td>
+                            <td>Innovation grant + Mentor support</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- How to Apply -->
+        <section class="section" id="apply" style="background: rgba(10, 14, 39, 0.5);">
+            <div class="section-header">
+                <h2 class="section-title">Ready to See What Your <span class="gradient-gold">Effort Is Worth</span>?</h2>
+            </div>
+
+            <div class="apply-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Sign Up</h3>
+                        <p>Create an into3.ai Student Account — it's free and takes 2 minutes.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Learn Naturally</h3>
+                        <p>Complete daily ILP (Individualized Learning Path) sessions. System auto-tracks your performance.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Get Ranked</h3>
+                        <p>Appear in weekly LII-based leaderboard based on your consistency and growth.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Auto Eligibility</h3>
+                        <p>Top students are automatically considered for awards — no separate application needed.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Verification</h3>
+                        <p>Selected students receive a verification link via dashboard. That's it!</p>
+                    </div>
+                </div>
+
+                <p class="apply-note">No forms, no essays, no fees — just authentic learning.</p>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#" class="btn-primary">💙 Create My Account →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Past Scholars -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Every Number Hides a Story of <span class="gradient-gold">Resilience</span></h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p class="testimonial-quote">
+                        "I studied in a small town. into3.ai helped me find where I stood — and believe I could reach higher."
+                    </p>
+                    <p class="testimonial-author">— R****, Class 10, Rajasthan</p>
+                </div>
+
+                <div class="testimonial">
+                    <p class="testimonial-quote">
+                        "I didn't just win ₹5L — I learned how to learn better."
+                    </p>
+                    <p class="testimonial-author">— T*****, Class 11, Bengaluru</p>
+                </div>
+
+                <div class="testimonial">
+                    <p class="testimonial-quote">
+                        "The scholarship changed everything for my family. But what changed me was discovering I could compete with anyone."
+                    </p>
+                    <p class="testimonial-author">— S****, Class 12, Bihar</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fairness Section -->
+        <section class="section fairness">
+            <div class="section-header">
+                <h2 class="section-title">Fair. Transparent. <span class="gradient-gold">Audited. Always.</span></h2>
+            </div>
+
+            <div class="fairness-features">
+                <div class="fairness-item">
+                    <div class="fairness-icon">🚫</div>
+                    <h3 class="fairness-title">No Manual Nominations</h3>
+                </div>
+
+                <div class="fairness-item">
+                    <div class="fairness-icon">💎</div>
+                    <h3 class="fairness-title">No Purchased Ranks</h3>
+                </div>
+
+                <div class="fairness-item">
+                    <div class="fairness-icon">✅</div>
+                    <h3 class="fairness-title">Every Award Verifiable</h3>
+                </div>
+
+                <div class="fairness-item">
+                    <div class="fairness-icon">🔒</div>
+                    <h3 class="fairness-title">Data Anonymized & Deleted</h3>
+                </div>
+            </div>
+
+            <p style="text-align: center; max-width: 800px; margin: 2rem auto; color: rgba(255, 255, 255, 0.7); line-height: 1.7;">
+                All scholarship selections follow the Fair Play Charter and the Audit Transparency Framework. Emotional and focus data are anonymized, audited, and deleted after evaluation.
+            </p>
+
+            <div class="fairness-links">
+                <a href="#" class="btn-secondary">📘 Read Fair Play Charter</a>
+                <a href="#" class="btn-secondary">🔍 See Audit Process</a>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <h2 class="final-title">This Isn't a Scholarship.<br>It's a <span class="gradient-gold">Salute</span>.</h2>
+            <p class="final-subtitle">
+                A salute to every student who refuses to give up, to every teacher who guides quietly, and to every parent who believes in possibility.
+            </p>
+            <div class="final-buttons">
+                <a href="#apply" class="btn-primary">🎓 Apply / Join the Platform</a>
+                <a href="#" class="btn-secondary">💡 Explore Leaderboard</a>
+                <a href="#" class="btn-secondary">📘 Read Student Success Stories</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Education words for matrix background
+        const educationWords = [
+            'curiosity', 'effort', 'growth', 'learning', 'focus', 'mastery', 'resilience',
+            'innovation', 'creativity', 'dedication', 'perseverance', 'discovery', 'wonder',
+            'achievement', 'progress', 'excellence', 'improvement', 'consistency', 'practice',
+            'understanding', 'knowledge', 'wisdom', 'insight', 'explore', 'question', 'answer'
+        ];
+
+        const glowColors = ['glow-cyan', 'glow-purple', 'glow-yellow'];
+        const wordsContainer = document.getElementById('wordsContainer');
+        const numberOfColumns = 12;
+        let allWords = [];
+
+        // Create columns
+        for (let i = 0; i < numberOfColumns; i++) {
+            const column = document.createElement('div');
+            column.className = 'word-column';
+            column.style.animationDuration = (45 + Math.random() * 30) + 's';
+            column.style.animationDelay = -(Math.random() * 40) + 's';
+            
+            for (let j = 0; j < 30; j++) {
+                const word = document.createElement('span');
+                word.className = 'education-word';
+                word.textContent = educationWords[Math.floor(Math.random() * educationWords.length)];
+                column.appendChild(word);
+                allWords.push(word);
+            }
+            
+            const cloned = column.innerHTML;
+            column.innerHTML = cloned + cloned;
+            
+            const newWords = column.querySelectorAll('.education-word');
+            newWords.forEach((word, idx) => {
+                if (idx >= 30) allWords.push(word);
+            });
+            
+            wordsContainer.appendChild(column);
+        }
+
+        // Catch words animation
+        function catchWord() {
+            const caught = document.querySelectorAll('.education-word.caught');
+            if (caught.length > 6) {
+                caught[0].classList.remove('caught', ...glowColors);
+            }
+
+            const word = allWords[Math.floor(Math.random() * allWords.length)];
+            const color = glowColors[Math.floor(Math.random() * glowColors.length)];
+            word.classList.add('caught', color);
+            
+            setTimeout(() => {
+                word.classList.remove('caught', color);
+            }, 2500);
+        }
+
+        setInterval(catchWord, 300);
+
+        // Initial burst
+        setTimeout(() => {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(catchWord, i * 150);
+            }
+        }, 500);
+    </script>
+</body>
+</html>
