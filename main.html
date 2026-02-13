@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>into3.ai</title>
+  <link rel="icon" type="image/svg+xml" href="Favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+ 
+</head>
+<body>
+
+  <!-- Navigation trigger area -->
+  <div class="nav-trigger"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="logo">
+      <img src="White Logo.svg" alt="into3.ai" class="logo-img">
+    </div>
+    <div class="nav-buttons">
+      <a href="Pages/login.html" class="nav-btn login-btn">Login</a>
+      <a href="Pages/signup.html" class="nav-btn signup-btn">Sign Up</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="section1"><iframe src="Homepage/2. hero_section_enhanced.html"></iframe></section>
+    <section id="section2"><iframe src="Homepage/3. section2_problem_final.html"></iframe></section>
+    <section id="section3"><iframe src="Homepage/4. section3_solution.html"></iframe></section>
+    <section id="section4"><iframe src="Homepage/5. section4_intelligence_systems.html"></iframe></section>
+    <section id="section5"><iframe src="Homepage/6. section5_results.html"></iframe></section>
+    <section id="section6"><iframe src="Homepage/7. section7_human_promise_split.html"></iframe></section>
+    <section id="section8"><iframe src="Homepage/8. section8_recognition_awards.html"></iframe></section>
+    <section id="section9"><iframe src="Homepage/9. section9_pricing_final.html"></iframe></section>
+    <section id="section10"><iframe src="Homepage/10. section10_silence_speaks.html"></iframe></section>
+    <section id="section11"><iframe src="Homepage/11. footer_comprehensive.html"></iframe></section>
+
+  </main>
+
+  <script>
+    // Enhanced scroll snapping
+    let isScrolling = false;
+    let scrollTimeout;
+    const nav = document.querySelector('.nav');
+    const navTrigger = document.querySelector('.nav-trigger');
+    let currentSection = 0;
+
+    // Auto-hide navigation on scroll
+    function updateNavVisibility() {
+      const sections = document.querySelectorAll('section');
+      sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+          currentSection = index;
+        }
+      });
+
+      // Hide nav if not on first section
+      if (currentSection > 0) {
+        nav.classList.add('hidden');
+      } else {
+        nav.classList.remove('hidden');
+      }
+    }
+
+    // Show nav when hovering over trigger area
+    navTrigger.addEventListener('mouseenter', function() {
+      if (currentSection > 0) {
+        nav.classList.remove('hidden');
+      }
+    });
+
+    // Hide nav when mouse leaves the nav area
+    nav.addEventListener('mouseleave', function() {
+      if (currentSection > 0) {
+        nav.classList.add('hidden');
+      }
+    });
+
+    // Logo click navigation to section 1
+    const logo = document.querySelector('.logo');
+    logo.addEventListener('click', function() {
+      const section1 = document.querySelector('#section1');
+      section1.scrollIntoView({ behavior: 'smooth' });
+      currentSection = 0;
+      nav.classList.remove('hidden');
+    });
+
+    window.addEventListener('wheel', function(e) {
+      if (isScrolling) return;
+
+      const sections = document.querySelectorAll('section');
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= windowHeight / 2 && rect.bottom >= windowHeight / 2) {
+          currentSection = index;
+        }
+      });
+
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        isScrolling = true;
+
+        if (e.deltaY > 0 && currentSection < sections.length - 1) {
+          // Scroll down
+          sections[currentSection + 1].scrollIntoView({ behavior: 'smooth' });
+        } else if (e.deltaY < 0 && currentSection > 0) {
+          // Scroll up
+          sections[currentSection - 1].scrollIntoView({ behavior: 'smooth' });
+        }
+
+        setTimeout(() => {
+          isScrolling = false;
+          updateNavVisibility();
+        }, 1000);
+      }, 50);
+    }, { passive: true });
+
+    // Update nav visibility on scroll
+    window.addEventListener('scroll', updateNavVisibility);
+  </script>
+
+</body>
+</html>
